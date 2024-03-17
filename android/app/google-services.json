@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227571865273",
+    "project_id": "tamredak-c2fb9",
+    "storage_bucket": "tamredak-c2fb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227571865273:android:eb8adde0e7b0013d216d68",
+        "android_client_info": {
+          "package_name": "com.example.tamredak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeqim561-nFyeE_1Ld0Ao5z6Maejx_RMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
