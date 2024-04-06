@@ -34,7 +34,7 @@ class AppColors {
     required this.veryDarkPurple,
     required this.darkRed,
     required this.red,
-
+    required this.purple
 
 
   });
@@ -66,6 +66,7 @@ class AppColors {
   Color purpleBackground;
   Color blueBackground;
   Color lightPurpleBackground;
+  Color purple;
 }
 
 var _defaultLightColors = AppColors(
@@ -110,5 +111,6 @@ var _defaultLightColors = AppColors(
   purpleBackground: const Color(0xff385A64),
   veryDarkPurple: const Color(0xff331338),
   darkRed:const Color(0xffA01B1B),
-  red: const Color(0xffDA1313)
+  red: const Color(0xffDA1313),
+  purple: const Color(0xffC3CBF0),
 );

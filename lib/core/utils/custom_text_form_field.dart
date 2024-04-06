@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tamredak/core/themes/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixColor,
     this.contentPadding,
     this.maxLine,
+    this.color
   });
   final TextStyle? labelStyle;
   final String? label;
@@ -38,14 +40,16 @@ class CustomTextFormField extends StatelessWidget {
   final Color? suffixColor;
   final EdgeInsets? contentPadding;
   final int? maxLine;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+        color: color??Colors.white,
+        borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
       ),
       child: TextFormField(
+        style: TextStyle(color: AppColors.current.text),
         controller: controller,
         keyboardType: type,
         obscureText: isPassword,
@@ -59,12 +63,14 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: contentPadding,
           labelText: label,
+          labelStyle: const TextStyle(color: Colors.black),
           hintText: hint,
           prefixIcon: prefix,
           suffixIcon: widgetSuffix ?? (suffix),
           border: InputBorder.none,
           focusedBorder: InputBorder.none
         ),
+        cursorColor: AppColors.current.text,
       ),
     );
   }

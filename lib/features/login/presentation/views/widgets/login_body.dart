@@ -3,8 +3,7 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/login/views/widgets/login_container_widget.dart';
-
+import 'package:tamredak/features/login/presentation/views/widgets/login_container_widget.dart';
 class LoginBody extends StatelessWidget {
   const LoginBody({super.key});
 

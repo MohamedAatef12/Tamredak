@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
+import 'package:tamredak/features/bottom_bar/presentation/views/bottom_bar_screen.dart';
 
 class LoginContainer extends StatelessWidget {
   const LoginContainer({super.key});
@@ -46,14 +48,14 @@ class LoginContainer extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 20.0),
                 child: CustomTextFormField(
-                  hint: 'ادخل اسم المستخدم',
+                  label: 'ادخل اسم المستخدم',
                   contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: CustomTextFormField(
-                  hint: 'ادخل الرقم السري',
+                  label: 'ادخل الرقم السري',
                   contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                 ),
               ),
@@ -68,6 +70,7 @@ class LoginContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: CustomAppButton(text: 'تسجيل الدخول',
+                    onTap: (){Get.to(const BottomBarScreen());},
                     height:
                     (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
                     width:

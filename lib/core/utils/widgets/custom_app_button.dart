@@ -5,12 +5,12 @@ class CustomAppButton extends StatelessWidget {
   const CustomAppButton({
     super.key,
     required this.text,
-    this.ontap,
+    this.onTap,
 
     required this.textFont, required this.height, required this.width,
   });
   final String text;
-  final void Function()? ontap;
+  final void Function()? onTap;
   final double height;
   final double width;
   final double textFont;
@@ -18,7 +18,7 @@ class CustomAppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: ontap,
+      onPressed: onTap,
       child: Center(
           child: Text(
         text,

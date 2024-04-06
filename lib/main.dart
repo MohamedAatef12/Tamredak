@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tamredak/features/home/view/home_screen.dart';
+import 'package:tamredak/features/bottom_bar/presentation/views/bottom_bar_screen.dart';
 import 'firebase_options.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const Scaffold(
-        body : HomeScreen()
+        body : BottomBarScreen()
       ),
     );
   }

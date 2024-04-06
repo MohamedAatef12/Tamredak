@@ -7,5 +7,8 @@ abstract class Assets {
   static const card4home = "assets/images/card4homepage.png";
   static const patientImage = "assets/images/patient.png";
   static const googleLogo = "assets/images/google.png";
-  static const noData = "assets/images/noData.svg";
+  static const noData = "assets/images/nodata.png";
+  static const noPhoto = "assets/images/no.png";
+  static const editProfile = "assets/images/edit_profile.png";
+  static const database = "assets/images/database.png";
 }
