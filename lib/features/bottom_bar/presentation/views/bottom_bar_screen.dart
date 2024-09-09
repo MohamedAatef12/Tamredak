@@ -23,7 +23,7 @@ class BottomBarScreen extends StatelessWidget {
           context,
           screens: buildScreens(),
           items: itemsBottomBar(),
-          navBarHeight: 70,
+          navBarHeight: MediaQuery.sizeOf(context).height*0.08,
           resizeToAvoidBottomInset: true,
           backgroundColor: AppColors.current.blueBackground,
           padding: const NavBarPadding.symmetric(

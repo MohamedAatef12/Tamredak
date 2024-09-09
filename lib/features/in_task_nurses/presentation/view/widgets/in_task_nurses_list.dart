@@ -6,14 +6,17 @@ import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
+import 'package:tamredak/features/in_task_nurses/presentation/controllers/in_task_controller.dart';
 class InTaskList extends StatelessWidget {
   const InTaskList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final InTaskController controller = Get.put(InTaskController());
+    controller.fetchUnAvailableNurses();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      width: MediaQuery.of(context).size.width * 0.92,
+      height: MediaQuery.of(context).size.height * 0.8,
+      width: MediaQuery.of(context).size.width *0.92,
       decoration: BoxDecoration(
           color: AppColors.current.lightPurpleBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -52,32 +55,62 @@ class InTaskList extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            SizedBox(
-              height: Get.mediaQuery.size.height * 0.539,
-              width: Get.mediaQuery.size.width * 0.85, // Set ListView height
-              child: ListView.separated(
-                itemCount: 10,
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 15,
-                ), // Set the number of items
-                itemBuilder: (context, index) {
-                  return  CustomNursesCard(
-                    name: 'mohamed',
-                    image: const Image(
-                      image: AssetImage(
-                        Assets.noPhoto,
-                      ),
-                    ),
-                    phone: "01025143723",
-                    age: "20",
-                    area:"napoli",
-                    gender: "male",
-                    color: AppColors.current.purpleButtons,
-                    one: true,
-                    button1: const CustomAppButton(text: 'End Task', textFont: 12, height: 30,width: 20,),
-                  );
-                },
-              ),
+            Obx(() {
+              if (controller.isLoading.value) {
+                // Show circular indicator when loading
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (controller.unAvailableNursesList.isEmpty) {
+                return  Center(
+                    child: Column(
+
+                      children: [
+                        SizedBox(height: MediaQuery.sizeOf(context).height*0.15,),
+                        const Image(image: AssetImage('assets/images/nodata.png')),
+                      ],
+                    )
+                );
+              }
+              return
+                SizedBox(
+                  height: Get.mediaQuery.size.height * 0.539,
+                  width: Get.mediaQuery.size.width * 0.85,
+                  // Set ListView height
+                  child: ListView.separated(
+                    itemCount: controller.unAvailableNursesList.length,
+                    separatorBuilder: (context, index) =>
+                    const SizedBox(
+                      height: 15,
+                    ), // Set the number of items
+                    itemBuilder: (context, index) {
+                      final nurse = controller.unAvailableNursesList[index];
+                      final nurseId= nurse['id'];
+                      return CustomNursesCard(
+                        name: nurse['first name'] + nurse["last name"],
+                        image: const Image(
+                          image: AssetImage(
+                            Assets.noPhoto,
+                          ),
+                        ),
+                        phone: nurse['phone number'],
+                        age: nurse['age'],
+                        area: nurse['area'],
+                        gender: nurse['gender'],
+                        time: nurse['time'],
+                        color: AppColors.current.purpleButtons,
+                        one: true,
+                        button1:  CustomAppButton(text: 'End Task',
+                          textFont: 12,
+                          onTap: (){
+                          controller.setNurseAvailable(nurseId);
+                          },
+                          height: 30,
+                          width: 20,),
+                      );
+                    },
+                  ),
+                );
+            }
             )
           ],
         ),

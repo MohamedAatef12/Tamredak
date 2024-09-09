@@ -20,7 +20,7 @@ class DataBaseBody extends StatelessWidget {
                   Assets.database,
                 ),
               ),
-              text: 'رؤية جميع الممرضين المتاحين بالنظام',
+              text: 'مراجعة المعاملات السابقة',
               color: AppColors.current.purpleText,
             ),
             const SizedBox(height: 20,),

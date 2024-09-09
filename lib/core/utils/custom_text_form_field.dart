@@ -21,7 +21,8 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixColor,
     this.contentPadding,
     this.maxLine,
-    this.color
+    this.color,
+     bool? obscureText
   });
   final TextStyle? labelStyle;
   final String? label;

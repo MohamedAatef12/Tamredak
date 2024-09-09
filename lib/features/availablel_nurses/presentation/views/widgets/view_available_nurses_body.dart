@@ -13,7 +13,6 @@ class ViewAllNursesScreenBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-        const SizedBox(height: 20,),
       CustomContainer(
       image: const Image(
       image: AssetImage(
@@ -23,7 +22,7 @@ class ViewAllNursesScreenBody extends StatelessWidget {
       text: 'رؤية جميع الممرضين المتاحين بالنظام',
       color: AppColors.current.orangeText,
       ),
-      const SizedBox(height: 20,),
+       SizedBox(height: MediaQuery.sizeOf(context).height*0.04 ,),
           const ViewAllNursesList()
       ]
       ),

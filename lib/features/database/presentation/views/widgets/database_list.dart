@@ -18,7 +18,7 @@ class _DataBaseListState extends State<DataBaseList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.8,
       width: MediaQuery.of(context).size.width * 0.92,
       decoration: BoxDecoration(
           color: AppColors.current.lightPurpleBackground,

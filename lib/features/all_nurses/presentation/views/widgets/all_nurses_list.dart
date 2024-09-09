@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
@@ -6,14 +7,17 @@ import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
+import 'package:tamredak/features/all_nurses/presentation/controllers/all_nurses_controller.dart';
 import 'package:tamredak/features/edit_profile/presentation/views/edit_profile_screen.dart';
 class AllNursesList extends StatelessWidget {
   const AllNursesList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AllNursesController controller = Get.put(AllNursesController());
+   controller.fetchNurses();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.75,
       width: MediaQuery.of(context).size.width * 0.92,
       decoration: BoxDecoration(
           color: AppColors.current.blueBackground,
@@ -50,37 +54,59 @@ class AllNursesList extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 25,
-            ),
             SizedBox(
-              height: Get.mediaQuery.size.height * 0.539,
-              width: Get.mediaQuery.size.width * 0.85, // Set ListView height
-              child: ListView.separated(
-                itemCount: 10,
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 15,
-                ), // Set the number of items
-                itemBuilder: (context, index) {
-                  return  CustomNursesCard(
-                    name: 'mohamed',
-                    image: const Image(
-                      image: AssetImage(
-                        Assets.noPhoto,
-                      ),
-                    ),
-                    phone: "01025143723",
-                    age: "20",
-                    area:"napoli",
-                    gender: "male",
-                    one: false,
-                    button1: CustomAppButton(text: 'Edit Profile', textFont: 12, height: 30,width: 20,onTap: (){Get.to(const EditProfileScreen());},),
-                    button2: const CustomAppButton(text: 'Delete', textFont: 12, height: 30,width: 20,),
-                    color: AppColors.current.darkBlue,
-                    color2: AppColors.current.red,
-                  );
-                },
-              ),
+              height: MediaQuery.sizeOf(context).height*0.02,
+            ),
+            Obx(()
+              { if(controller.nursesList.isEmpty){
+                return  Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: MediaQuery.sizeOf(context).height*0.2,),
+                    Image(image: AssetImage('assets/images/nodata.png')),
+                  ],
+                )
+                );
+              }
+              else {
+                return SizedBox(
+                  height: Get.mediaQuery.size.height * 0.539,
+                  width: Get.mediaQuery.size.width * 0.85,
+                  // Set ListView height
+                  child: ListView.separated(
+                    itemCount: controller.nursesList.length,
+                    separatorBuilder: (context, index) =>
+                    const SizedBox(
+                      height: 15,
+                    ), // Set the number of items
+                    itemBuilder: (context, index) {
+                      final nurse = controller.nursesList[index];
+                      return CustomNursesCard(
+                        name: nurse['first name']+nurse["last name"],
+                        image: const Image(
+                          image: AssetImage(
+                            Assets.noPhoto,
+                          ),
+                        ),
+                        phone: nurse['phone number'],
+                        age: nurse['age'],
+                        area: nurse['area'],
+                        gender: nurse['gender'],
+                        time: nurse['time'],
+                        one: false,
+                        button1: CustomAppButton(text: 'Edit Profile', textFont: 12, height: 30,width: 20,onTap: (){Get.to(const EditProfileScreen());},),
+                        button2: const CustomAppButton(text: 'Delete', textFont: 12, height: 30,width: 20,),
+                        color: AppColors.current.darkBlue,
+                        color2: AppColors.current.red,
+                      );
+                    },
+                  ),
+                );
+              }
+              }
             )
           ],
         ),

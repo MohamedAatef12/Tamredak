@@ -12,8 +12,8 @@ class EditProfileForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.74,
-      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.85,
+      width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
           color: AppColors.current.purple,
           borderRadius: BorderRadius.circular(20)),
@@ -74,9 +74,7 @@ class EditProfileForm extends StatelessWidget {
                     suffix: AppIcons.edit,
                   ),
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
+                const Spacer(flex: 1,),
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
@@ -129,9 +127,7 @@ class EditProfileForm extends StatelessWidget {
                     suffix: AppIcons.edit,
                   ),
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
+                const Spacer(flex: 1,),
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
