@@ -7,8 +7,8 @@ import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 
 class EditProfileForm extends StatelessWidget {
-  const EditProfileForm({super.key});
-
+  const EditProfileForm({super.key, required this.nurse, });
+  final Map<String, dynamic> nurse;
   @override
   Widget build(BuildContext context) {
     return Container(
