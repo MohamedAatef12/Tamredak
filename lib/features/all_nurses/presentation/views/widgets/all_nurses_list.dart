@@ -108,7 +108,7 @@ class AllNursesList extends StatelessWidget {
                           height: 30,
                           width: 20,
                           onTap: () {
-                            Get.to(const EditProfileScreen());
+                            Get.to( EditProfileScreen(nurse:nurse));
                           },
                         ),
                         button2: CustomAppButton(
@@ -120,12 +120,12 @@ class AllNursesList extends StatelessWidget {
                               AwesomeDialog(
                                 context: context,
                                 customHeader:
-                                    Image.asset("assets/images/logo.png"),
+                                    Image.asset("assets/images/logo.png",fit: BoxFit.cover,),
                                 buttonsBorderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
                                 title: 'Delete Nurse',
                                 desc:
-                                    'Do you want to delete that nurse from the system',
+                                    'Do you want to delete that nurse from the system ?',
                                 dismissOnTouchOutside: true,
                                 dismissOnBackKeyPress: true,
                                 btnOkOnPress: () {
@@ -136,7 +136,7 @@ class AllNursesList extends StatelessWidget {
                                 btnCancelText: 'Cancel',
                                 btnCancelColor: AppColors.current.primary,
                                 btnOkIcon: Icons.check_circle,
-                                // btnCancelIcon: Icons.cancel,
+                                btnCancelIcon: Icons.cancel,
                                 headerAnimationLoop: false,
                                 // Keeps the dialog open until you manually dismiss it
                               ).show();

@@ -4,8 +4,8 @@ import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/widgets/custom_container.dart';
 import 'package:tamredak/features/edit_profile/presentation/views/widgets/edit_profile_form.dart';
 class EditProfileBody extends StatelessWidget {
-  const EditProfileBody({super.key});
-
+  const EditProfileBody({super.key, required this.nurse});
+  final Map<String, dynamic> nurse;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,7 +24,7 @@ class EditProfileBody extends StatelessWidget {
             color: AppColors.current.veryDarkPurple,
           ),
           const SizedBox(height: 20,),
-          const EditProfileForm(),
+           EditProfileForm(nurse:nurse),
           const SizedBox(height: 20,),
         ],
       ),

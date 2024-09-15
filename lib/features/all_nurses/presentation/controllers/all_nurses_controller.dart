@@ -35,4 +35,16 @@ class AllNursesController extends GetxController {
       print('Failed to delete nurse: $e');
     }
   }
+  Future<void> updateNurse(String nurseId, Map<String, dynamic> updatedData) async {
+    try {
+      await fireStore.collection('Nurses').doc(nurseId).update(updatedData);
+      int index = nursesList.indexWhere((nurse) => nurse['id'] == nurseId);
+      if (index != -1) {
+        nursesList[index] = updatedData;
+      }
+      Get.back(); // Navigate back after successful update
+    } catch (e) {
+      print('Failed to update nurse: $e');
+    }
+  }
 }

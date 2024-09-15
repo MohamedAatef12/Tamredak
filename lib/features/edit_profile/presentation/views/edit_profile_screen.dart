@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
+import 'package:tamredak/features/all_nurses/presentation/controllers/all_nurses_controller.dart';
 import 'package:tamredak/features/all_nurses/presentation/views/all_nurses_screen.dart';
 import 'package:tamredak/features/edit_profile/presentation/views/widgets/edit_profile_body.dart';
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
-
+  const EditProfileScreen({super.key, required this.nurse});
+  final Map<String, dynamic> nurse;
   @override
   Widget build(BuildContext context) {
+    AllNursesController controller = Get.put(AllNursesController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.current.blueBackground,
@@ -38,7 +40,7 @@ class EditProfileScreen extends StatelessWidget {
           color: AppColors.current.blueBackground,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: const EditProfileBody()),
+          child:  EditProfileBody(nurse: nurse,)),
     );
   }
 }
