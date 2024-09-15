@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/features/bottom_bar/presentation/controller/bottom_bar_controller.dart';
 import 'package:tamredak/features/bottom_bar/presentation/views/widgets/items.dart';
 
 import 'widgets/screens.dart';
-
 
 class BottomBarScreen extends StatelessWidget {
   const BottomBarScreen({
@@ -23,12 +22,10 @@ class BottomBarScreen extends StatelessWidget {
           context,
           screens: buildScreens(),
           items: itemsBottomBar(),
-          navBarHeight: MediaQuery.sizeOf(context).height*0.08,
+          navBarHeight: MediaQuery.sizeOf(context).height * 0.08,
           resizeToAvoidBottomInset: true,
           backgroundColor: AppColors.current.blueBackground,
-          padding: const NavBarPadding.symmetric(
-            horizontal: 10,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           navBarStyle: NavBarStyle.style10,
           decoration: const NavBarDecoration(
             borderRadius: BorderRadius.only(

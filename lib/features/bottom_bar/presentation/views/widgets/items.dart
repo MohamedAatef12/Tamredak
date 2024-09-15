@@ -1,8 +1,7 @@
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-
 
 List<PersistentBottomNavBarItem> itemsBottomBar() {
   return [
