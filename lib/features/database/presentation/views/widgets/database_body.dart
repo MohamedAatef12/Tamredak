@@ -24,7 +24,7 @@ class DataBaseBody extends StatelessWidget {
               color: AppColors.current.purpleText,
             ),
             const SizedBox(height: 20,),
-            const DataBaseList()
+             const DataBaseList()
           ]
       ),
     );
