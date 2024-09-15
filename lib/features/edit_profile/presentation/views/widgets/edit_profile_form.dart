@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
+import 'package:tamredak/features/all_nurses/presentation/views/all_nurses_screen.dart';
+import 'package:tamredak/features/edit_profile/presentation/controllers/edit_profile_controller.dart';
 
 class EditProfileForm extends StatelessWidget {
   const EditProfileForm({super.key, required this.nurse, });
   final Map<String, dynamic> nurse;
   @override
   Widget build(BuildContext context) {
+    EditProfileController controller =Get.put(EditProfileController());
+    controller.loadNurseData(nurse['id']);
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
       width: MediaQuery.of(context).size.width * 0.95,
@@ -34,18 +39,6 @@ class EditProfileForm extends StatelessWidget {
                    Assets.noPhoto,
                  ),
                ),),
-            CircleAvatar(
-              radius: 19,
-              backgroundColor: AppColors.current.primary,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: AppColors.current.white,
-                child: IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Icons.camera_alt),
-                )
-              ),
-            )
           ],
         ),
                 const SizedBox(width: 20,),
@@ -69,6 +62,7 @@ class EditProfileForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
                     label: 'الأسم الأول',
+                    controller: controller.firstName,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     suffix: AppIcons.edit,
@@ -79,6 +73,7 @@ class EditProfileForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
                     label: 'الأسم الأخير',
+                    controller: controller.lastName,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     suffix: AppIcons.edit,
@@ -91,6 +86,7 @@ class EditProfileForm extends StatelessWidget {
             ),
             CustomTextFormField(
               label: 'رقم الهاتف',
+              controller: controller.phoneNumber,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               suffix: AppIcons.edit,
@@ -100,6 +96,7 @@ class EditProfileForm extends StatelessWidget {
             ),
             CustomTextFormField(
               label: 'منطقة الخدمة',
+              controller: controller.workArea,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               suffix: AppIcons.edit,
@@ -110,6 +107,7 @@ class EditProfileForm extends StatelessWidget {
             CustomTextFormField(
               label: 'وقت العمل',
               suffix: AppIcons.calendar,
+              controller: controller.workTime,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             ),
@@ -122,6 +120,7 @@ class EditProfileForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
                     label: 'العمر',
+                    controller: controller.nurseAge,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     suffix: AppIcons.edit,
@@ -132,6 +131,7 @@ class EditProfileForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
                     label: 'النوع',
+                    controller: controller.nurseGender,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     suffix: AppIcons.edit,
@@ -151,6 +151,10 @@ class EditProfileForm extends StatelessWidget {
               ),
               child: CustomAppButton(
                   text: 'حفظ',
+                  onTap: (){
+                    controller.editProfileData(nurse['id']);
+                    Get.off(const AllNursesScreen());
+                  },
                   height:
                       (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
                   width:
