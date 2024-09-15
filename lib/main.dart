@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      locale: Locale('ar', 'EG'),
-      fallbackLocale: Locale('ar', 'EG'),
+      locale: const Locale('ar', 'EG'),
+      fallbackLocale: const Locale('ar', 'EG'),
       home: const Scaffold(body: SplashScreen()),
     );
   }

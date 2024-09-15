@@ -128,6 +128,8 @@ class ViewAllNursesList extends StatelessWidget {
   Future buildBottomBarSheet(BuildContext context, String nurseId) {
     final AvailableNursesController controller =
         Get.put(AvailableNursesController());
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return showModalBottomSheet(
       isScrollControlled: true,
       constraints: BoxConstraints(
@@ -149,93 +151,160 @@ class ViewAllNursesList extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                Text(
-                  'تعبئة بيانات المريض',
-                  style: TextStyle(
-                    color: AppColors.current.orangeText,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            child: Form(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const CustomTextFormField(
-                  label: 'اسم المريض',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const CustomTextFormField(
-                  label: 'رقم التواصل مع المريض',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const CustomTextFormField(
-                  label: 'عمر المريض',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const CustomTextFormField(
-                  label: 'مما يعاني المريض',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const CustomTextFormField(
-                  label: 'العنوان',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.setNurseUnavailable(nurseId);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.current.orangeButtons,
-                    minimumSize: const Size(200, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  Text(
+                    'تعبئة بيانات المريض',
+                    style: TextStyle(
+                      color: AppColors.current.orangeText,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Text('ارسال الطلب',
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.nameController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال اسم المريض';
+                      }
+                      return null;
+                    },
+                    label: 'اسم المريض',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.phoneController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال رقم التواصل مع المريض';
+                      }
+                      return null;
+                    },
+                    label: 'رقم التواصل مع المريض',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.ageController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال عمر المريض';
+                      }
+                      return null;
+                    },
+                    label: 'عمر المريض',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.injuryController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال مما يعاني المريض';
+                      }
+                      return null;
+                    },
+                    label: 'مما يعاني المريض',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.areaController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال العنوان';
+                      }
+                      return null;
+                    },
+                    label: 'العنوان',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  CustomTextFormField(
+                    controller: controller.genderController,
+                    validate: (value) {
+                      if (value.isEmpty) {
+                        return 'الرجاء ادخال الجنس';
+                      }
+                      return null;
+                    },
+                    label: 'الجنس',
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await controller.sendNurseAvailable(nurseId);
+                      await controller.setNurseUnavailable(nurseId);
+                      Get.back();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.current.orangeButtons,
+                      minimumSize: const Size(200, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      'ارسال الطلب',
                       style: TextStyle(
                         color: AppColors.current.white,
                         fontSize: 20,
-                      )),
-                ),
-              ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
+      },
+    ).whenComplete(
+      () {
+        controller.nameController.clear();
+        controller.phoneController.clear();
+        controller.ageController.clear();
+        controller.areaController.clear();
+        controller.genderController.clear();
+        controller.injuryController.clear();
       },
     );
   }
