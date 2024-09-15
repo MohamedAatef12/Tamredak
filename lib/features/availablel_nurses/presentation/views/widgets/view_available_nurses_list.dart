@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -65,17 +63,21 @@ class ViewAllNursesList extends StatelessWidget {
             Obx(() {
               if (controller.isLoading.value) {
                 // Show circular indicator when loading
-                return  Center(child: CircularProgressIndicator(color: AppColors.current.blueText,));
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: AppColors.current.blueText,
+                ));
               }
               if (controller.availableNursesList.isEmpty) {
-                return  Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: MediaQuery.sizeOf(context).height*0.15,),
-                      const Image(image: AssetImage('assets/images/nodata.png')),
-                    ],
-                  )
-                );
+                return Center(
+                    child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.15,
+                    ),
+                    const Image(image: AssetImage('assets/images/nodata.png')),
+                  ],
+                ));
               }
               return SizedBox(
                 height: Get.mediaQuery.size.height * 0.57,
@@ -87,7 +89,7 @@ class ViewAllNursesList extends StatelessWidget {
                   ), // Set the number of items
                   itemBuilder: (context, index) {
                     final nurse = controller.availableNursesList[index];
-                    final nurseId= nurse['id'];
+                    final nurseId = nurse['id'];
                     return CustomNursesCard(
                       name: nurse['first name'] + nurse["last name"],
                       image: const Image(
@@ -101,10 +103,12 @@ class ViewAllNursesList extends StatelessWidget {
                       gender: nurse['gender'],
                       time: nurse['time'],
                       one: true,
-                      button1:  CustomAppButton(
-                        onTap: (){controller.setNurseUnavailable(nurseId);
-                          },
-                        text: 'Send',
+                      button1: CustomAppButton(
+                        onTap: () {
+                          buildBottomBarSheet(context, nurseId);
+                          // controller.setNurseUnavailable(nurseId);
+                        },
+                        text: 'اختيار الممرض',
                         textFont: 12,
                         height: 30,
                         width: 20,
@@ -118,6 +122,121 @@ class ViewAllNursesList extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future buildBottomBarSheet(BuildContext context, String nurseId) {
+    final AvailableNursesController controller =
+        Get.put(AvailableNursesController());
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.9,
+        maxWidth: MediaQuery.of(context).size.width,
+        minHeight: MediaQuery.of(context).size.height * 0.9,
+      ),
+      context: context,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.3,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: AppColors.current.darkGreenBackground,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Text(
+                  'تعبئة بيانات المريض',
+                  style: TextStyle(
+                    color: AppColors.current.orangeText,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const CustomTextFormField(
+                  label: 'اسم المريض',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const CustomTextFormField(
+                  label: 'رقم التواصل مع المريض',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const CustomTextFormField(
+                  label: 'عمر المريض',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const CustomTextFormField(
+                  label: 'مما يعاني المريض',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                const CustomTextFormField(
+                  label: 'العنوان',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.setNurseUnavailable(nurseId);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.current.orangeButtons,
+                    minimumSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text('ارسال الطلب',
+                      style: TextStyle(
+                        color: AppColors.current.white,
+                        fontSize: 20,
+                      )),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
