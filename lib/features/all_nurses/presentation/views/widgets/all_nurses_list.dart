@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,13 +10,14 @@ import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
 import 'package:tamredak/features/all_nurses/presentation/controllers/all_nurses_controller.dart';
 import 'package:tamredak/features/edit_profile/presentation/views/edit_profile_screen.dart';
+
 class AllNursesList extends StatelessWidget {
   const AllNursesList({super.key});
 
   @override
   Widget build(BuildContext context) {
     final AllNursesController controller = Get.put(AllNursesController());
-   controller.fetchNurses();
+    controller.fetchNurses();
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       width: MediaQuery.of(context).size.width * 0.92,
@@ -34,58 +36,61 @@ class AllNursesList extends StatelessWidget {
                   child: const CustomTextFormField(
                     label: 'Search',
                     contentPadding:
-                    EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                        EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                   ),
                 ),
-                const SizedBox(width: 15,),
+                const SizedBox(
+                  width: 15,
+                ),
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.10,
                   child: Container(
                     height: 50,
-                    decoration: BoxDecoration(color: AppColors.current.white,borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                        color: AppColors.current.white,
+                        borderRadius: BorderRadius.circular(10)),
                     child: IconButton(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       icon: AppIcons.search,
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ),
               ],
             ),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height*0.02,
+              height: MediaQuery.sizeOf(context).height * 0.02,
             ),
-            Obx(()
-              { if(controller.nursesList.isEmpty){
-                return  Center(
-                child: Column(
+            Obx(() {
+              if (controller.nursesList.isEmpty) {
+                return Center(
+                    child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircularProgressIndicator(),
-                    SizedBox(height: MediaQuery.sizeOf(context).height*0.2,),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                    ),
                     Image(image: AssetImage('assets/images/nodata.png')),
                   ],
-                )
-                );
-              }
-              else {
+                ));
+              } else {
                 return SizedBox(
                   height: Get.mediaQuery.size.height * 0.539,
                   width: Get.mediaQuery.size.width * 0.85,
                   // Set ListView height
                   child: ListView.separated(
                     itemCount: controller.nursesList.length,
-                    separatorBuilder: (context, index) =>
-                    const SizedBox(
+                    separatorBuilder: (context, index) => const SizedBox(
                       height: 15,
                     ), // Set the number of items
                     itemBuilder: (context, index) {
                       final nurse = controller.nursesList[index];
+                      final nurseId= nurse['id'];
                       return CustomNursesCard(
-                        name: nurse['first name']+nurse["last name"],
+                        name: nurse['first name'] + nurse["last name"],
                         image: const Image(
                           image: AssetImage(
                             Assets.noPhoto,
@@ -97,8 +102,46 @@ class AllNursesList extends StatelessWidget {
                         gender: nurse['gender'],
                         time: nurse['time'],
                         one: false,
-                        button1: CustomAppButton(text: 'Edit Profile', textFont: 12, height: 30,width: 20,onTap: (){Get.to(const EditProfileScreen());},),
-                        button2: const CustomAppButton(text: 'Delete', textFont: 12, height: 30,width: 20,),
+                        button1: CustomAppButton(
+                          text: 'Edit Profile',
+                          textFont: 12,
+                          height: 30,
+                          width: 20,
+                          onTap: () {
+                            Get.to(const EditProfileScreen());
+                          },
+                        ),
+                        button2: CustomAppButton(
+                            text: 'Delete',
+                            textFont: 12,
+                            height: 30,
+                            width: 20,
+                            onTap: () {
+                              AwesomeDialog(
+                                context: context,
+                                customHeader:
+                                    Image.asset("assets/images/logo.png"),
+                                buttonsBorderRadius:
+                                    const BorderRadius.all(Radius.circular(5)),
+                                title: 'Delete Nurse',
+                                desc:
+                                    'Do you want to delete that nurse from the system',
+                                dismissOnTouchOutside: true,
+                                dismissOnBackKeyPress: true,
+                                btnOkOnPress: () {
+                                  controller.deleteNurse(nurseId);
+                                },
+                                btnOkColor: AppColors.current.red,
+                                btnOkText: 'Yes Delete',
+                                btnCancelText: 'Cancel',
+                                btnCancelColor: AppColors.current.primary,
+                                btnOkIcon: Icons.check_circle,
+                                // btnCancelIcon: Icons.cancel,
+                                headerAnimationLoop: false,
+                                // Keeps the dialog open until you manually dismiss it
+                              ).show();
+                              ;
+                            }),
                         color: AppColors.current.darkBlue,
                         color2: AppColors.current.red,
                       );
@@ -106,8 +149,7 @@ class AllNursesList extends StatelessWidget {
                   ),
                 );
               }
-              }
-            )
+            })
           ],
         ),
       ),

@@ -24,7 +24,7 @@ class AddNewNurseController extends GetxController {
     String age=nurseAge.text;
     String gender=nurseGender.text;
     bool available = true;
-    String? image;
+    Image? image;
     try {
       // Reference to the "Nurses" collection
       CollectionReference nurses = FirebaseFirestore.instance.collection('Nurses');
