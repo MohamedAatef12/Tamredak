@@ -39,18 +39,6 @@ class EditProfileForm extends StatelessWidget {
                    Assets.noPhoto,
                  ),
                ),),
-            CircleAvatar(
-              radius: 19,
-              backgroundColor: AppColors.current.primary,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: AppColors.current.white,
-                child: IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Icons.camera_alt),
-                )
-              ),
-            )
           ],
         ),
                 const SizedBox(width: 20,),
