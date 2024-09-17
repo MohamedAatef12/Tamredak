@@ -220,7 +220,7 @@ class CustomNursesCard extends StatelessWidget {
                 ),
                 Spacer(),
                 SizedBox(
-                    width: Get.mediaQuery.size.width * 0.25,
+                    width: Get.mediaQuery.size.width * 0.30,
                     height: Get.mediaQuery.size.height * 0.15,
                     child: image ?? const SizedBox()),
               ],
