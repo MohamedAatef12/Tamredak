@@ -99,7 +99,7 @@ class InTaskList extends StatelessWidget {
                         time: nurse['time'],
                         color: AppColors.current.purpleButtons,
                         one: true,
-                        button1:  CustomAppButton(text: 'End Task',
+                        button1:  CustomAppButton(text: 'انهاء المهمه',
                           textFont: 12,
                           onTap: (){
                           controller.setNurseAvailable(nurseId);
