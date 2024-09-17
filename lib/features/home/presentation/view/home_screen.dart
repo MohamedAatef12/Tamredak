@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: AppColors.current.primary,
         ),
         body: Container(
+          height: MediaQuery.sizeOf(context).height,
           color: AppColors.current.primary,
           child: const HomeBody(),
         ));

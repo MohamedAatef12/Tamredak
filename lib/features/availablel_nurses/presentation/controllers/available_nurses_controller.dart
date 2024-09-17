@@ -82,8 +82,8 @@ class AvailableNursesController extends GetxController {
 
       // Add task to the general Tasks collection
       await fireStore
-          .collection('Tasks') // General Tasks collection
-          .add(taskData);
+          .collection('Tasks').doc(nameController.text) // General Tasks collection
+          .set(taskData);
 
       print('Task added to $nurseId and general Tasks collection');
     } catch (e) {

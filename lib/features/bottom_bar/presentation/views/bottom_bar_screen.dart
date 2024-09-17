@@ -25,13 +25,9 @@ class BottomBarScreen extends StatelessWidget {
           navBarHeight: MediaQuery.sizeOf(context).height * 0.08,
           resizeToAvoidBottomInset: true,
           backgroundColor: AppColors.current.blueBackground,
-          padding:  EdgeInsets.symmetric(horizontal: 10),
+          padding:  const EdgeInsets.symmetric(horizontal: 10),
           navBarStyle: NavBarStyle.style10,
           decoration: const NavBarDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
           ),
         ),
       ),
