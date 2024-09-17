@@ -103,7 +103,7 @@ class AllNursesList extends StatelessWidget {
                         time: nurse['time'],
                         one: false,
                         button1: CustomAppButton(
-                          text: 'Edit Profile',
+                          text: 'تعديل بياناته',
                           textFont: 12,
                           height: 30,
                           width: 20,
@@ -112,7 +112,7 @@ class AllNursesList extends StatelessWidget {
                           },
                         ),
                         button2: CustomAppButton(
-                            text: 'Delete',
+                            text: 'مسح',
                             textFont: 12,
                             height: 30,
                             width: 20,

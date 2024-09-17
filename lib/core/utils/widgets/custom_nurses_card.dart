@@ -57,7 +57,7 @@ class CustomNursesCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Name: ',
+                          'الأسم: ',
                           style: Styles.textStyleMedium.copyWith(
                               fontSize:
                                   responsiveFonts(context, fontSize: 12),
@@ -83,23 +83,23 @@ class CustomNursesCard extends StatelessWidget {
                       height: MediaQuery.sizeOf(context).height*0.003,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.45,
+                      width: MediaQuery.of(context).size.width * 0.4,
                       child: Row(
                         children: [
                           Text(
-                            'Phone: ',
+                            'وقت العمل: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                    responsiveFonts(context, fontSize: 12),
+                                responsiveFonts(context, fontSize: 12),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            phone!,
+                            time!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                    responsiveFonts(context, fontSize: 12),
+                                responsiveFonts(context, fontSize: 12),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -115,7 +115,7 @@ class CustomNursesCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Area: ',
+                            'المنطقة: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -143,7 +143,7 @@ class CustomNursesCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Age: ',
+                            'العمر: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -171,7 +171,7 @@ class CustomNursesCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Gender: ',
+                            'النوع: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -194,35 +194,33 @@ class CustomNursesCard extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height*0.003,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Time: ',
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize:
-                                responsiveFonts(context, fontSize: 12),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            time!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize:
-                                responsiveFonts(context, fontSize: 12),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          'رقم الهاتف: ',
+                          style: Styles.textStyleMedium.copyWith(
+                              fontSize:
+                              responsiveFonts(context, fontSize: 12),
+                              color: Colors.black),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          phone!,
+                          style: Styles.textStyleMedium.copyWith(
+                              fontSize:
+                              responsiveFonts(context, fontSize: 12),
+                              color: Colors.black),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
                   ],
                 ),
+                Spacer(),
                 SizedBox(
-                    width: Get.mediaQuery.size.width * 0.35,
+                    width: Get.mediaQuery.size.width * 0.25,
                     height: Get.mediaQuery.size.height * 0.15,
                     child: image ?? const SizedBox()),
               ],
