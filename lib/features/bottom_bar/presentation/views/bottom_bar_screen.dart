@@ -28,10 +28,6 @@ class BottomBarScreen extends StatelessWidget {
           padding:  const EdgeInsets.symmetric(horizontal: 10),
           navBarStyle: NavBarStyle.style10,
           decoration: const NavBarDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
           ),
         ),
       ),

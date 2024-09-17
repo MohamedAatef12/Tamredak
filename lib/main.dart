@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       locale: const Locale('ar', 'EG'),
       fallbackLocale: const Locale('ar', 'EG'),
-      home: const Scaffold(body: SplashScreen()),
+      home: const SplashScreen()
     );
   }
 }
