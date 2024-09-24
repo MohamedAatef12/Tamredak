@@ -4,6 +4,7 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/all_nurses/presentation/views/widgets/all_nurses_body.dart';
 import 'package:tamredak/features/bottom_bar/presentation/views/bottom_bar_screen.dart';
+
 class AllNursesScreen extends StatelessWidget {
   const AllNursesScreen({super.key});
 
@@ -14,7 +15,8 @@ class AllNursesScreen extends StatelessWidget {
         backgroundColor: AppColors.current.primary,
         title: Text(
           'تمريضك',
-          style: Styles.textStyleBold.copyWith(color: AppColors.current.white, fontSize: 24),
+          style: Styles.textStyleBold
+              .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
         centerTitle: true,
         leading: IconButton(
