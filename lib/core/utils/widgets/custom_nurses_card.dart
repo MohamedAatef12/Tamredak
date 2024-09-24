@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -28,7 +26,7 @@ class CustomNursesCard extends StatelessWidget {
   final String? age;
   final String? phone;
   final String? time;
-  final Bool? available;
+  final bool? available;
   final Color? color;
   final Widget? button1;
   final Widget? button2;
@@ -43,7 +41,7 @@ class CustomNursesCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.95,
       height: MediaQuery.of(context).size.height * 0.38,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -57,16 +55,15 @@ class CustomNursesCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'الأسم: ',
+                          'Name: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                                  responsiveFonts(context, fontSize: 12),
+                              fontSize: responsiveFonts(context, fontSize: 12),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(
-                          width: MediaQuery.sizeOf(context).width*0.3,
+                          width: MediaQuery.sizeOf(context).width * 0.3,
                           child: Text(
                             name!,
                             style: Styles.textStyleMedium.copyWith(
@@ -80,26 +77,26 @@ class CustomNursesCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.003,
+                      height: MediaQuery.sizeOf(context).height * 0.003,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.45,
                       child: Row(
                         children: [
                           Text(
-                            'وقت العمل: ',
+                            'Phone: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 12),
+                                    responsiveFonts(context, fontSize: 12),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            time!,
+                            phone!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 12),
+                                    responsiveFonts(context, fontSize: 12),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -107,15 +104,15 @@ class CustomNursesCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.003,
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.003,
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Row(
                         children: [
                           Text(
-                            'المنطقة: ',
+                            'Area: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -136,14 +133,14 @@ class CustomNursesCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.003,
+                      height: MediaQuery.sizeOf(context).height * 0.003,
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Row(
                         children: [
                           Text(
-                            'العمر: ',
+                            'Age: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -164,14 +161,14 @@ class CustomNursesCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.003,
+                      height: MediaQuery.sizeOf(context).height * 0.003,
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Row(
                         children: [
                           Text(
-                            'النوع: ',
+                            'Gender: ',
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
                                     responsiveFonts(context, fontSize: 12),
@@ -192,41 +189,43 @@ class CustomNursesCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height*0.003,
+                      height: MediaQuery.sizeOf(context).height * 0.003,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'رقم الهاتف: ',
-                          style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 12),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          phone!,
-                          style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 12),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Time: ',
+                            style: Styles.textStyleMedium.copyWith(
+                                fontSize:
+                                    responsiveFonts(context, fontSize: 12),
+                                color: Colors.black),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            time!,
+                            style: Styles.textStyleMedium.copyWith(
+                                fontSize:
+                                    responsiveFonts(context, fontSize: 12),
+                                color: Colors.black),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                Spacer(),
                 SizedBox(
-                    width: Get.mediaQuery.size.width * 0.25,
+                    width: Get.mediaQuery.size.width * 0.35,
                     height: Get.mediaQuery.size.height * 0.15,
                     child: image ?? const SizedBox()),
               ],
             ),
-             SizedBox(
-              height: MediaQuery.sizeOf(context).height*0.04,
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.04,
             ),
             if (one == true)
               Container(
@@ -250,8 +249,8 @@ class CustomNursesCard extends StatelessWidget {
                     ),
                     child: button1,
                   ),
-                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width*0.04,
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.04,
                   ),
                   Container(
                     height: Get.mediaQuery.size.height * 0.046,
