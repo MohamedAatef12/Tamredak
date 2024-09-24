@@ -15,9 +15,10 @@ class ViewAllNursesScreen extends StatelessWidget {
         backgroundColor: AppColors.current.primary,
         title: Text(
           'تمريضك',
-          style: Styles.textStyleBold.copyWith(color: AppColors.current.white, fontSize: 24),
+          style: Styles.textStyleBold
+              .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
-       centerTitle: true,
+        centerTitle: true,
         leading: IconButton(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           splashColor: Colors.transparent,
@@ -38,6 +39,5 @@ class ViewAllNursesScreen extends StatelessWidget {
         child: const ViewAllNursesScreenBody(),
       ),
     );
-
   }
 }

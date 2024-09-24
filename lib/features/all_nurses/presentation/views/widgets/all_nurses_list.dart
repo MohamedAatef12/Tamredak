@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
@@ -88,7 +87,7 @@ class AllNursesList extends StatelessWidget {
                     ), // Set the number of items
                     itemBuilder: (context, index) {
                       final nurse = controller.nursesList[index];
-                      final nurseId= nurse['id'];
+                      final nurseId = nurse['id'];
                       return CustomNursesCard(
                         name: nurse['first name'] + nurse["last name"],
                         image: const Image(
@@ -108,7 +107,7 @@ class AllNursesList extends StatelessWidget {
                           height: 30,
                           width: 20,
                           onTap: () {
-                            Get.to( EditProfileScreen(nurse:nurse));
+                            Get.to(EditProfileScreen(nurse: nurse));
                           },
                         ),
                         button2: CustomAppButton(
@@ -119,8 +118,10 @@ class AllNursesList extends StatelessWidget {
                             onTap: () {
                               AwesomeDialog(
                                 context: context,
-                                customHeader:
-                                    Image.asset("assets/images/logo.png",fit: BoxFit.cover,),
+                                customHeader: Image.asset(
+                                  "assets/images/logo.png",
+                                  fit: BoxFit.cover,
+                                ),
                                 buttonsBorderRadius:
                                     const BorderRadius.all(Radius.circular(5)),
                                 title: 'Delete Nurse',
