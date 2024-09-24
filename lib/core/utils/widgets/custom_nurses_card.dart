@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -28,7 +26,7 @@ class CustomNursesCard extends StatelessWidget {
   final String? age;
   final String? phone;
   final String? time;
-  final Bool? available;
+  final bool? available;
   final Color? color;
   final Widget? button1;
   final Widget? button2;
