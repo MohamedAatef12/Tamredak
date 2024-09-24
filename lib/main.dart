@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/features/splash/splash_screen.dart';
@@ -10,7 +12,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (BuildContext context) {
+        return const MyApp();
+      }));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,15 +25,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      locale: const Locale('ar', 'EG'),
-      fallbackLocale: const Locale('ar', 'EG'),
-      home: const SplashScreen()
-    );
+        debugShowCheckedModeBanner: false,
+        useInheritedMediaQuery: true,
+        builder: DevicePreview.appBuilder,
+        title: 'Tamredak',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        locale: const Locale('ar', 'EG'),
+        fallbackLocale: const Locale('ar', 'EG'),
+        home: const SplashScreen());
   }
 }

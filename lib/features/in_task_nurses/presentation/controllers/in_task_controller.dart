@@ -1,50 +1,70 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class InTaskController extends GetxController{
+class InTaskController extends GetxController {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-  // Define a list to store the available nurses data
   final unAvailableNursesList = <Map<String, dynamic>>[].obs;
-  final isLoading = false.obs;
-  // Fetch available nurses from Firestore
+  final isLoading = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUnAvailableNurses();
+  }
+
   Future<void> fetchUnAvailableNurses() async {
     try {
-      // Query the Nurses collection where 'availability' is true
       isLoading.value = true;
       QuerySnapshot snapshot = await fireStore
           .collection('Nurses')
-          .where('availability', isEqualTo: false)
+          .where('status', isEqualTo: 'unavailable')
           .get();
-
-      // Map the documents to a list of maps, including the document ID
       unAvailableNursesList.value = snapshot.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id; // Add the document ID to the data map
+        data['id'] = doc.id;
         return data;
       }).toList();
-
-      // Debug print to verify the data
-      print('Fetched available nurses: ${unAvailableNursesList.length}');
     } catch (e) {
-      print('Failed to fetch available nurses: $e');
-    }
-    finally {
-      // Set loading to false when fetching is complete
+      print('Failed to fetch nurses: $e');
+    } finally {
       isLoading.value = false;
     }
   }
 
-  // Function to set the availability of a nurse to false
+  void searchNurses(String query) {
+    if (query.isEmpty) {
+      fetchUnAvailableNurses();
+      return;
+    }
+
+    final searchQuery = query.toLowerCase();
+    print('Search query: $searchQuery'); // Debugging line
+
+    final filteredList = unAvailableNursesList.where((nurse) {
+      final name = '${nurse['first name']} ${nurse['last name']}'.toLowerCase();
+      final phone = nurse['phone number'].toLowerCase();
+      final area = nurse['area'].toLowerCase();
+
+      return name.contains(searchQuery) ||
+          phone.contains(searchQuery) ||
+          area.contains(searchQuery);
+    }).toList();
+
+    print('Filtered list: $filteredList'); // Debugging line
+
+    unAvailableNursesList.value = filteredList;
+  }
+
   Future<void> setNurseAvailable(String nurseId) async {
     try {
-      await fireStore.collection('Nurses').doc(nurseId).update({
-        'availability': true,
-      });
-      unAvailableNursesList.removeWhere((nurse) => nurse['id'] == nurseId);
-      print('Nurse availability set to false for ID: $nurseId');
+      await fireStore
+          .collection('Nurses')
+          .doc(nurseId)
+          .update({'status': 'available'});
+      fetchUnAvailableNurses();
     } catch (e) {
-      print('Failed to set nurse availability: $e');
+      print('Failed to update nurse status: $e');
     }
   }
 }
