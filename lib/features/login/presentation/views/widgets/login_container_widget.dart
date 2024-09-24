@@ -16,9 +16,10 @@ class LoginContainer extends StatelessWidget {
 
     return Expanded(
       child: SingleChildScrollView(
+        physics: null,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.6,
+          height: MediaQuery.of(context).size.height*0.6,
           decoration: BoxDecoration(
             color: AppColors.current.blueBackground,
             borderRadius: const BorderRadius.only(
@@ -28,10 +29,7 @@ class LoginContainer extends StatelessWidget {
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.05,
-                horizontal: MediaQuery.of(context).size.width * 0.05,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20),
               child: GetBuilder<LoginController>(
                 builder: (controller) {
                   return Column(
@@ -43,9 +41,7 @@ class LoginContainer extends StatelessWidget {
                           fontSize: responsiveFonts(context, fontSize: 20),
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                       Text(
                         'تسجيل الدخول',
                         style: Styles.textStyleBold.copyWith(
@@ -53,34 +49,22 @@ class LoginContainer extends StatelessWidget {
                           fontSize: responsiveFonts(context, fontSize: 20),
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
+                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                       // Username Text Field
                       CustomTextFormField(
                         label: 'ادخل اسم المستخدم',
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width * 0.03,
-                          vertical: MediaQuery.of(context).size.height * 0.015,
-                        ),
-                        controller: controller.usernameController,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        controller: controller.usernameController, // bind controller
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                       // Password Text Field
                       CustomTextFormField(
                         label: 'ادخل الرقم السري',
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width * 0.03,
-                          vertical: MediaQuery.of(context).size.height * 0.015,
-                        ),
-                        controller: controller.passwordController,
-                        obscureText: true,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        controller: controller.passwordController, // bind controller
+                        obscureText: true, // Optional: obscure password input
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                       Container(
                         height: (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
                         width: (MediaQuery.of(context).size.width * 0.8).clamp(100, 800),
@@ -91,11 +75,12 @@ class LoginContainer extends StatelessWidget {
                         child: CustomAppButton(
                           text: 'تسجيل الدخول',
                           onTap: () {
+                            // Call the method to check user access
                             controller.checkUserAccess();
                           },
                           height: (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
                           width: (MediaQuery.of(context).size.width * 0.8).clamp(100, 800),
-                          textFont: responsiveFonts(context, fontSize: 14),
+                          textFont: 14,
                         ),
                       ),
                     ],

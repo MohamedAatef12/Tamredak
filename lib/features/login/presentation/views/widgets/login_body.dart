@@ -4,43 +4,41 @@ import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/login/presentation/views/widgets/login_container_widget.dart';
-
 class LoginBody extends StatelessWidget {
   const LoginBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final logoScaleFactor = getScaleFactorLogo(context).clamp(.8, 12.5) * 0.4;
-
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            height: screenHeight * 0.05, // Make height responsive
+          const SizedBox(
+            height: 30,
           ),
           Center(
             child: Text(
               'مرحبا',
               style: Styles.textStyleBold.copyWith(
                 color: AppColors.current.blueText,
-                fontSize: responsiveFonts(context, fontSize: 22), // Responsive font size
+                fontSize: responsiveFonts(context, fontSize: 22),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: screenWidth * 0.08), // Responsive padding
+            padding: const EdgeInsets.only(right: 30.0),
             child: Center(
               child: Image(
-                image: const AssetImage(Assets.login),
-                width: screenWidth * logoScaleFactor, // Responsive logo size
+                image: const AssetImage(
+                  Assets.login,
+                ),
+                width: MediaQuery.of(context).size.width *
+                    (getScaleFactorLogo(context).clamp(.8, 12.5) * 0.4),
               ),
             ),
           ),
-          SizedBox(height: screenHeight * 0.05), // Make spacing responsive
-          const LoginContainer(),
+          const SizedBox(height: 30,),
+         const LoginContainer(),
         ],
       ),
     );
