@@ -17,7 +17,7 @@ class HomeBody extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            20.verticalSpace,
+            15.verticalSpace,
             HomeContainer(
                 image: const Image(
                   image: AssetImage(
@@ -28,7 +28,7 @@ class HomeBody extends StatelessWidget {
                 color: AppColors.current.greenButtons,
                 backcolor: AppColors.current.darkGreen.withOpacity(0.5),
                 button: const AddNurseScreen()),
-            20.verticalSpace,
+            15.verticalSpace,
             HomeContainer(
               button: const ViewAllNursesScreen(),
               image: const Image(
@@ -40,7 +40,7 @@ class HomeBody extends StatelessWidget {
               color: AppColors.current.orangeButtons,
               backcolor: AppColors.current.darkOrange.withOpacity(0.5),
             ),
-           20.verticalSpace,
+            15.verticalSpace,
             HomeContainer(
               image: const Image(
                 image: AssetImage(

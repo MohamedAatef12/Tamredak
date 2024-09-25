@@ -5,8 +5,6 @@ import 'package:tamredak/core/utils/scale_factors.dart';
 import 'package:tamredak/features/login/presentation/views/login_screen.dart';
 import 'package:tamredak/features/splash/view/widgets/animations.dart';
 
-import '../../../../../core/utils/scale_factors.dart';
-
 class SplashBody extends StatefulWidget {
   const SplashBody({super.key});
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:tamredak/core/consts/icons.dart';
@@ -10,7 +9,7 @@ List<PersistentBottomNavBarItem> itemsBottomBar() {
     PersistentBottomNavBarItem(
       icon: AppIcons.home,
       iconSize: 24.spMin,
-      title: 'Home',
+      title: 'الرئيسية',
       activeColorPrimary: AppColors.current.darkPurple,
       activeColorSecondary: AppColors.current.white,
       textStyle: Styles.textStyleBold.copyWith(
@@ -20,7 +19,7 @@ List<PersistentBottomNavBarItem> itemsBottomBar() {
     PersistentBottomNavBarItem(
       icon: AppIcons.nurses,
       iconSize: 24.spMin,
-      title: 'Nurses',
+      title: 'الممرضين',
       activeColorPrimary: AppColors.current.darkPurple,
       activeColorSecondary: AppColors.current.white,
       textStyle: Styles.textStyleBold.copyWith(
@@ -29,7 +28,7 @@ List<PersistentBottomNavBarItem> itemsBottomBar() {
     ),
     PersistentBottomNavBarItem(
       icon: AppIcons.database,
-      title: 'DataBase',
+      title: 'البيانات',
       iconSize: 24.spMin,
       activeColorPrimary: AppColors.current.darkPurple,
       activeColorSecondary: AppColors.current.white,

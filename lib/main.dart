@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tamredak/features/splash/splash_screen.dart';
+import 'package:tamredak/features/bottom_bar/presentation/views/bottom_bar_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -40,6 +40,6 @@ class MyApp extends StatelessWidget {
             ),
             locale: const Locale('ar', 'EG'),
             fallbackLocale: const Locale('ar', 'EG'),
-            home: const SplashScreen()));
+            home: const BottomBarScreen()));
   }
 }

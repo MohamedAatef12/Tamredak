@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -18,8 +19,7 @@ class AllNursesList extends StatelessWidget {
     final AllNursesController controller = Get.put(AllNursesController());
     controller.fetchNurses();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
-      width: MediaQuery.of(context).size.width * 0.92,
+      width: MediaQuery.of(context).size.width * 0.8.r,
       decoration: BoxDecoration(
           color: AppColors.current.blueBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -42,12 +42,12 @@ class AllNursesList extends StatelessWidget {
                   width: 15,
                 ),
                 SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.10,
+                  width: MediaQuery.sizeOf(context).width * 0.07.r,
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
                         color: AppColors.current.white,
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10).r),
                     child: IconButton(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
@@ -58,9 +58,7 @@ class AllNursesList extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.02,
-            ),
+            10.verticalSpace,
             Obx(() {
               if (controller.nursesList.isEmpty) {
                 return Center(
@@ -68,17 +66,17 @@ class AllNursesList extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(),
+                    const CircularProgressIndicator(),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      height: MediaQuery.sizeOf(context).height * 0.2.r,
                     ),
-                    Image(image: AssetImage('assets/images/nodata.png')),
+                    const Image(image: AssetImage('assets/images/nodata.png')),
                   ],
                 ));
               } else {
                 return SizedBox(
-                  height: Get.mediaQuery.size.height * 0.539,
-                  width: Get.mediaQuery.size.width * 0.85,
+                  height: Get.mediaQuery.size.height * 0.45.r,
+                  width: Get.mediaQuery.size.width * 0.85.r,
                   // Set ListView height
                   child: ListView.separated(
                     itemCount: controller.nursesList.length,
@@ -103,18 +101,18 @@ class AllNursesList extends StatelessWidget {
                         one: false,
                         button1: CustomAppButton(
                           text: 'تعديل بياناته',
-                          textFont: 12,
-                          height: 30,
-                          width: 20,
+                          textFont: 12.spMin,
+                          height: 10.r,
+                          width: 20.r,
                           onTap: () {
                             Get.to(EditProfileScreen(nurse: nurse));
                           },
                         ),
                         button2: CustomAppButton(
                             text: 'مسح',
-                            textFont: 12,
-                            height: 30,
-                            width: 20,
+                            textFont: 12.spMin,
+                            height: 10.r,
+                            width: 20.r,
                             onTap: () {
                               AwesomeDialog(
                                 context: context,
@@ -141,7 +139,6 @@ class AllNursesList extends StatelessWidget {
                                 headerAnimationLoop: false,
                                 // Keeps the dialog open until you manually dismiss it
                               ).show();
-                              ;
                             }),
                         color: AppColors.current.darkBlue,
                         color2: AppColors.current.red,

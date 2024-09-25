@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 
@@ -40,13 +39,14 @@ class CustomNursesCard extends StatelessWidget {
           color: AppColors.current.white,
           borderRadius: BorderRadius.circular(20)),
       width: MediaQuery.of(context).size.width * 0.85.r,
-      height: 270.r,
+      height: 200.r,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(9.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: Row(
               children: [
                 Column(
@@ -211,17 +211,13 @@ class CustomNursesCard extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                SizedBox(
-                    width: Get.mediaQuery.size.width * 0.25.r,
-                    height: Get.mediaQuery.size.height * 0.20.r,
-                    child: image ?? const SizedBox()),
               ],
             ),
           ),
           10.verticalSpace,
           if (one == true)
             Container(
-                height: 40.r,
+                height: 30.r,
                 width: 150.r,
                 decoration: BoxDecoration(
                   color: color,
@@ -233,7 +229,7 @@ class CustomNursesCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 40.r,
+                  height: 30.r,
                   width: 100.r,
                   decoration: BoxDecoration(
                     color: color,
@@ -243,7 +239,7 @@ class CustomNursesCard extends StatelessWidget {
                 ),
                 10.horizontalSpace,
                 Container(
-                  height: 40.r,
+                  height: 30.r,
                   width: 100.r,
                   decoration: BoxDecoration(
                     color: color2,
