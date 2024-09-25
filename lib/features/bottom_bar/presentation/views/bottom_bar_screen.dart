@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -22,10 +23,10 @@ class BottomBarScreen extends StatelessWidget {
           context,
           screens: buildScreens(),
           items: itemsBottomBar(),
-          navBarHeight: MediaQuery.sizeOf(context).height * 0.08,
+          navBarHeight: MediaQuery.sizeOf(context).height * 0.07.r,
           resizeToAvoidBottomInset: true,
           backgroundColor: AppColors.current.blueBackground,
-          padding:  const EdgeInsets.symmetric(horizontal: 10),
+          padding:  const EdgeInsets.symmetric(horizontal: 15).r,
           navBarStyle: NavBarStyle.style10,
           decoration: const NavBarDecoration(
           ),

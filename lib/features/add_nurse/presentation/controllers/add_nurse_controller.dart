@@ -23,7 +23,7 @@ class AddNewNurseController extends GetxController {
     String time=workTime.text;
     String age=nurseAge.text;
     String gender=nurseGender.text;
-    bool available = true;
+    String status = 'available';
     Image? image;
     try {
       // Reference to the "Nurses" collection
@@ -38,7 +38,7 @@ class AddNewNurseController extends GetxController {
         'time': time,
         'age': age,
         'gender': gender,
-        'availability':available,
+        'status':status,
         'image':image,
       });
 

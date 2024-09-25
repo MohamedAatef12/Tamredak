@@ -68,16 +68,15 @@ class InTaskList extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               if (controller.unAvailableNursesList.isEmpty) {
-                return Center(
+                return const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 100),
-                      const Image(
-                          image: AssetImage('assets/images/nodata.png')),
-                      const SizedBox(height: 20),
-                      const Text('No data found'), // Optional message
+                      SizedBox(height: 100),
+                      Image(image: AssetImage('assets/images/nodata.png')),
+                      SizedBox(height: 20),
+                      Text('No data found'), // Optional message
                     ],
                   ),
                 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
@@ -20,11 +21,11 @@ class ViewAllNursesScreen extends StatelessWidget {
         ),
         centerTitle: true,
         leading: IconButton(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15).r,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           icon: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0).r,
             child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
@@ -32,12 +33,8 @@ class ViewAllNursesScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Container(
-        color: AppColors.current.primary,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: const ViewAllNursesScreenBody(),
-      ),
+      backgroundColor: AppColors.current.primary,
+      body: const Center(child: ViewAllNursesScreenBody()),
     );
   }
 }

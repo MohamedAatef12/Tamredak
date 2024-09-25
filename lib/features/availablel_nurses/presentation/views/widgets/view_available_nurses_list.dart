@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -17,49 +18,26 @@ class ViewAllNursesList extends StatelessWidget {
         Get.put(AvailableNursesController());
     controller.fetchAvailableNurses();
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      width: MediaQuery.of(context).size.width * 0.92,
+      height: 550.r,
+      width: Get.mediaQuery.size.width*0.85.r,
       decoration: BoxDecoration(
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0).r,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.7,
-                  child: const CustomTextFormField(
-                    label: 'Search',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * .05,
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.10,
-                  child: Container(
-                    height: MediaQuery.sizeOf(context).height * 0.05,
-                    decoration: BoxDecoration(
-                        color: AppColors.current.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: IconButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      icon: AppIcons.search,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.02,
+              width: MediaQuery.of(context).size.width * 0.75.r,
+              child:  CustomTextFormField(
+                label: 'Search',
+                maxLine: 1,
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20).r,
+              ),
             ),
+          10.verticalSpace,
             Obx(() {
               if (controller.isLoading.value) {
                 // Show circular indicator when loading
@@ -80,13 +58,11 @@ class ViewAllNursesList extends StatelessWidget {
                 ));
               }
               return SizedBox(
-                height: Get.mediaQuery.size.height * 0.57,
+                height: 420.r,
                 width: Get.mediaQuery.size.width * 0.85, // Set ListView height
                 child: ListView.separated(
                   itemCount: controller.availableNursesList.length,
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.02,
-                  ), // Set the number of items
+                  separatorBuilder: (context, index) => 10.verticalSpace,// Set the number of items
                   itemBuilder: (context, index) {
                     final nurse = controller.availableNursesList[index];
                     final nurseId = nurse['id'];
@@ -110,8 +86,8 @@ class ViewAllNursesList extends StatelessWidget {
                         },
                         text: 'اختيار الممرض',
                         textFont: 12,
-                        height: 30,
-                        width: 20,
+                        height: 30.r,
+                        width:150.r,
                       ),
                       color: AppColors.current.orangeButtons,
                     );
