@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
@@ -18,8 +19,8 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.27,
+      width: MediaQuery.of(context).size.width * 0.85.r,
+      height: MediaQuery.of(context).size.height * 0.25.r,
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -32,57 +33,57 @@ class HomeContainer extends StatelessWidget {
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(50), bottomRight: Radius.circular(50))),
-      child: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Text(
+                    text!,
+                    style: Styles.textStyleMedium.copyWith(
+                        fontSize: responsiveFonts(context, fontSize: 15.spMin),
+                        color: color),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  )),
+             20.verticalSpace,
+              GestureDetector(
+                onTap: () {
+                  Get.to(button);
+                },
+                child: Container(
+                  height: MediaQuery.sizeOf(context).height*0.05.r,
+                  width: MediaQuery.sizeOf(context).width*0.25.r,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: color,
+                      boxShadow: [
+                        BoxShadow(
+                          color: backcolor!, // Shadow color
+                          spreadRadius: 0.5.r, // Spread radius// Blur radius
+                          offset: const Offset(
+                              0, 2), // Offset from the Container
+                        ),
+                      ]),
+                  child: Center(
                     child: Text(
-                      text!,
-                      style: Styles.textStyleMedium.copyWith(
-                          fontSize: responsiveFonts(context, fontSize: 11),
-                          color: color),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    )),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
-                GestureDetector(
-                  onTap: () {
-                    Get.to(button);
-                  },
-                  child: Container(
-                    height: MediaQuery.sizeOf(context).height*0.05,
-                    width: MediaQuery.sizeOf(context).width*0.25,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: color,
-                        boxShadow: [
-                          BoxShadow(
-                            color: backcolor!, // Shadow color
-                            spreadRadius: 0.5, // Spread radius// Blur radius
-                            offset: const Offset(
-                                0, 2), // Offset from the Container
-                          ),
-                        ]),
-                    child: Center(
-                      child: Text(
-                        'اختر',
-                        style: Styles.textStyleBold.copyWith(
-                            fontSize: 14, color: AppColors.current.white),
-                      ),
+                      'اختر',
+                      style: Styles.textStyleBold.copyWith(
+                          fontSize: 14.spMin, color: AppColors.current.white),
                     ),
                   ),
-                )
-              ],
-            ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-            image ?? const SizedBox(),
-          ],
-        ),
+                ),
+              )
+            ],
+          ),
+        10.horizontalSpace,
+          image ?? const SizedBox(),
+        ],
       ),
     );
   }

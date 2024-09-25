@@ -11,10 +11,11 @@ class DatabaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.current.primary,
+        backgroundColor: AppColors.current.blueBackground,
         title: Text(
           'تمريضك',
-          style: Styles.textStyleBold.copyWith(color: AppColors.current.white, fontSize: 24),
+          style: Styles.textStyleBold
+              .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -23,10 +24,13 @@ class DatabaseScreen extends StatelessWidget {
           highlightColor: Colors.transparent,
           icon: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.current.white,
+            ),
           ),
           onPressed: () {
-            Get.offAll(const BottomBarScreen());
+            Get.off(const BottomBarScreen());
           },
         ),
       ),

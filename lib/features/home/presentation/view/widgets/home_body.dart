@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/features/add_nurse/presentation/views/add_nurse_screen.dart';
@@ -16,6 +17,7 @@ class HomeBody extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
+            20.verticalSpace,
             HomeContainer(
                 image: const Image(
                   image: AssetImage(
@@ -26,9 +28,7 @@ class HomeBody extends StatelessWidget {
                 color: AppColors.current.greenButtons,
                 backcolor: AppColors.current.darkGreen.withOpacity(0.5),
                 button: const AddNurseScreen()),
-            const SizedBox(
-              height: 20,
-            ),
+            20.verticalSpace,
             HomeContainer(
               button: const ViewAllNursesScreen(),
               image: const Image(
@@ -40,9 +40,7 @@ class HomeBody extends StatelessWidget {
               color: AppColors.current.orangeButtons,
               backcolor: AppColors.current.darkOrange.withOpacity(0.5),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+           20.verticalSpace,
             HomeContainer(
               image: const Image(
                 image: AssetImage(
@@ -54,9 +52,7 @@ class HomeBody extends StatelessWidget {
               backcolor: AppColors.current.darkPurple.withOpacity(0.5),
               button: const InTaskScreen(),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            20.verticalSpace
           ],
         ),
       ),

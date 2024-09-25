@@ -24,7 +24,7 @@ class AvailableNursesController extends GetxController {
       isLoading.value = true;
       QuerySnapshot snapshot = await fireStore
           .collection('Nurses')
-          .where('availability', isEqualTo: true)
+          .where('status', isEqualTo: 'available')
           .get();
 
       // Map the documents to a list of maps, including the document ID
@@ -48,7 +48,7 @@ class AvailableNursesController extends GetxController {
   Future<void> setNurseUnavailable(String nurseId) async {
     try {
       await fireStore.collection('Nurses').doc(nurseId).update({
-        'availability': false,
+        'status': 'unavailable',
       });
       availableNursesList.removeWhere((nurse) => nurse['id'] == nurseId);
       print('Nurse availability set to false for ID: $nurseId');

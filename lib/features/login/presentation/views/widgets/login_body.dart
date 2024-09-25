@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
@@ -10,36 +11,34 @@ class LoginBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Center(
-            child: Text(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+          10.verticalSpace,
+            Text(
               'مرحبا',
               style: Styles.textStyleBold.copyWith(
                 color: AppColors.current.blueText,
-                fontSize: responsiveFonts(context, fontSize: 22),
+                fontSize: responsiveFonts(context, fontSize: 22.spMin),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 30.0),
-            child: Center(
+            20.verticalSpace,
+            Padding(
+              padding: const EdgeInsets.only(right: 30).r,
               child: Image(
                 image: const AssetImage(
                   Assets.login,
                 ),
-                width: MediaQuery.of(context).size.width *
-                    (getScaleFactorLogo(context).clamp(.8, 12.5) * 0.4),
+                width:311.r,
+                height: 250.r,
               ),
             ),
-          ),
-          const SizedBox(height: 30,),
-         const LoginContainer(),
-        ],
+            30.verticalSpace,
+           const LoginContainer(),
+          ],
+        ),
       ),
     );
   }

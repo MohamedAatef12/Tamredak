@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -138,7 +139,7 @@ class DataBaseList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final task = controller.filteredTasks[index];
                     return Container(
-                      height: MediaQuery.sizeOf(context).height * 0.24,
+                      height: 240.r,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.current.white,
