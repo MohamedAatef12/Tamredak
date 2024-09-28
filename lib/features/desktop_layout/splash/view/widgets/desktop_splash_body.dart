@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
+import 'package:tamredak/features/desktop_layout/login/presentations/views/desktop_login_screen.dart';
 import 'package:tamredak/features/mobile_layout/login/presentation/views/login_screen.dart';
 
 
@@ -59,7 +60,7 @@ class _DesktopSplashBodyState extends State<DesktopSplashBody>
 
   void initDelay() {
     Future.delayed(const Duration(seconds: 3), () {
-
+Get.to(const DesktopLoginScreen());
     });
   }
 

@@ -1,36 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/styles.dart';
+import 'package:tamredak/features/desktop_layout/login/presentations/views/widgets/desktop_login_left_side.dart';
+import 'package:tamredak/features/desktop_layout/login/presentations/views/widgets/desktop_login_right_side.dart';
 
 class DesktopLoginBody extends StatelessWidget {
   const DesktopLoginBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'مرحبا بك 👋',
-              textAlign: TextAlign.center,
-              style: Styles.textStyleBold.copyWith(
-                  fontSize: responsiveFonts(context, fontSize: MediaQuery.sizeOf(context).width*0.025),
-                  color: AppColors.current.blueBackground),
-            ),
-            Image(
-              image: const AssetImage(
-                Assets.login,
-              ),
-              width: MediaQuery.sizeOf(context).width*0.4,
-              height: MediaQuery.sizeOf(context).height*0.8,
-            ),
-          ],
-        )
+        DesktopLoginRightSide(),
+        Spacer(),
+        DesktopLoginLeftSide(),
+        Spacer(),
       ],
     );
   }

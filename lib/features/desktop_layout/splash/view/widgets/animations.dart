@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 
 
@@ -28,7 +29,7 @@ class _SlidingAnimationState extends State<SlidingAnimation> {
               'تمريضك',
               textAlign: TextAlign.center,
               style: Styles.textStyleBold.copyWith(
-                fontSize: responsiveFonts(context, fontSize: 35),
+                fontSize: responsiveFonts(context, fontSize: 35.spMin),
                 color: AppColors.current.white
               ),
             ),
