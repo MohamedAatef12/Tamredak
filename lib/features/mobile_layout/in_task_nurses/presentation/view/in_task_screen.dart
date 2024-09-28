@@ -4,6 +4,7 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
 import 'package:tamredak/features/mobile_layout/in_task_nurses/presentation/view/widgets/in_task_body.dart';
+
 class InTaskScreen extends StatelessWidget {
   const InTaskScreen({super.key});
 
@@ -14,7 +15,8 @@ class InTaskScreen extends StatelessWidget {
         backgroundColor: AppColors.current.primary,
         title: Text(
           'تمريضك',
-          style: Styles.textStyleBold.copyWith(color: AppColors.current.white, fontSize: 24),
+          style: Styles.textStyleBold
+              .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
         centerTitle: true,
         leading: IconButton(

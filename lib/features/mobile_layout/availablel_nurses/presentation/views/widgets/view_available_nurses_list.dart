@@ -8,9 +8,14 @@ import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
 import 'package:tamredak/features/mobile_layout/availablel_nurses/presentation/controllers/available_nurses_controller.dart';
 
-class ViewAllNursesList extends StatelessWidget {
+class ViewAllNursesList extends StatefulWidget {
   const ViewAllNursesList({super.key});
 
+  @override
+  State<ViewAllNursesList> createState() => _ViewAllNursesListState();
+}
+
+class _ViewAllNursesListState extends State<ViewAllNursesList> {
   @override
   Widget build(BuildContext context) {
     final AvailableNursesController controller =
@@ -18,7 +23,7 @@ class ViewAllNursesList extends StatelessWidget {
     controller.fetchAvailableNurses();
     return Container(
       height: 550.r,
-      width: Get.mediaQuery.size.width*0.85.r,
+      width: Get.mediaQuery.size.width * 0.85.r,
       decoration: BoxDecoration(
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -28,15 +33,18 @@ class ViewAllNursesList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.75.r,
-              child:  CustomTextFormField(
-                label: 'Search',
+              width: MediaQuery.of(context).size.width * 0.58.r,
+              child: CustomTextFormField(
+                label: 'البحث',
                 maxLine: 1,
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20).r,
+                onChange: (value) {
+                  controller.searchNurses(value);
+                },
               ),
             ),
-          10.verticalSpace,
+            10.verticalSpace,
             Obx(() {
               if (controller.isLoading.value) {
                 // Show circular indicator when loading
@@ -45,7 +53,7 @@ class ViewAllNursesList extends StatelessWidget {
                   color: AppColors.current.blueText,
                 ));
               }
-              if (controller.availableNursesList.isEmpty) {
+              if (controller.filteredNursesList.isEmpty) {
                 return Center(
                     child: Column(
                   children: [
@@ -60,10 +68,11 @@ class ViewAllNursesList extends StatelessWidget {
                 height: 420.r,
                 width: Get.mediaQuery.size.width * 0.85, // Set ListView height
                 child: ListView.separated(
-                  itemCount: controller.availableNursesList.length,
-                  separatorBuilder: (context, index) => 10.verticalSpace,// Set the number of items
+                  itemCount: controller.filteredNursesList.length,
+                  separatorBuilder: (context, index) =>
+                      10.verticalSpace, // Set the number of items
                   itemBuilder: (context, index) {
-                    final nurse = controller.availableNursesList[index];
+                    final nurse = controller.filteredNursesList[index];
                     final nurseId = nurse['id'];
                     return CustomNursesCard(
                       name: nurse['first name'] + nurse["last name"],
@@ -86,7 +95,7 @@ class ViewAllNursesList extends StatelessWidget {
                         text: 'اختيار الممرض',
                         textFont: 12,
                         height: 30.r,
-                        width:150.r,
+                        width: 150.r,
                       ),
                       color: AppColors.current.orangeButtons,
                     );

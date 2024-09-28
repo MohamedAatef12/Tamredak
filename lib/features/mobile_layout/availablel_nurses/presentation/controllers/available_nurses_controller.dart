@@ -15,31 +15,29 @@ class AvailableNursesController extends GetxController {
   List<Map<String, dynamic>> allTasksList = <Map<String, dynamic>>[].obs;
 
   final availableNursesList = <Map<String, dynamic>>[].obs;
+  final filteredNursesList = <Map<String, dynamic>>[].obs;
+
+  final isLoading = false.obs;
 
   // Fetch available nurses from Firestore
-  final isLoading = false.obs;
   Future<void> fetchAvailableNurses() async {
     try {
-      // Query the Nurses collection where 'availability' is true
       isLoading.value = true;
       QuerySnapshot snapshot = await fireStore
           .collection('Nurses')
           .where('status', isEqualTo: 'available')
           .get();
 
-      // Map the documents to a list of maps, including the document ID
       availableNursesList.value = snapshot.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id; // Add the document ID to the data map
+        data['id'] = doc.id;
         return data;
       }).toList();
 
-      // Debug print to verify the data
-      print('Fetched available nurses: ${availableNursesList.length}');
+      filteredNursesList.value = availableNursesList;
     } catch (e) {
       print('Failed to fetch available nurses: $e');
     } finally {
-      // Set loading to false when fetching is complete
       isLoading.value = false;
     }
   }
@@ -51,15 +49,16 @@ class AvailableNursesController extends GetxController {
         'status': 'unavailable',
       });
       availableNursesList.removeWhere((nurse) => nurse['id'] == nurseId);
+      filteredNursesList.removeWhere((nurse) => nurse['id'] == nurseId);
       print('Nurse availability set to false for ID: $nurseId');
     } catch (e) {
       print('Failed to set nurse availability: $e');
     }
   }
 
+  // Function to send nurse availability
   Future<void> sendNurseAvailable(String nurseId) async {
     try {
-      // Task data to be added to both collections
       Map<String, dynamic> taskData = {
         'name': nameController.text,
         'phone': phoneController.text,
@@ -68,11 +67,9 @@ class AvailableNursesController extends GetxController {
         'gender': genderController.text,
         'injury': injuryController.text,
         'date': DateTime.now().toString(),
-        'nurseId':
-            nurseId, // Store nurseId to track which nurse the task belongs to
+        'nurseId': nurseId,
       };
 
-      // Add task to the specific nurse's Tasks collection
       await fireStore
           .collection('Nurses')
           .doc(nurseId)
@@ -80,14 +77,40 @@ class AvailableNursesController extends GetxController {
           .doc(nameController.text)
           .set(taskData);
 
-      // Add task to the general Tasks collection
       await fireStore
-          .collection('Tasks').doc(nameController.text) // General Tasks collection
+          .collection('Tasks')
+          .doc(nameController.text)
           .set(taskData);
 
       print('Task added to $nurseId and general Tasks collection');
     } catch (e) {
       print('Failed to set nurse availability: $e');
     }
+  }
+
+  // Search function
+  void searchNurses(String query) {
+    if (query.isEmpty) {
+      filteredNursesList.value = availableNursesList;
+    } else {
+      filteredNursesList.value = availableNursesList
+          .where((nurse) =>
+              (nurse['first name']
+                      ?.toLowerCase()
+                      .contains(query.toLowerCase()) ??
+                  false) ||
+              (nurse['last name']
+                      ?.toLowerCase()
+                      .contains(query.toLowerCase()) ??
+                  false) ||
+              (nurse['area']?.toLowerCase().contains(query.toLowerCase()) ??
+                  false) ||
+              (nurse['phone number']
+                      ?.toLowerCase()
+                      .contains(query.toLowerCase()) ??
+                  false))
+          .toList();
+    }
+    update();
   }
 }
