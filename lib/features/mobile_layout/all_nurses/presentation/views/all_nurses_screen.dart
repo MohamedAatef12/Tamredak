@@ -4,6 +4,7 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/all_nurses/presentation/views/widgets/all_nurses_body.dart';
 import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
+
 class AllNursesScreen extends StatelessWidget {
   const AllNursesScreen({super.key});
 

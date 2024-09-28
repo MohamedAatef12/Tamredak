@@ -16,26 +16,33 @@ class AllNursesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initialize the AllNursesController and fetch nurses on init
     final AllNursesController controller = Get.put(AllNursesController());
-    controller.fetchNurses();
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.8.r,
       decoration: BoxDecoration(
-          color: AppColors.current.blueBackground,
-          borderRadius: BorderRadius.circular(20)),
+        color: AppColors.current.blueBackground,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
         child: Column(
           children: [
+            // Search Bar UI
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.7,
-                  child: const CustomTextFormField(
-                    label: 'Search',
+                  child: CustomTextFormField(
+                    label: 'البحث',
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    onChange: (value) {
+                      // Call the search function as user types
+                      controller.searchNurses(value);
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -46,69 +53,74 @@ class AllNursesList extends StatelessWidget {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        color: AppColors.current.white,
-                        borderRadius: BorderRadius.circular(10).r),
+                      color: AppColors.current.white,
+                      borderRadius: BorderRadius.circular(10).r,
+                    ),
                     child: IconButton(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       icon: AppIcons.search,
-                      onPressed: () {},
+                      onPressed: () {
+                        // Optional search button action (usually not needed with onChanged)
+                      },
                     ),
                   ),
                 ),
               ],
             ),
             10.verticalSpace,
+            // List of Nurses
             Obx(() {
-              if (controller.nursesList.isEmpty) {
-                return Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator(),
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.2.r,
-                    ),
-                    const Image(image: AssetImage('assets/images/nodata.png')),
-                  ],
-                ));
+              if (controller.isLoading.value) {
+                // Loading state
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               } else {
-                return SizedBox(
-                  height: Get.mediaQuery.size.height * 0.45.r,
-                  width: Get.mediaQuery.size.width * 0.85.r,
-                  // Set ListView height
-                  child: ListView.separated(
-                    itemCount: controller.nursesList.length,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 15,
-                    ), // Set the number of items
-                    itemBuilder: (context, index) {
-                      final nurse = controller.nursesList[index];
-                      final nurseId = nurse['id'];
-                      return CustomNursesCard(
-                        name: nurse['first name'] + nurse["last name"],
-                        image: const Image(
-                          image: AssetImage(
-                            Assets.noPhoto,
+                // Not loading state
+                if (controller.nursesList.isEmpty) {
+                  // No data state
+                  return SizedBox(
+                    height: Get.mediaQuery.size.height * 0.25.r,
+                    child: const Center(
+                      child:
+                          Image(image: AssetImage('assets/images/nodata.png')),
+                    ),
+                  );
+                } else {
+                  // Nurses ListView
+                  return SizedBox(
+                    height: Get.mediaQuery.size.height * 0.45.r,
+                    width: Get.mediaQuery.size.width * 0.85.r,
+                    child: ListView.separated(
+                      itemCount: controller.nursesList.length,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 15,
+                      ),
+                      itemBuilder: (context, index) {
+                        final nurse = controller.nursesList[index];
+                        final nurseId = nurse['id'];
+                        return CustomNursesCard(
+                          name: nurse['first name'] + ' ' + nurse['last name'],
+                          image: const Image(
+                            image: AssetImage(Assets.noPhoto),
                           ),
-                        ),
-                        phone: nurse['phone number'],
-                        age: nurse['age'],
-                        area: nurse['area'],
-                        gender: nurse['gender'],
-                        time: nurse['time'],
-                        one: false,
-                        button1: CustomAppButton(
-                          text: 'تعديل بياناته',
-                          textFont: 12.spMin,
-                          height: 10.r,
-                          width: 20.r,
-                          onTap: () {
-                            Get.to(EditProfileScreen(nurse: nurse));
-                          },
-                        ),
-                        button2: CustomAppButton(
+                          phone: nurse['phone number'],
+                          age: nurse['age'],
+                          area: nurse['area'],
+                          gender: nurse['gender'],
+                          time: nurse['time'],
+                          one: false,
+                          button1: CustomAppButton(
+                            text: 'تعديل بياناته',
+                            textFont: 12.spMin,
+                            height: 10.r,
+                            width: 20.r,
+                            onTap: () {
+                              Get.to(EditProfileScreen(nurse: nurse));
+                            },
+                          ),
+                          button2: CustomAppButton(
                             text: 'مسح',
                             textFont: 12.spMin,
                             height: 10.r,
@@ -120,11 +132,12 @@ class AllNursesList extends StatelessWidget {
                                   "assets/images/logo.png",
                                   fit: BoxFit.cover,
                                 ),
-                                buttonsBorderRadius:
-                                    const BorderRadius.all(Radius.circular(5)),
+                                buttonsBorderRadius: const BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
                                 title: 'Delete Nurse',
                                 desc:
-                                    'Do you want to delete that nurse from the system ?',
+                                    'Do you want to delete that nurse from the system?',
                                 dismissOnTouchOutside: true,
                                 dismissOnBackKeyPress: true,
                                 btnOkOnPress: () {
@@ -137,15 +150,16 @@ class AllNursesList extends StatelessWidget {
                                 btnOkIcon: Icons.check_circle,
                                 btnCancelIcon: Icons.cancel,
                                 headerAnimationLoop: false,
-                                // Keeps the dialog open until you manually dismiss it
                               ).show();
-                            }),
-                        color: AppColors.current.darkBlue,
-                        color2: AppColors.current.red,
-                      );
-                    },
-                  ),
-                );
+                            },
+                          ),
+                          color: AppColors.current.darkBlue,
+                          color2: AppColors.current.red,
+                        );
+                      },
+                    ),
+                  );
+                }
               }
             })
           ],

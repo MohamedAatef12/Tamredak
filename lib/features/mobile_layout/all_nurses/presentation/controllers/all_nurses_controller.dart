@@ -6,6 +6,7 @@ class AllNursesController extends GetxController {
 
   final nursesList = <Map<String, dynamic>>[].obs;
   final searchQuery = ''.obs; // To keep track of the current search query
+  final isLoading = true.obs; // Loading state
 
   @override
   void onInit() {
@@ -14,6 +15,7 @@ class AllNursesController extends GetxController {
   }
 
   Future<void> fetchNurses() async {
+    isLoading.value = true; // Set loading to true when starting the fetch
     try {
       QuerySnapshot snapshot = await fireStore.collection('Nurses').get();
       nursesList.value = snapshot.docs.map((doc) {
@@ -24,6 +26,8 @@ class AllNursesController extends GetxController {
       filterNurses(searchQuery.value); // Initial filter (if needed)
     } catch (e) {
       print('Failed to fetch nurses: $e');
+    } finally {
+      isLoading.value = false; // Set loading to false when done
     }
   }
 
