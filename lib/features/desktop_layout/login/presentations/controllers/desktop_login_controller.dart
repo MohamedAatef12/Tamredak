@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
-class LoginController extends GetxController {
+
+class DesktopLoginController extends GetxController {
   // Add TextEditingController for username and password
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   // Method to check user access
-  void checkUserAccess() {
+  void checkUserAccessDesktop() {
     // Get the entered text from the controllers
     String user = usernameController.text;
     String password = passwordController.text;
@@ -18,7 +18,8 @@ class LoginController extends GetxController {
     } else {
       Get.snackbar(
         'Login Failed',
-        'The username or password is wrong');
+        'The username or password is wrong',
+      );
     }
   }
 
