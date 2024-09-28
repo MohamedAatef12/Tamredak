@@ -28,7 +28,7 @@ class _SlidingAnimationState extends State<SlidingAnimation> {
               'تمريضك',
               textAlign: TextAlign.center,
               style: Styles.textStyleBold.copyWith(
-                fontSize: responsiveFonts(context, fontSize: 20),
+                fontSize: responsiveFonts(context, fontSize: 35),
                 color: AppColors.current.white
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/scale_factors.dart';
@@ -8,14 +9,14 @@ import 'package:tamredak/features/mobile_layout/login/presentation/views/login_s
 import 'animations.dart';
 
 
-class SplashBody extends StatefulWidget {
-  const SplashBody({super.key});
+class DesktopSplashBody extends StatefulWidget {
+  const DesktopSplashBody({super.key});
 
   @override
-  State<SplashBody> createState() => _SplashBodyState();
+  State<DesktopSplashBody> createState() => _DesktopSplashBodyState();
 }
 
-class _SplashBodyState extends State<SplashBody>
+class _DesktopSplashBodyState extends State<DesktopSplashBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
@@ -41,27 +42,16 @@ class _SplashBodyState extends State<SplashBody>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(
-            flex: 5,
-          ),
           Center(
               child: Image(
             image: const AssetImage(
               Assets.logo,
             ),
             width: MediaQuery.of(context).size.width *
-                (getScaleFactorLogo(context).clamp(.8, 1.5) * 0.9),
+                (getScaleFactorLogo(context).clamp(.5, 1.0) * 0.4),
+                height: 300.r,
           )),
-          const SizedBox(
-            height: 10,
-          ),
           SlidingAnimation(slidingAnimation: slidingAnimation),
-          const Spacer(
-            flex: 4,
-          ),
-          const Spacer(
-            flex: 1,
-          )
         ],
       ),
     );
@@ -69,7 +59,7 @@ class _SplashBodyState extends State<SplashBody>
 
   void initDelay() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(const LoginScreen());
+
     });
   }
 
@@ -77,7 +67,7 @@ class _SplashBodyState extends State<SplashBody>
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1100));
     slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
+        Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero)
             .animate(animationController);
     animationController.forward();
   }
