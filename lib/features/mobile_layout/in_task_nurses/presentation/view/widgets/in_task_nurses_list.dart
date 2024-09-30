@@ -93,7 +93,7 @@ class InTaskList extends StatelessWidget {
                     final nurseId = nurse['id'];
                     return CustomNursesCard(
                       name: '${nurse['first name']} ${nurse["last name"]}',
-                      image: const Image(image: AssetImage(Assets.noPhoto)),
+                      image: const Image(image: AssetImage(Assets.noPhoto),),
                       phone: nurse['phone number'],
                       age: nurse['age'],
                       area: nurse['area'],

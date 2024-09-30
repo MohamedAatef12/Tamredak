@@ -2,7 +2,11 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/utils/assets.dart';
+import 'package:tamredak/features/desktop_layout/add_nurse/presentations/views/widgets/desktop_add_nurse_body.dart';
+import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/widgets/desktop_available_nurses_body.dart';
+import 'package:tamredak/features/desktop_layout/database/presentation/views/widgets/database_body.dart';
 import 'package:tamredak/features/desktop_layout/home/presentations/views/widgets/desktop_home_body.dart';
+import 'package:tamredak/features/desktop_layout/in%20task_nurse/presentation/views/widgets/desktop_in_task_body.dart';
 
 class DesktopHomePage extends StatefulWidget {
   const DesktopHomePage({super.key});
@@ -30,177 +34,195 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
       body: Row(
         children: [
           SideMenu(
-              controller: sideMenu,
-              title: Column(
+            controller: sideMenu,
+            title: Column(
+              children: [
+                Image(
+                  image: const AssetImage(Assets.logo),
+                  height: 200.r,
+                  fit: BoxFit.cover,
+                ),
+                Text('تمريضك',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24.spMin,
+                        fontWeight: FontWeight.bold)),
+                10.verticalSpace,
+              ],
+            ),
+            footer: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
-                    image: const AssetImage(Assets.logo),
-                    height: 200.r,
-                    fit: BoxFit.cover,
+                  const Divider(
+                    color: Colors.white,
+                    thickness: 1,
                   ),
-                  Text('تمريضك',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.spMin,
-                          fontWeight: FontWeight.bold)),
                   10.verticalSpace,
+                  Text(
+                    'تم تطوير هذا الموقع بواسطة فريق تمريضك',
+                    style: TextStyle(color: Colors.white, fontSize: 18.spMin),
+                  ),
+                  5.verticalSpace,
+                  Text(
+                    'جميع الحقوق محفوظه لتمريضك',
+                    style: TextStyle(color: Colors.white, fontSize: 18.spMin),
+                  ),
+                  10.verticalSpace,
+                  Center(
+                    child: Text(
+                      'Version 1.0',
+                      style: TextStyle(
+                          color: Colors.grey[200]!, fontSize: 18.spMin),
+                    ),
+                  ),
+                  20.verticalSpace,
                 ],
               ),
-              footer: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            style: SideMenuStyle(
+              displayMode: SideMenuDisplayMode.auto,
+              openSideMenuWidth: 250,
+              hoverColor: Colors.blue[100],
+              selectedColor: Colors.lightBlue,
+              unselectedIconColor: Colors.black54,
+              backgroundColor: Colors.blueGrey[300],
+              itemInnerSpacing: 5.0,
+              itemBorderRadius: const BorderRadius.all(
+                Radius.circular(5.0),
+              ),
+              itemHeight: 50.0,
+              itemOuterPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+              toggleColor: Colors.black54,
+            ),
+            items: [
+              SideMenuItem(
+                title: '',
+                iconWidget: Row(
                   children: [
-                    const Divider(
+                    const Icon(
+                      Icons.home,
                       color: Colors.white,
-                      thickness: 1,
                     ),
-                    10.verticalSpace,
+                    1.horizontalSpace,
                     Text(
-                      'تم تطوير هذا الموقع بواسطة فريق تمريضك',
-                      style: TextStyle(color: Colors.white, fontSize: 18.spMin),
-                    ),
-                    5.verticalSpace,
-                    Text(
-                      'جميع الحقوق محفوظه لتمريضك',
-                      style: TextStyle(color: Colors.white, fontSize: 18.spMin),
-                    ),
-                    10.verticalSpace,
-                    Center(
-                      child: Text(
-                        'Version 1.0',
-                        style: TextStyle(
-                            color: Colors.grey[200]!, fontSize: 18.spMin),
+                      'الرئيسية',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.spMin,
                       ),
                     ),
-                    20.verticalSpace,
                   ],
                 ),
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
               ),
-              style: SideMenuStyle(
-                displayMode: SideMenuDisplayMode.auto,
-                openSideMenuWidth: 250,
-                hoverColor: Colors.blue[100],
-                selectedColor: Colors.lightBlue,
-                unselectedIconColor: Colors.black54,
-                backgroundColor: Colors.blueGrey[300],
-                itemInnerSpacing: 5.0,
-                itemBorderRadius: const BorderRadius.all(
-                  Radius.circular(5.0),
+              SideMenuItem(
+                title: '',
+                iconWidget: Row(
+                  children: [
+                    const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    1.horizontalSpace,
+                    Text(
+                      'اضافه ممرض',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.spMin,
+                      ),
+                    ),
+                  ],
                 ),
-                itemHeight: 50.0,
-                itemOuterPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-                toggleColor: Colors.black54,
+                trailing: const Spacer(),
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
               ),
-              items: [
-                SideMenuItem(
-                  title: '',
-                  iconWidget: Row(
-                    children: [
-                      const Icon(
-                        Icons.home,
+              SideMenuItem(
+                title: '',
+                iconWidget: Row(
+                  children: [
+                    const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    1.horizontalSpace,
+                    Text(
+                      'الممرضين المتاحين',
+                      style: TextStyle(
                         color: Colors.white,
+                        fontSize: 18.spMin,
                       ),
-                      1.horizontalSpace,
-                      Text(
-                        'الرئيسية',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.spMin,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
+                    ),
+                  ],
                 ),
-                SideMenuItem(
-                  title: '',
-                  iconWidget: Row(
-                    children: [
-                      const Icon(
-                        Icons.person,
+                trailing: const Spacer(),
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
+              ),
+              SideMenuItem(
+                title: '',
+                iconWidget: Row(
+                  children: [
+                    const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    1.horizontalSpace,
+                    Text(
+                      'الممرضين المشغولين',
+                      style: TextStyle(
                         color: Colors.white,
+                        fontSize: 18.spMin,
                       ),
-                      1.horizontalSpace,
-                      Text(
-                        'جميع الممرضين',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.spMin,
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: const Spacer(),
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
+                    ),
+                  ],
                 ),
-                SideMenuItem(
-                  title: '',
-                  iconWidget: Row(
-                    children: [
-                      const Icon(
-                        Icons.person,
+                trailing: const Spacer(),
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
+              ),
+              SideMenuItem(
+                title: '',
+                iconWidget: Row(
+                  children: [
+                    const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    1.horizontalSpace,
+                    Text(
+                      'قاعده البيانات',
+                      style: TextStyle(
                         color: Colors.white,
+                        fontSize: 18.spMin,
                       ),
-                      1.horizontalSpace,
-                      Text(
-                        'الممرضين المتاحين',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.spMin,
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: const Spacer(),
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
+                    ),
+                  ],
                 ),
-                SideMenuItem(
-                  title: '',
-                  iconWidget: Row(
-                    children: [
-                      const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                      ),
-                      1.horizontalSpace,
-                      Text(
-                        'الممرضين الغير متاحين',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.spMin,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: (index, _) {
-                    sideMenu.changePage(index);
-                  },
-                ),
-                // Add more items as necessary
-              ]),
+                trailing: const Spacer(),
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
+              ),
+            ],
+          ),
           Expanded(
             child: PageView(
               controller: pageController,
               children: const [
                 DesktopHomeBody(),
-                const Center(
-                  child: Text('البيانات'),
-                ),
-                const Center(
-                  child: Text('البيانات'),
-                ),
-                const Center(
-                  child: Text('يسب'),
-                ),
-                // Add more pages as necessary
+                DesktopAddNurseBody(),
+                DesktopAvailableNursesBody(),
+                DesktopInTaskBody(),
+                DataBaseBody(),
               ],
             ),
           ),

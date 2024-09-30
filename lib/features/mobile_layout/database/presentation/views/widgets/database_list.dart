@@ -39,19 +39,16 @@ class DataBaseList extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: SizedBox(
-                      child: CustomTextFormField(
-                        controller: searchController,
-                        label: 'Search',
-                        suffix: AppIcons.search,
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20).r,
-                        onChange: (value) {
-                          controller.searchTasks(value);
-                        },
-                      ),
+                  SizedBox(
+                    child: CustomTextFormField(
+                      controller: searchController,
+                      label: 'Search',
+                      suffix: AppIcons.search,
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20).r,
+                      onChange: (value) {
+                        controller.searchTasks(value);
+                      },
                     ),
                   ),
                   5.horizontalSpace,
@@ -102,95 +99,92 @@ class DataBaseList extends StatelessWidget {
             ),
 
             // Main content: Loading, No Data, or Task List
-            Expanded(
-              child: Obx(() {
-                if (controller.isLoading.value) {
-                  // Show loading spinner in the center of the screen
-                  return const Center(child: CircularProgressIndicator());
-                }
+            Obx(() {
+              if (controller.isLoading.value) {
+                // Show loading spinner in the center of the screen
+                return const Center(child: CircularProgressIndicator());
+              }
 
-                if (controller.filteredTasks.isEmpty) {
-                  // Show no data available when no tasks are found
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Image(image: AssetImage(Assets.noData)),
-                        20.verticalSpace,
-                        Text(
-                          'No tasks found!',
-                          style:
-                              Styles.textStyleBold.copyWith(fontSize: 18.spMin),
-                        ),
-                      ],
+              if (controller.filteredTasks.isEmpty) {
+                // Show no data available when no tasks are found
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Image(image: AssetImage(Assets.noData)),
+                      20.verticalSpace,
+                      Text(
+                        'No tasks found!',
+                        style:
+                            Styles.textStyleBold.copyWith(fontSize: 18.spMin),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              // Show the list of tasks if available
+              return ListView.separated(
+                itemCount: controller.filteredTasks.length,
+                separatorBuilder: (context, index) => 15.verticalSpace,
+                itemBuilder: (context, index) {
+                  final task = controller.filteredTasks[index];
+                  return Container(
+                    height: 240.r,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: AppColors.current.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 10.0,
+                      ).r,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'الاسم : ${task['name']}',
+                            style: Styles.textStyleBold
+                                .copyWith(fontSize: 16.spMin),
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            'الهاتف : ${task['phone']}',
+                            style:
+                                Styles.textStyleBold.copyWith(fontSize: 16.r),
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            'العمر : ${task['age']}',
+                            style: Styles.textStyleBold
+                                .copyWith(fontSize: 16.spMin),
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            'المنطقه : ${task['area']}',
+                            style: Styles.textStyleBold.copyWith(fontSize: 16),
+                          ),
+                          5.verticalSpace,
+                          Text(
+                            'الاصابه : ${task['injury']}',
+                            style: Styles.textStyleBold
+                                .copyWith(fontSize: 16.spMin),
+                          ),
+                          const Spacer(),
+                          Text(
+                            'التاريخ : ${task['date'].toString().substring(0, 19)}',
+                            style: Styles.textStyleBold
+                                .copyWith(fontSize: 16.spMin),
+                          ),
+                        ],
+                      ),
                     ),
                   );
-                }
-
-                // Show the list of tasks if available
-                return ListView.separated(
-                  itemCount: controller.filteredTasks.length,
-                  separatorBuilder: (context, index) => 15.verticalSpace,
-                  itemBuilder: (context, index) {
-                    final task = controller.filteredTasks[index];
-                    return Container(
-                      height: 240.r,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: AppColors.current.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 10.0,
-                        ).r,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'الاسم : ${task['name']}',
-                              style: Styles.textStyleBold
-                                  .copyWith(fontSize: 16.spMin),
-                            ),
-                            5.verticalSpace,
-                            Text(
-                              'الهاتف : ${task['phone']}',
-                              style:
-                                  Styles.textStyleBold.copyWith(fontSize: 16.r),
-                            ),
-                            5.verticalSpace,
-                            Text(
-                              'العمر : ${task['age']}',
-                              style: Styles.textStyleBold
-                                  .copyWith(fontSize: 16.spMin),
-                            ),
-                            5.verticalSpace,
-                            Text(
-                              'المنطقه : ${task['area']}',
-                              style:
-                                  Styles.textStyleBold.copyWith(fontSize: 16),
-                            ),
-                            5.verticalSpace,
-                            Text(
-                              'الاصابه : ${task['injury']}',
-                              style: Styles.textStyleBold
-                                  .copyWith(fontSize: 16.spMin),
-                            ),
-                            const Spacer(),
-                            Text(
-                              'التاريخ : ${task['date'].toString().substring(0, 19)}',
-                              style: Styles.textStyleBold
-                                  .copyWith(fontSize: 16.spMin),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              }),
-            ),
+                },
+              );
+            }),
           ],
         ),
       ),
