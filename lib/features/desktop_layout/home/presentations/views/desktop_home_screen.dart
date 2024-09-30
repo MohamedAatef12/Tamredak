@@ -5,6 +5,7 @@ class DesktopHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: DesktopHomeBody(),);
+    return const Scaffold(
+      body: DesktopHomeBody(),);
   }
 }
