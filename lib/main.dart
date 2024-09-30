@@ -4,7 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tamredak/features/desktop_layout/add_nurse/presentations/views/desktop_add_nurse_screen.dart';
+import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/desktop_available_nurses.dart';
 import 'package:tamredak/features/desktop_layout/home/presentations/views/desktop_home_screen.dart';
+import 'package:tamredak/features/desktop_layout/in%20task_nurse/presentation/views/desktop_in_task_screen.dart';
+import 'package:tamredak/features/desktop_layout/in%20task_nurse/presentation/views/widgets/desktop_in_task_body.dart';
 import 'package:tamredak/features/desktop_layout/left_bar/presentation/views/bottom_bar_screen.dart';
 import 'package:tamredak/features/desktop_layout/login/presentations/views/desktop_login_screen.dart';
 import 'package:tamredak/features/desktop_layout/splash/desktop_splash_screen.dart';
@@ -47,6 +51,6 @@ class MyApp extends StatelessWidget {
             ),
             locale: const Locale('ar', 'EG'),
             fallbackLocale: const Locale('ar', 'EG'),
-            home: const DesktopHomePage()));
+            home:DesktopHomePage()));
   }
 }

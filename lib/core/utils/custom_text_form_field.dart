@@ -56,6 +56,7 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: isPassword,
         maxLines: maxLine,
         onChanged: (s) {
+          Form.of(context).validate();
           return onChange!(s);
         },
         validator: (s) {
