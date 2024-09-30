@@ -12,7 +12,7 @@ class DesktopHomeBody extends StatelessWidget {
     return Center(
       child: Container(
         height: MediaQuery.sizeOf(context).height * .9,
-        width: MediaQuery.sizeOf(context).width * .8,
+        width: MediaQuery.sizeOf(context).width * .72,
         decoration: BoxDecoration(
             color: AppColors.current.blueBackground,
             borderRadius: BorderRadius.circular(20)),

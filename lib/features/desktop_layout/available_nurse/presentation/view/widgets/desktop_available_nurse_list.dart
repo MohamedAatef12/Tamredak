@@ -5,25 +5,25 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
-import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
+import 'package:tamredak/core/utils/widgets/custom_desktop_nurse_card.dart';
 import 'package:tamredak/features/mobile_layout/availablel_nurses/presentation/controllers/available_nurses_controller.dart';
 
-class ViewAllNursesList extends StatefulWidget {
-  const ViewAllNursesList({super.key});
+class DesktopAvailableNurseList extends StatefulWidget {
+  const DesktopAvailableNurseList({super.key});
 
   @override
-  State<ViewAllNursesList> createState() => _ViewAllNursesListState();
+  State<DesktopAvailableNurseList> createState() => _ViewAllNursesListState();
 }
 
-class _ViewAllNursesListState extends State<ViewAllNursesList> {
+class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
   @override
   Widget build(BuildContext context) {
     final AvailableNursesController controller =
         Get.put(AvailableNursesController());
     controller.fetchAvailableNurses();
     return Container(
-      height: 550.r,
-      width: Get.mediaQuery.size.width * 0.85.r,
+      width: MediaQuery.sizeOf(context).width * .5,
+      height: MediaQuery.sizeOf(context).height * 0.75,
       decoration: BoxDecoration(
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
@@ -33,7 +33,8 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.58.r,
+              width: MediaQuery.sizeOf(context).width * .45,
+              height: MediaQuery.sizeOf(context).height * 0.07,
               child: CustomTextFormField(
                 label: 'البحث',
                 maxLine: 1,
@@ -64,36 +65,46 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                   ],
                 ));
               }
-              return ListView.separated(
-                itemCount: controller.filteredNursesList.length,
-                separatorBuilder: (context, index) =>
-                    10.verticalSpace, // Set the number of items
-                itemBuilder: (context, index) {
-                  final nurse = controller.filteredNursesList[index];
-                  final nurseId = nurse['id'];
-                  return CustomNursesCard(
-                    name: nurse['first name'] + nurse["last name"],
-                    image:  const Image(image: AssetImage(Assets.noPhoto),),
-                    phone: nurse['phone number'],
-                    age: nurse['age'],
-                    area: nurse['area'],
-                    gender: nurse['gender'],
-                    time: nurse['time'],
-                    one: true,
-                    button1: CustomAppButton(
-                      onTap: () {
-                        buildBottomBarSheet(context, nurseId);
-                        // controller.setNurseUnavailable(nurseId);
-                      },
-                      text: 'اختيار الممرض',
-                      textFont: 12,
-                      height: 30.r,
-                      width: 150.r,
+              return SizedBox(
+                  width: MediaQuery.sizeOf(context).width * .45,
+                  height: MediaQuery.sizeOf(context).height *
+                      0.57, // Set ListView height
+                  child: GridView.builder(
+                    itemCount: controller.filteredNursesList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Number of columns
+                      crossAxisSpacing:
+                          20.0, // Horizontal spacing between the grid items
+                      mainAxisSpacing:
+                          15.0, // Vertical spacing between the grid items
                     ),
-                    color: AppColors.current.orangeButtons,
-                  );
-                },
-              );
+                    itemBuilder: (context, index) {
+                      final nurse = controller.filteredNursesList[index];
+                      final nurseId = nurse['id'];
+                      return CustomDesktopNursesCard(
+                        name: nurse['first name'] + nurse["last name"],
+                        image: Assets.noPhoto,
+                        phone: nurse['phone number'],
+                        age: nurse['age'],
+                        area: nurse['area'],
+                        gender: nurse['gender'],
+                        time: nurse['time'],
+                        one: true,
+                        button1: CustomAppButton(
+                          onTap: () {
+                            buildBottomBarSheet(context, nurseId);
+                            // controller.setNurseUnavailable(nurseId);
+                          },
+                          text: 'اختيار الممرض',
+                          textFont: 12,
+                          height: MediaQuery.sizeOf(context).height * 0.07,
+                          width: MediaQuery.sizeOf(context).width * 0.2,
+                        ),
+                        color: AppColors.current.orangeButtons,
+                      );
+                    },
+                  ));
             })
           ],
         ),
@@ -104,7 +115,6 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
   Future buildBottomBarSheet(BuildContext context, String nurseId) {
     final AvailableNursesController controller =
         Get.put(AvailableNursesController());
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -117,7 +127,7 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
       builder: (context) {
         return Container(
           height: MediaQuery.of(context).size.height * 0.3,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width * 0.7,
           decoration: BoxDecoration(
             color: AppColors.current.darkGreenBackground,
             borderRadius: const BorderRadius.only(
@@ -126,13 +136,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40),
             child: Form(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
                   Text(
                     'تعبئة بيانات المريض',
                     style: TextStyle(
@@ -142,7 +150,7 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                    height: MediaQuery.of(context).size.height * 0.09,
                   ),
                   CustomTextFormField(
                     controller: controller.nameController,
