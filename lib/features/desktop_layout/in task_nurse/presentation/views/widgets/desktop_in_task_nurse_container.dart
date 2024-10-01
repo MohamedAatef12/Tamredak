@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/widgets/desktop_available_nurse_list.dart';
 import 'package:tamredak/features/desktop_layout/in%20task_nurse/presentation/views/widgets/desktop_in_task_list.dart';
+
 class DesktopInTaskNurseContainer extends StatelessWidget {
-  const DesktopInTaskNurseContainer({super.key , required this.text,
-    required this.color,
-    required this.image});
+  const DesktopInTaskNurseContainer(
+      {super.key,
+      required this.text,
+      required this.color,
+      required this.image});
   final String text;
   final Color color;
   final String image;
@@ -34,7 +36,7 @@ class DesktopInTaskNurseContainer extends StatelessWidget {
                       maxLines: 3,
                       style: Styles.textStyleMedium.copyWith(
                           fontSize:
-                          responsiveFonts(context, fontSize: 22.spMin),
+                              responsiveFonts(context, fontSize: 22.spMin),
                           color: color),
                       overflow: TextOverflow.ellipsis,
                     )),
@@ -43,11 +45,10 @@ class DesktopInTaskNurseContainer extends StatelessWidget {
                     image: AssetImage(image),
                     fit: BoxFit.cover,
                     height: MediaQuery.sizeOf(context).height * 0.4,
-                    width: MediaQuery.sizeOf(context).width*0.2
-                )
+                    width: MediaQuery.sizeOf(context).width * 0.2)
               ],
             ),
-            const Spacer(),
+            SizedBox(width: 10.w),
             const DesktopInTaskNurseList()
           ],
         ),

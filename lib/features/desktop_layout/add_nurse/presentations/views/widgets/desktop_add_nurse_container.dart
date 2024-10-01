@@ -36,7 +36,7 @@ class DesktopAddNurseContainer extends StatelessWidget {
                       maxLines: 3,
                       style: Styles.textStyleMedium.copyWith(
                           fontSize:
-                          responsiveFonts(context, fontSize: 22.spMin),
+                              responsiveFonts(context, fontSize: 22.spMin),
                           color: color),
                       overflow: TextOverflow.ellipsis,
                     )),
@@ -45,12 +45,11 @@ class DesktopAddNurseContainer extends StatelessWidget {
                     image: AssetImage(image),
                     fit: BoxFit.fitHeight,
                     height: MediaQuery.sizeOf(context).height * 0.4,
-                    width: MediaQuery.sizeOf(context).width*0.2
-                )
+                    width: MediaQuery.sizeOf(context).width * 0.2)
               ],
             ),
             const Spacer(),
-             DesktopAddNurseForm(),
+            DesktopAddNurseForm(),
           ],
         ),
       ),
