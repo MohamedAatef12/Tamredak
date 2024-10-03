@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/desktop_layout/add_nurse/presentations/views/widgets/desktop_add_nurse_form.dart';
 import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/widgets/desktop_available_nurse_list.dart';
 
 class DesktopAvailableNurseContainer extends StatelessWidget {
   const DesktopAvailableNurseContainer(
       {super.key,
-        required this.text,
-        required this.color,
-        required this.image});
+      required this.text,
+      required this.color,
+      required this.image});
   final String text;
   final Color color;
   final String image;
@@ -37,7 +36,7 @@ class DesktopAvailableNurseContainer extends StatelessWidget {
                       maxLines: 3,
                       style: Styles.textStyleMedium.copyWith(
                           fontSize:
-                          responsiveFonts(context, fontSize: 22.spMin),
+                              responsiveFonts(context, fontSize: 22.spMin),
                           color: color),
                       overflow: TextOverflow.ellipsis,
                     )),
@@ -45,13 +44,13 @@ class DesktopAvailableNurseContainer extends StatelessWidget {
                 Image(
                     image: AssetImage(image),
                     fit: BoxFit.cover,
-                    height: MediaQuery.sizeOf(context).height * 0.4,
-                    width: MediaQuery.sizeOf(context).width*0.2
-                )
+                    height: MediaQuery.sizeOf(context).height * 0.5,
+                    width: MediaQuery.sizeOf(context).width * 0.25)
               ],
             ),
             const Spacer(),
-            const DesktopAvailableNurseList()
+            const DesktopAvailableNurseList(),
+            10.verticalSpace,
           ],
         ),
       ),

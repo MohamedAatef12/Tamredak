@@ -13,15 +13,17 @@ class DesktopDatabaseContainer extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width * .8,
-      height: MediaQuery.sizeOf(context).height * 0.8,
-      decoration: BoxDecoration(
-          color: AppColors.current.white,
-          borderRadius: BorderRadius.circular(20)),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [DataBaseList()],
+    return Center(
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * .8,
+        height: MediaQuery.sizeOf(context).height * 0.9,
+        decoration: BoxDecoration(
+            color: AppColors.current.white,
+            borderRadius: BorderRadius.circular(20)),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [DataBaseList()],
+        ),
       ),
     );
   }

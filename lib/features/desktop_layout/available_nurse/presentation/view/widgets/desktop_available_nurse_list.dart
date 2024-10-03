@@ -32,7 +32,7 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0).r,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0).r,
         child: Obx(
           () {
             if (controller.isLoading.value) {
@@ -62,7 +62,7 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
               children: [
                 Form(
                   child: SizedBox(
-                    width: MediaQuery.sizeOf(context).width * .45,
+                    width: MediaQuery.sizeOf(context).width * .4,
                     height: MediaQuery.sizeOf(context).height * 0.07,
                     child: CustomTextFormField(
                       controller: controller.searchController,
@@ -80,7 +80,7 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
                 ),
                 10.verticalSpace,
                 SizedBox(
-                  width: MediaQuery.sizeOf(context).width * .45,
+                  width: MediaQuery.sizeOf(context).width * .5,
                   height: MediaQuery.sizeOf(context).height * 0.6,
                   child: GridView.builder(
                     itemCount: controller.filteredNursesList.length,

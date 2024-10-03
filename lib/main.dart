@@ -42,4 +42,8 @@ class MyApp extends StatelessWidget {
             fallbackLocale: const Locale('ar', 'EG'),
             home: const DesktopHomePage()));
   }
+
+  void setWindowSize() {
+    setWindowMinSize(const Size(800, 500)); // Adjust as per your needs
+  }
 }

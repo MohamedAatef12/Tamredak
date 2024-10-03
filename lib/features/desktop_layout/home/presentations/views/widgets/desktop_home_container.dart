@@ -55,41 +55,12 @@ class DesktopHomeContainer extends StatelessWidget {
                               text!,
                               style: Styles.textStyleMedium.copyWith(
                                   fontSize: responsiveFonts(context,
-                                      fontSize: 16.spMin),
+                                      fontSize: 14.spMin),
                                   color: color),
-                              maxLines: 3,
+                              maxLines: 6,
                               overflow: TextOverflow.ellipsis,
                             )),
                         30.verticalSpace,
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(button);
-                          },
-                          child: Container(
-                            height: MediaQuery.sizeOf(context).height * 0.05,
-                            width: MediaQuery.sizeOf(context).width * 0.1,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: color,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: backcolor!, // Shadow color
-                                    spreadRadius:
-                                        0.5.r, // Spread radius// Blur radius
-                                    offset: const Offset(
-                                        0, 2), // Offset from the Container
-                                  ),
-                                ]),
-                            child: Center(
-                              child: Text(
-                                'اختر',
-                                style: Styles.textStyleBold.copyWith(
-                                    fontSize: 18.spMin,
-                                    color: AppColors.current.white),
-                              ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                     10.horizontalSpace,
@@ -128,41 +99,12 @@ class DesktopHomeContainer extends StatelessWidget {
                               text!,
                               style: Styles.textStyleMedium.copyWith(
                                   fontSize: responsiveFonts(context,
-                                      fontSize: 16.spMin),
+                                      fontSize: 14.spMin),
                                   color: color),
-                              maxLines: 3,
+                              maxLines: 6,
                               overflow: TextOverflow.ellipsis,
                             )),
                         30.verticalSpace,
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(button);
-                          },
-                          child: Container(
-                            height: MediaQuery.sizeOf(context).height * 0.05,
-                            width: MediaQuery.sizeOf(context).width * 0.1,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: color,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: backcolor!, // Shadow color
-                                    spreadRadius:
-                                        0.5.r, // Spread radius// Blur radius
-                                    offset: const Offset(
-                                        0, 2), // Offset from the Container
-                                  ),
-                                ]),
-                            child: Center(
-                              child: Text(
-                                'اختر',
-                                style: Styles.textStyleBold.copyWith(
-                                    fontSize: 18.spMin,
-                                    color: AppColors.current.white),
-                              ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                     10.horizontalSpace,
