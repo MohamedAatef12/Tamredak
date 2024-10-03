@@ -10,11 +10,11 @@ class DesktopInTaskBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      width: MediaQuery.sizeOf(context).width * .9,
-      height: MediaQuery.sizeOf(context).height * 0.9,
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
       decoration: BoxDecoration(
-          color: AppColors.current.primary,
-          borderRadius: BorderRadius.circular(20)),
+        color: AppColors.current.primary,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

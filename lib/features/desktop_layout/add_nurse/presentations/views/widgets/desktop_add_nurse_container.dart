@@ -15,42 +15,46 @@ class DesktopAddNurseContainer extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.sizeOf(context).width * .65,
-      height: MediaQuery.sizeOf(context).height * 0.8,
-      decoration: BoxDecoration(
-          color: AppColors.current.white,
-          borderRadius: BorderRadius.circular(20)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-        child: Row(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    child: Text(
-                      text,
-                      maxLines: 3,
-                      style: Styles.textStyleMedium.copyWith(
-                          fontSize:
-                              responsiveFonts(context, fontSize: 22.spMin),
-                          color: color),
-                      overflow: TextOverflow.ellipsis,
-                    )),
-                40.verticalSpace,
-                Image(
-                    image: AssetImage(image),
-                    fit: BoxFit.fitHeight,
-                    height: MediaQuery.sizeOf(context).height * 0.4,
-                    width: MediaQuery.sizeOf(context).width * 0.2)
-              ],
-            ),
-            const Spacer(),
-            DesktopAddNurseForm(),
-          ],
+    return Center(
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * .6,
+        height: MediaQuery.sizeOf(context).height * 0.8,
+        decoration: BoxDecoration(
+            color: AppColors.current.white,
+            borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      child: Text(
+                        text,
+                        maxLines: 3,
+                        style: Styles.textStyleMedium.copyWith(
+                            fontSize:
+                                responsiveFonts(context, fontSize: 22.spMin),
+                            color: color),
+                        overflow: TextOverflow.ellipsis,
+                      )),
+                  40.verticalSpace,
+                  Image(
+                      image: AssetImage(image),
+                      fit: BoxFit.fitHeight,
+                      height: MediaQuery.sizeOf(context).height * 0.4,
+                      width: MediaQuery.sizeOf(context).width * 0.2)
+                ],
+              ),
+              const Spacer(),
+              DesktopAddNurseForm(),
+            ],
+          ),
         ),
       ),
     );

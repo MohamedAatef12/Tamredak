@@ -10,10 +10,9 @@ class AvailableNursesController extends GetxController {
   TextEditingController areaController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController injuryController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
-  // List of All Tasks
-  List<Map<String, dynamic>> allTasksList = <Map<String, dynamic>>[].obs;
-
+  // List of All Nurses
   final availableNursesList = <Map<String, dynamic>>[].obs;
   final filteredNursesList = <Map<String, dynamic>>[].obs;
 
@@ -111,6 +110,5 @@ class AvailableNursesController extends GetxController {
                   false))
           .toList();
     }
-    update();
   }
 }

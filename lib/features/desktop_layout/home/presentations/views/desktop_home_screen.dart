@@ -85,11 +85,22 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
             style: SideMenuStyle(
               displayMode: SideMenuDisplayMode.auto,
               openSideMenuWidth: 250,
-              hoverColor: Colors.blue[100],
+              hoverColor: Colors.blue[200],
               selectedColor: Colors.lightBlue,
-              unselectedIconColor: Colors.black54,
+              unselectedIconColor: Colors.white,
               backgroundColor: Colors.blueGrey[300],
               selectedTitleTextStyleExpandable: TextStyle(
+                color: Colors.white,
+                fontSize: 18.spMin,
+              ),
+              selectedIconColorExpandable: Colors.white,
+              unselectedIconColorExpandable: Colors.white,
+              selectedIconColor: Colors.white,
+              selectedTitleTextStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 18.spMin,
+              ),
+              unselectedTitleTextStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 18.spMin,
               ),
@@ -99,7 +110,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               ),
               itemHeight: 50.0,
               itemOuterPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-              toggleColor: Colors.black54,
+              toggleColor: Colors.white,
             ),
             items: [
               SideMenuItem(
@@ -126,7 +137,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               ),
               SideMenuExpansionItem(
                   icon: const Icon(
-                    Icons.person,
+                    Icons.person_outline,
                     color: Colors.white,
                   ),
                   title: 'الممرضين',
@@ -136,7 +147,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       iconWidget: Row(
                         children: [
                           const Icon(
-                            Icons.person,
+                            Icons.person_add_alt_1_outlined,
                             color: Colors.white,
                           ),
                           1.horizontalSpace,
@@ -159,7 +170,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       iconWidget: Row(
                         children: [
                           const Icon(
-                            Icons.person,
+                            Icons.person_search_outlined,
                             color: Colors.white,
                           ),
                           1.horizontalSpace,
@@ -182,7 +193,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       iconWidget: Row(
                         children: [
                           const Icon(
-                            Icons.person,
+                            Icons.person_off_outlined,
                             color: Colors.white,
                           ),
                           1.horizontalSpace,
@@ -206,7 +217,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 iconWidget: Row(
                   children: [
                     const Icon(
-                      Icons.person,
+                      Icons.space_dashboard_outlined,
                       color: Colors.white,
                     ),
                     1.horizontalSpace,
