@@ -10,18 +10,16 @@ class DesktopAddNurseBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      width: MediaQuery.sizeOf(context).width * .72,
       height: MediaQuery.sizeOf(context).height * 0.9,
       decoration: BoxDecoration(
           color: AppColors.current.blueBackground,
           borderRadius: BorderRadius.circular(20)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DesktopAddNurseContainer(
-              text: 'اضافة ممرض جديد للنظام',
-              color: AppColors.current.lightGreenText,
-              image: Assets.card1home),
+           DesktopAddNurseContainer(
+             text: 'اضافة ممرض جديد للنظام',
+             color: AppColors.current.lightGreenText,
+             image: Assets.card1home),
         ],
       ),
     ));

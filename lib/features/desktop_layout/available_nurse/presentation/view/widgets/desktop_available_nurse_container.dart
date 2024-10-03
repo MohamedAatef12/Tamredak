@@ -17,7 +17,7 @@ class DesktopAvailableNurseContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * .8,
+      width: MediaQuery.sizeOf(context).width * .7,
       height: MediaQuery.sizeOf(context).height * 0.8,
       decoration: BoxDecoration(
           color: AppColors.current.white,
