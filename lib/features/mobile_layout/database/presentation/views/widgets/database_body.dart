@@ -14,26 +14,27 @@ class DataBaseBody extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            CustomContainer(
-              image: const Image(
-                image: AssetImage(
-                  Assets.database,
-                ),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          CustomContainer(
+            image: const Image(
+              image: AssetImage(
+                Assets.database,
               ),
-              text: 'مراجعة المعاملات السابقة',
-              color: AppColors.current.purpleText,
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Expanded(child: DataBaseList())
-          ]),
+            text: 'مراجعة المعاملات السابقة',
+            color: AppColors.current.purpleText,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Expanded(child: DataBaseList())
+        ],
+      ),
     );
   }
 }

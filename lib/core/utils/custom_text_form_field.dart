@@ -2,28 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
-    super.key,
-    this.label,
-    this.hint,
-    this.prefix,
-    this.type,
-    this.suffix,
-    this.onSubmit,
-    this.onChange,
-    this.labelStyle,
-    this.onTap,
-    this.validate,
-    this.controller,
-    this.decoration,
-    this.isPassword = false,
-    this.widgetSuffix,
-    this.suffixColor,
-    this.contentPadding,
-    this.maxLine,
-    this.color,
-     bool? obscureText
-  });
+  const CustomTextFormField(
+      {super.key,
+      this.label,
+      this.hint,
+      this.prefix,
+      this.type,
+      this.suffix,
+      this.onSubmit,
+      this.onChange,
+      this.labelStyle,
+      this.onTap,
+      this.validate,
+      this.controller,
+      this.decoration,
+      this.isPassword = false,
+      this.widgetSuffix,
+      this.suffixColor,
+      this.contentPadding,
+      this.maxLine,
+      this.color,
+      bool? obscureText});
   final TextStyle? labelStyle;
   final String? label;
   final String? hint;
@@ -46,7 +45,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: color??Colors.white,
+        color: color ?? Colors.white,
         borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
       ),
       child: TextFormField(
@@ -56,22 +55,20 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: isPassword,
         maxLines: maxLine,
         onChanged: (s) {
-          Form.of(context).validate();
           return onChange!(s);
         },
         validator: (s) {
           return validate!(s);
         },
         decoration: InputDecoration(
-          contentPadding: contentPadding,
-          labelText: label,
-          labelStyle: const TextStyle(color: Colors.black),
-          hintText: hint,
-          prefixIcon: prefix,
-          suffixIcon: widgetSuffix ?? (suffix),
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none
-        ),
+            contentPadding: contentPadding,
+            labelText: label,
+            labelStyle: const TextStyle(color: Colors.black),
+            hintText: hint,
+            prefixIcon: prefix,
+            suffixIcon: widgetSuffix ?? (suffix),
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none),
         cursorColor: AppColors.current.text,
       ),
     );

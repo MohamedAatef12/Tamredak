@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,21 +8,23 @@ import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_desktop_nurse_card.dart';
-import 'package:tamredak/features/mobile_layout/availablel_nurses/presentation/controllers/available_nurses_controller.dart';
+import 'package:tamredak/features/desktop_layout/available_nurse/presentation/controllers/available_nurses_desktop_controller.dart';
 
 class DesktopAvailableNurseList extends StatefulWidget {
   const DesktopAvailableNurseList({super.key});
 
   @override
-  State<DesktopAvailableNurseList> createState() => _ViewAllNursesListState();
+  State<DesktopAvailableNurseList> createState() =>
+      _DesktopAvailableNurseListState();
 }
 
-class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
+class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
   @override
   Widget build(BuildContext context) {
-    final AvailableNursesController controller =
-        Get.put(AvailableNursesController());
+    final AvailableNursesDesktopController controller =
+        Get.put(AvailableNursesDesktopController());
     controller.fetchAvailableNurses();
+
     return Container(
       width: MediaQuery.sizeOf(context).width * .5,
       height: MediaQuery.sizeOf(context).height * 0.75,
@@ -28,62 +32,71 @@ class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * .45,
-              height: MediaQuery.sizeOf(context).height * 0.07,
-              child: CustomTextFormField(
-                label: 'البحث',
-                maxLine: 1,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20).r,
-                onChange: (value) {
-                  controller.searchNurses(value);
-                },
-              ),
-            ),
-            10.verticalSpace,
-            Obx(() {
-              if (controller.isLoading.value) {
-                // Show circular indicator when loading
-                return Center(
-                    child: CircularProgressIndicator(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0).r,
+        child: Obx(
+          () {
+            if (controller.isLoading.value) {
+              return Center(
+                child: CircularProgressIndicator(
                   color: AppColors.current.blueText,
-                ));
-              }
-              if (controller.filteredNursesList.isEmpty) {
-                return Center(
-                    child: Column(
+                ),
+              );
+            }
+
+            if (controller.filteredNursesList.isEmpty) {
+              return Center(
+                child: Column(
                   children: [
                     SizedBox(
                       height: MediaQuery.sizeOf(context).height * 0.15,
                     ),
-                    const Image(image: AssetImage('assets/images/nodata.png')),
+                    const Image(
+                      image: AssetImage('assets/images/nodata.png'),
+                    ),
                   ],
-                ));
-              }
-              return SizedBox(
-                  width: MediaQuery.sizeOf(context).width * .45,
-                  height: MediaQuery.sizeOf(context).height *
-                      0.57, // Set ListView height
+                ),
+              );
+            }
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Form(
+                  child: SizedBox(
+                    width: MediaQuery.sizeOf(context).width * .4,
+                    height: MediaQuery.sizeOf(context).height * 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.searchController,
+                      label: 'البحث',
+                      maxLine: 1,
+                      contentPadding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20)
+                          .r,
+                      onChange: (value) {
+                        log(value.toString());
+                        controller.searchNurses(value);
+                      },
+                    ),
+                  ),
+                ),
+                10.verticalSpace,
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width * .5,
+                  height: MediaQuery.sizeOf(context).height * 0.6,
                   child: GridView.builder(
                     itemCount: controller.filteredNursesList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Number of columns
                       crossAxisSpacing:
-                          20.0, // Horizontal spacing between the grid items
+                          20.0, // Horizontal spacing between grid items
                       mainAxisSpacing:
-                          15.0, // Vertical spacing between the grid items
+                          15.0, // Vertical spacing between grid items
                     ),
                     itemBuilder: (context, index) {
                       final nurse = controller.filteredNursesList[index];
                       final nurseId = nurse['id'];
                       return CustomDesktopNursesCard(
-                        name: nurse['first name'] + nurse["last name"],
+                        name: '${nurse['first name']} ${nurse["last name"]}',
                         image: Assets.noPhoto,
                         phone: nurse['phone number'],
                         age: nurse['age'],
@@ -94,7 +107,6 @@ class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
                         button1: CustomAppButton(
                           onTap: () {
                             buildBottomBarSheet(context, nurseId);
-                            // controller.setNurseUnavailable(nurseId);
                           },
                           text: 'اختيار الممرض',
                           textFont: 12,
@@ -104,17 +116,19 @@ class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
                         color: AppColors.current.orangeButtons,
                       );
                     },
-                  ));
-            })
-          ],
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
   Future buildBottomBarSheet(BuildContext context, String nurseId) {
-    final AvailableNursesController controller =
-        Get.put(AvailableNursesController());
+    final AvailableNursesDesktopController controller =
+        Get.put(AvailableNursesDesktopController());
 
     return showModalBottomSheet(
       isScrollControlled: true,
@@ -280,15 +294,6 @@ class _ViewAllNursesListState extends State<DesktopAvailableNurseList> {
             ),
           ),
         );
-      },
-    ).whenComplete(
-      () {
-        controller.nameController.clear();
-        controller.phoneController.clear();
-        controller.ageController.clear();
-        controller.areaController.clear();
-        controller.genderController.clear();
-        controller.injuryController.clear();
       },
     );
   }
