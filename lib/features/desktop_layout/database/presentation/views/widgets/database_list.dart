@@ -18,19 +18,16 @@ class DataBaseList extends StatelessWidget {
 
     return Container(
       width: MediaQuery.sizeOf(context).width * .78,
-      height: MediaQuery.sizeOf(context).height * 0.78,
+      height: MediaQuery.sizeOf(context).height * 0.85,
       decoration: BoxDecoration(
         color: AppColors.current.lightPurpleBackground,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)).r,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 10.0,
-          left: 15.0,
-          right: 15.0,
+        padding: EdgeInsets.only(
+          top: 10.0.r,
+          left: 15.0.r,
+          right: 15.0.r,
         ).r,
         child: Column(
           children: [
@@ -41,19 +38,17 @@ class DataBaseList extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: SizedBox(
-                      height: 43.r,
-                      child: CustomTextFormField(
-                        controller: searchController,
-                        label: 'Search',
-                        suffix: AppIcons.search,
-                        contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 20)
-                            .r,
-                        onChange: (value) {
-                          controller.searchTasks(value);
-                        },
-                      ),
+                    child: CustomTextFormField(
+                      controller: searchController,
+                      label: 'البحث',
+                      maxLine: 1,
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 10.r,
+                        vertical: 7.5.r,
+                      ).r,
+                      onChange: (value) {
+                        controller.searchTasks(value);
+                      },
                     ),
                   ),
                   5.horizontalSpace,
@@ -154,10 +149,11 @@ class DataBaseList extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(
-                            width: 206.r,
+                            width: 180.r,
                             child: Text(
                               'الاسم',
                               style: TextStyle(
+                                color: AppColors.current.white,
                                 fontSize: 20.spMin,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -167,6 +163,7 @@ class DataBaseList extends StatelessWidget {
                           child: Text(
                             'الهاتف',
                             style: TextStyle(
+                              color: AppColors.current.white,
                               fontSize: 20.spMin,
                               fontWeight: FontWeight.bold,
                             ),
@@ -177,6 +174,7 @@ class DataBaseList extends StatelessWidget {
                           child: Text(
                             'العمر',
                             style: TextStyle(
+                              color: AppColors.current.white,
                               fontSize: 20.spMin,
                               fontWeight: FontWeight.bold,
                             ),
@@ -187,6 +185,7 @@ class DataBaseList extends StatelessWidget {
                           child: Text(
                             'المنطقه',
                             style: TextStyle(
+                              color: AppColors.current.white,
                               fontSize: 20.spMin,
                               fontWeight: FontWeight.bold,
                             ),
@@ -197,6 +196,7 @@ class DataBaseList extends StatelessWidget {
                           child: Text(
                             'الاصابه',
                             style: TextStyle(
+                              color: AppColors.current.white,
                               fontSize: 20.spMin,
                               fontWeight: FontWeight.bold,
                             ),
@@ -207,6 +207,7 @@ class DataBaseList extends StatelessWidget {
                           child: Text(
                             'التاريخ',
                             style: TextStyle(
+                              color: AppColors.current.white,
                               fontSize: 20.spMin,
                               fontWeight: FontWeight.bold,
                             ),
@@ -231,7 +232,7 @@ class DataBaseList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 206.r,
+                                width: 180.r,
                                 color: AppColors.current.white,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
