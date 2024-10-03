@@ -6,19 +6,19 @@ import 'package:tamredak/core/utils/styles.dart';
 class CustomDesktopNursesCard extends StatelessWidget {
   const CustomDesktopNursesCard(
       {super.key,
-        this.image,
-        this.name,
-        this.gender,
-        this.area,
-        this.age,
-        this.phone,
-        this.available,
-        this.time,
-        this.color,
-        this.button1,
-        this.button2,
-        this.one,
-        this.color2});
+      this.image,
+      this.name,
+      this.gender,
+      this.area,
+      this.age,
+      this.phone,
+      this.available,
+      this.time,
+      this.color,
+      this.button1,
+      this.button2,
+      this.one,
+      this.color2});
   final String? image;
   final String? name;
   final String? gender;
@@ -46,7 +46,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
         children: [
           Padding(
             padding:
-            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
             child: Row(
               children: [
                 Column(
@@ -58,8 +58,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'الأسم: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 11),
+                              fontSize: responsiveFonts(context, fontSize: 11),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -69,8 +68,8 @@ class CustomDesktopNursesCard extends StatelessWidget {
                           child: Text(
                             name!,
                             style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 11),
+                                fontSize:
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -84,8 +83,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'وقت العمل: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 11),
+                              fontSize: responsiveFonts(context, fontSize: 11),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -95,8 +93,8 @@ class CustomDesktopNursesCard extends StatelessWidget {
                           child: Text(
                             time!,
                             style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 11),
+                                fontSize:
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -110,8 +108,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'المنطقة: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 11),
+                              fontSize: responsiveFonts(context, fontSize: 11),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -122,7 +119,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                             area!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 11),
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -136,8 +133,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'العمر: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 12),
+                              fontSize: responsiveFonts(context, fontSize: 12),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -148,7 +144,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                             age!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 11),
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -162,8 +158,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'النوع: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 11),
+                              fontSize: responsiveFonts(context, fontSize: 11),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -174,7 +169,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                             gender!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 11),
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -188,8 +183,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                         Text(
                           'رقم الهاتف: ',
                           style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 11),
+                              fontSize: responsiveFonts(context, fontSize: 11),
                               color: Colors.black),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -200,7 +194,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
                             phone!,
                             style: Styles.textStyleMedium.copyWith(
                                 fontSize:
-                                responsiveFonts(context, fontSize: 11),
+                                    responsiveFonts(context, fontSize: 11),
                                 color: Colors.black),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
@@ -222,7 +216,7 @@ class CustomDesktopNursesCard extends StatelessWidget {
               ],
             ),
           ),
-        const Spacer(),
+          const Spacer(),
           if (one == true)
             Container(
                 height: MediaQuery.sizeOf(context).height * 0.04,

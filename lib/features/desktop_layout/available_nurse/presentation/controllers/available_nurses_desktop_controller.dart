@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AvailableNursesController extends GetxController {
+class AvailableNursesDesktopController extends GetxController {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();

@@ -89,6 +89,10 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
               selectedColor: Colors.lightBlue,
               unselectedIconColor: Colors.black54,
               backgroundColor: Colors.blueGrey[300],
+              selectedTitleTextStyleExpandable: TextStyle(
+                color: Colors.white,
+                fontSize: 18.spMin,
+              ),
               itemInnerSpacing: 5.0,
               itemBorderRadius: const BorderRadius.all(
                 Radius.circular(5.0),
@@ -120,75 +124,83 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                   sideMenu.changePage(index);
                 },
               ),
-              SideMenuItem(
-                title: '',
-                iconWidget: Row(
+              SideMenuExpansionItem(
+                  icon: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  title: 'الممرضين',
                   children: [
-                    const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    1.horizontalSpace,
-                    Text(
-                      'اضافه ممرض',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.spMin,
+                    SideMenuItem(
+                      title: '',
+                      iconWidget: Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                          1.horizontalSpace,
+                          Text(
+                            'اضافه ممرض',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.spMin,
+                            ),
+                          ),
+                        ],
                       ),
+                      trailing: const Spacer(),
+                      onTap: (index, _) {
+                        sideMenu.changePage(index);
+                      },
                     ),
-                  ],
-                ),
-                trailing: const Spacer(),
-                onTap: (index, _) {
-                  sideMenu.changePage(index);
-                },
-              ),
-              SideMenuItem(
-                title: '',
-                iconWidget: Row(
-                  children: [
-                    const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    1.horizontalSpace,
-                    Text(
-                      'الممرضين المتاحين',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.spMin,
+                    SideMenuItem(
+                      title: '',
+                      iconWidget: Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                          1.horizontalSpace,
+                          Text(
+                            'الممرضين المتاحين',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.spMin,
+                            ),
+                          ),
+                        ],
                       ),
+                      trailing: const Spacer(),
+                      onTap: (index, _) {
+                        sideMenu.changePage(index);
+                      },
                     ),
-                  ],
-                ),
-                trailing: const Spacer(),
-                onTap: (index, _) {
-                  sideMenu.changePage(index);
-                },
-              ),
-              SideMenuItem(
-                title: '',
-                iconWidget: Row(
-                  children: [
-                    const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    1.horizontalSpace,
-                    Text(
-                      'الممرضين المشغولين',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.spMin,
+                    SideMenuItem(
+                      title: '',
+                      iconWidget: Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                          1.horizontalSpace,
+                          Text(
+                            'الممرضين المشغولين',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.spMin,
+                            ),
+                          ),
+                        ],
                       ),
+                      trailing: const Spacer(),
+                      onTap: (index, _) {
+                        sideMenu.changePage(index);
+                      },
                     ),
-                  ],
-                ),
-                trailing: const Spacer(),
-                onTap: (index, _) {
-                  sideMenu.changePage(index);
-                },
-              ),
+                  ]),
               SideMenuItem(
                 title: '',
                 iconWidget: Row(
