@@ -9,24 +9,21 @@ class DesktopAvailableNursesBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Container(
-                width: MediaQuery.sizeOf(context).width * .9,
-                height: MediaQuery.sizeOf(context).height * 0.9,
-                decoration: BoxDecoration(
-            color: AppColors.current.blueBackground,
-            borderRadius: BorderRadius.circular(20)),
-                child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DesktopAvailableNurseContainer(
-                text: 'رؤية الممرضين المتاحين',
-                color: AppColors.current.orangeText,
-                image: Assets.card2home),
-          ],
-                ),
-              ),
-        ));
+        child: Container(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
+      decoration: BoxDecoration(
+        color: AppColors.current.blueBackground,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DesktopAvailableNurseContainer(
+              text: 'رؤية الممرضين المتاحين',
+              color: AppColors.current.orangeText,
+              image: Assets.card2home),
+        ],
+      ),
+    ));
   }
 }
