@@ -14,45 +14,51 @@ class LoginBody extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    return SafeArea(
-      child: SizedBox(
-        height: screenHeight,
-        width: screenWidth,
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                10.verticalSpace,
-                Text(
-                  'مرحبا',
-                  style: Styles.textStyleBold.copyWith(
-                    color: AppColors.current.blueText,
-                    fontSize: responsiveFonts(context, fontSize: 22.spMin),
-                  ),
-                ),
-                10.verticalSpace,
-                Padding(
-                  padding: const EdgeInsets.only(right: 30).r,
-                  child: Image(
-                    image: const AssetImage(
-                      Assets.login,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: SafeArea(
+        child: SizedBox(
+          height: screenHeight,
+          width: screenWidth,
+          child: Stack(
+            children: [
+              // Fixed image taking 3/4 of the screen height
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: screenHeight * 0.55,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'مرحبا بك',
+                      style: Styles.textStyleBold.copyWith(
+                        color: AppColors.current.blueText,
+                        fontSize: responsiveFonts(context, fontSize: 60.spMin),
+                      ),
                     ),
-                    width: 311.r,
-                    height: 200.r,
-                  ),
+                    10.verticalSpace,
+                    const Image(
+                      image: AssetImage(
+                        Assets.login,
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            Positioned(
-              bottom: keyboardHeight == 0 ? 0 : keyboardHeight,
-              left: 0,
-              right: 0,
-              child: const LoginContainer(),
-            ),
-          ],
+              ),
+              // Login container positioned above the image
+              Positioned(
+                bottom: keyboardHeight == 0 ? 0 : keyboardHeight,
+                left: 0,
+                right: 0,
+                child: const LoginContainer(),
+              ),
+            ],
+          ),
         ),
       ),
     );

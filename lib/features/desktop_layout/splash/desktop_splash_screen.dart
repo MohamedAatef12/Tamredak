@@ -9,7 +9,9 @@ class DesktopSplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.current.primary,
         body: Container(
-            color: AppColors.current.primary, child: const DesktopSplashBody()));
+            color: AppColors.current.primary,
+            child: const DesktopSplashBody()));
   }
 }

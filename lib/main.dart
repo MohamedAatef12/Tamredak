@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tamredak/features/desktop_layout/home/presentations/views/desktop_home_screen.dart';
+import 'package:tamredak/features/mobile_layout/home/presentation/view/home_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -13,11 +13,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(DevicePreview(
+  runApp(
+    DevicePreview(
       enabled: !kReleaseMode,
       builder: (BuildContext context) {
         return const MyApp();
-      }));
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
+        designSize: const Size(1000, 700),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) => GetMaterialApp(
@@ -40,10 +43,6 @@ class MyApp extends StatelessWidget {
             ),
             locale: const Locale('ar', 'EG'),
             fallbackLocale: const Locale('ar', 'EG'),
-            home: const DesktopHomePage()));
-  }
-
-  void setWindowSize() {
-    setWindowMinSize(const Size(800, 500)); // Adjust as per your needs
+            home: const HomeScreen()));
   }
 }
