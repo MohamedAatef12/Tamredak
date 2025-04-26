@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/availablel_nurses/presentation/views/widgets/view_available_nurses_body.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
 
 class ViewAllNursesScreen extends StatelessWidget {
   const ViewAllNursesScreen({super.key});
@@ -29,7 +28,7 @@ class ViewAllNursesScreen extends StatelessWidget {
             child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
-            Get.off(const BottomBarScreen());
+            Get.back();
           },
         ),
       ),

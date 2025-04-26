@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
+import 'package:tamredak/features/desktop_layout/home/presentations/views/desktop_home_screen.dart';
 
 class DesktopLoginController extends GetxController {
   // Add TextEditingController for username and password
@@ -14,7 +14,7 @@ class DesktopLoginController extends GetxController {
     String password = passwordController.text;
 
     if (user == 'user' && password == '123456') {
-      Get.to(const BottomBarScreen());
+      Get.to(const DesktopHomePage());
     } else {
       Get.snackbar(
         'Login Failed',

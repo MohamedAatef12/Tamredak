@@ -12,7 +12,7 @@ class LoginContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Fetch the LoginController
+    Get.put(LoginController());
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -35,7 +35,7 @@ class LoginContainer extends StatelessWidget {
                   'تمريضك',
                   style: Styles.textStyleBold.copyWith(
                     color: AppColors.current.white,
-                    fontSize: responsiveFonts(context, fontSize: 20.spMin),
+                    fontSize: responsiveFonts(context, fontSize: 30.spMin),
                   ),
                 ),
                 15.verticalSpace,
@@ -43,7 +43,7 @@ class LoginContainer extends StatelessWidget {
                   'تسجيل الدخول',
                   style: Styles.textStyleBold.copyWith(
                     color: AppColors.current.white,
-                    fontSize: responsiveFonts(context, fontSize: 20.spMin),
+                    fontSize: responsiveFonts(context, fontSize: 40.spMin),
                   ),
                 ),
                 15.verticalSpace,
@@ -51,7 +51,7 @@ class LoginContainer extends StatelessWidget {
                 CustomTextFormField(
                   label: 'ادخل اسم المستخدم',
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10)
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
                           .r,
                   controller: controller.usernameController,
                 ),
@@ -60,7 +60,7 @@ class LoginContainer extends StatelessWidget {
                 CustomTextFormField(
                   label: 'ادخل الرقم السري',
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10)
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
                           .r,
                   controller: controller.passwordController,
                   obscureText: true, // Optional: obscure password input

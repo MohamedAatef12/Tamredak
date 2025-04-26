@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
 import 'package:tamredak/features/mobile_layout/in_task_nurses/presentation/view/widgets/in_task_body.dart';
 
 class InTaskScreen extends StatelessWidget {
@@ -28,7 +27,7 @@ class InTaskScreen extends StatelessWidget {
             child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
-            Get.off(const BottomBarScreen());
+            Get.back();
           },
         ),
       ),

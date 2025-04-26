@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/add_nurse/presentation/views/widgets/add_nurse_body.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
 
 class AddNurseScreen extends StatelessWidget {
   const AddNurseScreen({super.key});
@@ -33,7 +32,7 @@ class AddNurseScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Get.off(const BottomBarScreen());
+            Get.back();
           },
         ),
       ),

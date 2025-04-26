@@ -20,15 +20,13 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10).r,
+      padding: const EdgeInsets.symmetric(horizontal: 50).r,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8.r,
-        height: MediaQuery.of(context).size.height * 0.15.r,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.7), // Shadow color
-                spreadRadius: 0.5, // Spread radius// Blur radius
+                spreadRadius: 0.3, // Spread radius// Blur radius
                 offset: const Offset(-1, 4), // Offset from the Container
               ),
             ],
@@ -46,24 +44,22 @@ class HomeContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.45,
                     child: Text(
-                      text!,
-                      style: Styles.textStyleMedium.copyWith(
-                          fontSize:
-                              responsiveFonts(context, fontSize: 15.spMin),
-                          color: color),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    )),
+                  text!,
+                  style: Styles.textStyleMedium.copyWith(
+                      fontSize: responsiveFonts(context, fontSize: 25.spMin),
+                      color: color),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                )),
                 10.verticalSpace,
                 GestureDetector(
                   onTap: () {
                     Get.to(button);
                   },
                   child: Container(
-                    height: MediaQuery.sizeOf(context).height * 0.03.r,
-                    width: MediaQuery.sizeOf(context).width * 0.2.r,
+                    height: MediaQuery.sizeOf(context).height * 0.06.r,
+                    width: MediaQuery.sizeOf(context).width * 0.6.r,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: color,
@@ -79,14 +75,13 @@ class HomeContainer extends StatelessWidget {
                       child: Text(
                         'اختر',
                         style: Styles.textStyleBold.copyWith(
-                            fontSize: 14.spMin, color: AppColors.current.white),
+                            fontSize: 35.spMin, color: AppColors.current.white),
                       ),
                     ),
                   ),
                 )
               ],
             ),
-            10.horizontalSpace,
             image ?? const SizedBox(),
           ],
         ),
