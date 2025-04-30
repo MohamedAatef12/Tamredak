@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   desktop_window
   rive_common
+  window_size
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

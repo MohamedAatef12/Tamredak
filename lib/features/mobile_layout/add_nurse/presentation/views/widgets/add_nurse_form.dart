@@ -12,105 +12,127 @@ class AddNurseForm extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      height:550.r,
-      width: Get.mediaQuery.size.width*0.85.r,
+      height:Get.mediaQuery.size.height*0.71,
+      width: Get.mediaQuery.size.width*0.9,
       decoration: BoxDecoration(
         color: AppColors.current.greenBackground,
         borderRadius: BorderRadius.circular(20)
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 40.0).r,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 40.0),
         child: GetBuilder<AddNewNurseController>(
           builder: (controller) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(children: [
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.35.r,
+                    width: MediaQuery.sizeOf(context).width * 0.35,
+                    height: MediaQuery.sizeOf(context).height * 0.075,
                     child:  CustomTextFormField(
-                      label: 'الأسم الأول',
+                      label: 'First Name',
                       maxLine:1 ,
                       controller: controller.firstName,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20).r,
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                     ),
                   ),
                    const Spacer(),
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.35.r,
+                    width: MediaQuery.sizeOf(context).width * 0.35,
+                    height: MediaQuery.sizeOf(context).height * 0.075,
                     child:  CustomTextFormField(
-                      label: 'الأسم الأخير',
+                      label: 'Last Name',
                       maxLine: 1,
                       controller: controller.lastName,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20).r,
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
 
                     ),
                   )
                 ],),
                 20.verticalSpace,
-                 CustomTextFormField(
-                  label: 'رقم الهاتف',
-                  maxLine: 1,
-                  controller: controller.phoneNumber,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                ),
+                 SizedBox(
+                   height: MediaQuery.sizeOf(context).height * 0.075,
+                   child: CustomTextFormField(
+                    label: 'Phone Number',
+                    maxLine: 1,
+                    controller: controller.phoneNumber,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                                   ),
+                 ),
                 20.verticalSpace,
-                 CustomTextFormField(
-                  label: 'منطقة الخدمة',
-                  maxLine: 1,
-                  controller: controller.workArea,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                ),
+                 SizedBox(
+                   height: MediaQuery.sizeOf(context).height * 0.075,
+                   child: CustomTextFormField(
+                    label: 'Service Area',
+                    maxLine: 1,
+                    controller: controller.workArea,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                                   ),
+                 ),
                20.verticalSpace,
-                 CustomTextFormField(
-                  label: 'وقت العمل',
-                  maxLine: 1,
-                  controller: controller.workTime,
-                  suffix: AppIcons.calendar,
+                 SizedBox(
+                   height: MediaQuery.sizeOf(context).height * 0.075,
+                   child: CustomTextFormField(
+                    label: 'Work Time',
+                    maxLine: 1,
+                    controller: controller.workTime,
+                    suffix: AppIcons.calendar,
 
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                ),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                                   ),
+                 ),
                 20.verticalSpace,
                  Row(
                   children: [
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.35.r,
+                      width: MediaQuery.sizeOf(context).width * 0.35,
+                      height: MediaQuery.sizeOf(context).height * 0.075,
                       child:  CustomTextFormField(
                         maxLine: 1,
-                        label: 'العمر',
+                        label: 'Age',
                         controller: controller.nurseAge,
                         contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                       ),
                     ),
                     const Spacer(),
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.35.r,
+                      width: MediaQuery.sizeOf(context).width * 0.35,
+                      height: MediaQuery.sizeOf(context).height * 0.075,
                       child:  CustomTextFormField(
                         maxLine: 1,
-                        label: 'النوع',
+                        label: 'Gender',
                         controller: controller.nurseGender,
                         contentPadding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                       ),
                     ),
                   ],
                 ),
-                30.verticalSpace,
+                20.verticalSpace,
                 Container(
-                  height: 50.h,
-                  width:350.w,
+                  height: (MediaQuery.of(context).size.height * 0.06),
+                  width: (MediaQuery.of(context).size.width * 0.8),
                   decoration: BoxDecoration(
                     color: AppColors.current.darkGreen,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: CustomAppButton(text: 'تسجيل',
+                  child: CustomAppButton(text: 'Submit',
                       onTap: (){
                     controller.addNurse();
                     Get.back();
                     Get.snackbar('Successful process', 'The nurse had been added successfully');
+                    controller.firstName.clear();
+                    controller.lastName.clear();
+                    controller.phoneNumber.clear();
+                    controller.workArea.clear();
+                    controller.workTime.clear();
+                    controller.nurseAge.clear();
+                    controller.nurseGender.clear();
                       },
                       height:
-                      (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
+                      (MediaQuery.of(context).size.width * 0.15),
                       width:
-                      (MediaQuery.of(context).size.width * 0.8).clamp(100, 800),
+                      (MediaQuery.of(context).size.width * 0.8),
                       textFont: 14),
                 )
               ],
@@ -119,5 +141,6 @@ class AddNurseForm extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

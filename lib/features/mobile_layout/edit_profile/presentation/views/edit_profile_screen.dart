@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/mobile_layout/all_nurses/presentation/controllers/all_nurses_controller.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
 import 'package:tamredak/features/mobile_layout/edit_profile/presentation/views/widgets/edit_profile_body.dart';
+import 'package:tamredak/features/mobile_layout/home/presentation/view/home_screen.dart';
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key, required this.nurse});
   final Map<String, dynamic> nurse;
@@ -14,7 +13,7 @@ class EditProfileScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.current.blueBackground,
         title: Text(
-          'تمريضك',
+          'Tamredak',
           style: Styles.textStyleBold
               .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
@@ -31,7 +30,7 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Get.off(const BottomBarScreen());
+            Get.off(const HomeScreen());
           },
         ),
       ),

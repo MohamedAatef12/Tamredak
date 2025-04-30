@@ -15,45 +15,40 @@ class DesktopInTaskNurseContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.sizeOf(context).width * .8,
-      height: MediaQuery.sizeOf(context).height * 0.8,
+      width: MediaQuery.sizeOf(context).width * .7,
+      height: MediaQuery.sizeOf(context).height * 0.85,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Row(
+          children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                20.verticalSpace,
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    child: Text(
-                      text,
-                      maxLines: 3,
-                      style: Styles.textStyleMedium.copyWith(
-                          fontSize:
-                              responsiveFonts(context, fontSize: 22.spMin),
-                          color: color),
-                      overflow: TextOverflow.ellipsis,
-                    )),
+                Text(
+                  text,
+                  maxLines: 3,
+                  style: Styles.textStyleMedium.copyWith(
+                      fontSize:
+                          responsiveFonts(context, fontSize: MediaQuery.sizeOf(context).width * 0.015),
+                      color: color),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 40.verticalSpace,
                 Image(
                     image: AssetImage(image),
                     fit: BoxFit.cover,
-                    height: MediaQuery.sizeOf(context).height * 0.5,
-                    width: MediaQuery.sizeOf(context).width * 0.22)
+                    height: MediaQuery.sizeOf(context).height * 0.4,
+                    width: MediaQuery.sizeOf(context).width * 0.18)
               ],
             ),
-          ),
-          const Spacer(),
-          const DesktopInTaskNurseList(),
-          5.horizontalSpace
-        ],
+            const Spacer(),
+            const DesktopInTaskNurseList(),
+            5.horizontalSpace
+          ],
+        ),
       ),
     );
   }

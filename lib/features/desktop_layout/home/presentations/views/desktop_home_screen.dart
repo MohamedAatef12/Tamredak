@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/features/desktop_layout/add_nurse/presentations/views/widgets/desktop_add_nurse_body.dart';
+import 'package:tamredak/features/desktop_layout/all_nurses_desktop/presentation/views/desktop_all_nurses_screen.dart';
+import 'package:tamredak/features/desktop_layout/all_nurses_desktop/presentation/views/widgets/desktop_all_nurses_body.dart';
 import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/widgets/desktop_available_nurses_body.dart';
 import 'package:tamredak/features/desktop_layout/database/presentation/views/widgets/database_body.dart';
 import 'package:tamredak/features/desktop_layout/home/presentations/views/widgets/desktop_home_body.dart';
@@ -35,47 +37,38 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         children: [
           SideMenu(
             controller: sideMenu,
-            title: Column(
-              children: [
-                Image(
-                  image: const AssetImage(Assets.logo),
-                  height: 200.r,
-                  fit: BoxFit.cover,
-                ),
-                Text('تمريضك',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.spMin,
-                        fontWeight: FontWeight.bold)),
-                10.verticalSpace,
-              ],
+            title: Image(
+              image: const AssetImage(Assets.logo),
+              height: MediaQuery.of(context).size.height * 0.25,
+              fit: BoxFit.cover,
             ),
             footer: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Divider(
                     color: Colors.white,
-                    thickness: 1,
+                    thickness: 0.5,
                   ),
                   10.verticalSpace,
                   Text(
-                    'تم تطوير هذا الموقع بواسطة فريق تمريضك',
-                    style: TextStyle(color: Colors.white, fontSize: 18.spMin),
+                    '-This system was developed by Tamredak team',
+                    style: TextStyle(color: Colors.white, fontSize: MediaQuery.sizeOf(context).width * 0.01),
+                    textDirection: TextDirection.ltr,
                   ),
                   5.verticalSpace,
                   Text(
-                    'جميع الحقوق محفوظه لتمريضك',
-                    style: TextStyle(color: Colors.white, fontSize: 18.spMin),
+                    '-All rights reserved to Tamredak team',
+                    style: TextStyle(color: Colors.white, fontSize: MediaQuery.sizeOf(context).width * 0.01),
+                    textDirection: TextDirection.ltr,
                   ),
                   10.verticalSpace,
                   Center(
                     child: Text(
                       'Version 1.0',
                       style: TextStyle(
-                          color: Colors.grey[200]!, fontSize: 18.spMin),
+                          color: Colors.grey[200]!, fontSize: MediaQuery.sizeOf(context).width * 0.01),
                     ),
                   ),
                   20.verticalSpace,
@@ -117,16 +110,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 title: '',
                 iconWidget: Row(
                   children: [
-                    const Icon(
+                     Icon(
                       Icons.home,
                       color: Colors.white,
+                      size:MediaQuery.sizeOf(context).width * 0.015,
                     ),
-                    1.horizontalSpace,
+                    5.horizontalSpace,
                     Text(
-                      'الرئيسية',
+                      'Home',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18.spMin,
+                        fontSize: MediaQuery.sizeOf(context).width * 0.013,
                       ),
                     ),
                   ],
@@ -136,26 +130,28 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 },
               ),
               SideMenuExpansionItem(
-                  icon: const Icon(
+                  icon:  Icon(
                     Icons.person_outline,
                     color: Colors.white,
+                    size: MediaQuery.sizeOf(context).width * 0.015,
                   ),
-                  title: 'الممرضين',
+                  title: 'Nurses',
                   children: [
                     SideMenuItem(
                       title: '',
                       iconWidget: Row(
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.person_add_alt_1_outlined,
                             color: Colors.white,
+                            size: MediaQuery.sizeOf(context).width * 0.015,
                           ),
-                          1.horizontalSpace,
+                          5.horizontalSpace,
                           Text(
-                            'اضافه ممرض',
+                            'Add Nurse',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18.spMin,
+                              fontSize: MediaQuery.sizeOf(context).width * 0.013,
                             ),
                           ),
                         ],
@@ -169,16 +165,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       title: '',
                       iconWidget: Row(
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.person_search_outlined,
                             color: Colors.white,
+                            size: MediaQuery.sizeOf(context).width * 0.015,
                           ),
-                          1.horizontalSpace,
+                          5.horizontalSpace,
                           Text(
-                            'الممرضين المتاحين',
+                            'Available Nurses',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18.spMin,
+                              fontSize: MediaQuery.sizeOf(context).width * 0.013,
                             ),
                           ),
                         ],
@@ -192,16 +189,41 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                       title: '',
                       iconWidget: Row(
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.person_off_outlined,
                             color: Colors.white,
+                            size: MediaQuery.sizeOf(context).width * 0.015,
                           ),
-                          1.horizontalSpace,
+                          5.horizontalSpace,
                           Text(
-                            'الممرضين المشغولين',
+                            'In Task Nurses',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18.spMin,
+                              fontSize: MediaQuery.sizeOf(context).width * 0.013,
+                            ),
+                          ),
+                        ],
+                      ),
+                      trailing: const Spacer(),
+                      onTap: (index, _) {
+                        sideMenu.changePage(index);
+                      },
+                    ),
+                    SideMenuItem(
+                      title: '',
+                      iconWidget: Row(
+                        children: [
+                          Icon(
+                            Icons.people,
+                            color: Colors.white,
+                            size: MediaQuery.sizeOf(context).width * 0.015,
+                          ),
+                          5.horizontalSpace,
+                          Text(
+                            'All Nurses',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: MediaQuery.sizeOf(context).width * 0.013,
                             ),
                           ),
                         ],
@@ -216,16 +238,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 title: '',
                 iconWidget: Row(
                   children: [
-                    const Icon(
+                     Icon(
                       Icons.space_dashboard_outlined,
                       color: Colors.white,
+                      size: MediaQuery.sizeOf(context).width * 0.015,
                     ),
-                    1.horizontalSpace,
+                    5.horizontalSpace,
                     Text(
-                      'قاعده البيانات',
+                        'Transactions',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18.spMin,
+                        fontSize: MediaQuery.sizeOf(context).width * 0.013,
                       ),
                     ),
                   ],
@@ -235,6 +258,7 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                   sideMenu.changePage(index);
                 },
               ),
+
             ],
           ),
           Expanded(
@@ -245,7 +269,9 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
                 DesktopAddNurseBody(),
                 DesktopAvailableNursesBody(),
                 DesktopInTaskBody(),
-                DataBaseBody(),
+                DesktopAllNursesBody(),
+                DesktopDataBaseBody(),
+
               ],
             ),
           ),

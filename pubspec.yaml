@@ -45,6 +45,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   cloud_firestore: ^5.4.1
   flutter_screenutil: ^5.9.3
+  window_size: ^0.1.0
 
 dev_dependencies:
   flutter_test:

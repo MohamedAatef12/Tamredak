@@ -15,7 +15,7 @@ class DesktopAddNurseBody extends StatelessWidget {
         color: AppColors.current.blueBackground,
       ),
       child: DesktopAddNurseContainer(
-          text: 'اضافة ممرض جديد للنظام',
+          text: 'Add a new nurse to the system',
           color: AppColors.current.lightGreenText,
           image: Assets.card1home),
     ));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
@@ -34,10 +35,10 @@ class DesktopAddNurseForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.125,
                   height: MediaQuery.sizeOf(context).height * 0.08,
                   child: CustomTextFormField(
-                    label:' الأسم الأول',
+                    label:'First Name',
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return 'ادخل الاسم الاول'; }
+                        return 'Please Enter First Name'; }
                       return null;
                     },
                     maxLine: 1,
@@ -50,10 +51,10 @@ class DesktopAddNurseForm extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width * 0.13,
                   height: MediaQuery.sizeOf(context).height * 0.08,
                   child: CustomTextFormField(
-                    label: 'الأسم الأخير',
+                    label: 'Last Name',
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return "ادخل الاسم الأخير";
+                        return "Please Enter Last Name";
                       }
                       return null;
                     },
@@ -67,26 +68,30 @@ class DesktopAddNurseForm extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 child: CustomTextFormField(
-                  label: 'رقم الهاتف',
+                  type: TextInputType.number,
+                  label: 'Phone Number',
                   validate: (value) {
                     if (value!.isEmpty) {
-                      return "ادخل رقم الهاتف";
+                      return "Please Enter Phone Number";
                     }
                     return null;
                   },
                   maxLine: 1,
                   controller: controller.phoneNumber,
                   contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
                 ),
               ),
               20.verticalSpace,
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 child: CustomTextFormField(
-                  label: 'منطقة الخدمة',
+                  label: 'Service Area',
                   validate: (value) {
                     if (value!.isEmpty) {
-                      return "ادخل منطقة الخدمة";
+                      return "Please Enter Service Area";
                     }
                     return null;
                   },
@@ -99,10 +104,11 @@ class DesktopAddNurseForm extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 child: CustomTextFormField(
-                  label: 'وقت العمل',
+
+                  label: 'Work Hours',
                   validate: (value) {
                     if (value!.isEmpty) {
-                      return "ادخل وقت العمل";
+                      return "Please Enter Work Hours";
                     }
                     return null;
                   },
@@ -120,15 +126,19 @@ class DesktopAddNurseForm extends StatelessWidget {
                     height: MediaQuery.sizeOf(context).height * 0.08,
                     child: CustomTextFormField(
                       maxLine: 1,
-                      label: 'العمر',
+                      label: 'Age',
+                      type: TextInputType.number,
                       validate: (value) {
                         if (value!.isEmpty) {
-                          return "ادخل العمر";
+                          return "Please Enter Age";
                         }
                         return null;
                       },
                       controller: controller.nurseAge,
                       contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                     ),
                   ),
                   const Spacer(),
@@ -137,10 +147,10 @@ class DesktopAddNurseForm extends StatelessWidget {
                     height: MediaQuery.sizeOf(context).height * 0.08,
                     child: CustomTextFormField(
                       maxLine: 1,
-                      label: 'النوع',
+                      label: 'Gender',
                       validate: (value) {
                         if (value!.isEmpty) {
-                          return "ادخل النوع";
+                          return "Please Enter Gender";
                         }
                         return null;
                       },
@@ -159,15 +169,21 @@ class DesktopAddNurseForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: CustomAppButton(
-                  text: 'تسجيل',
+                  text: 'Submit',
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
                       // Only proceed if validation passes
                       controller.addNurse();
                       Get.back();
                       Get.snackbar('Successful process', 'The nurse has been added successfully');
+                      controller.firstName.clear();
+                      controller.lastName.clear();
+                      controller.phoneNumber.clear();
+                      controller.workArea.clear();
+                      controller.workTime.clear();
+                      controller.nurseAge.clear();
+                      controller.nurseGender.clear();
                     } else {
-                      // Show snackbar if validation fails
                       Get.snackbar('Error', 'Please fill in all fields correctly');
                     }
                   },

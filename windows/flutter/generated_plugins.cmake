@@ -8,6 +8,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_auth
   firebase_core
   rive_common
+  window_size
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

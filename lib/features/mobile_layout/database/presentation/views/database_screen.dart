@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
+import 'package:tamredak/features/desktop_layout/available_nurse/presentation/controllers/available_nurses_desktop_controller.dart';
+import 'package:tamredak/features/desktop_layout/available_nurse/presentation/view/widgets/desktop_available_nurses_body.dart';
 import 'package:tamredak/features/mobile_layout/database/presentation/views/widgets/database_body.dart';
 class DatabaseScreen extends StatelessWidget {
   const DatabaseScreen({super.key});
@@ -11,9 +12,9 @@ class DatabaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.current.blueBackground,
+        backgroundColor: AppColors.current.primary,
         title: Text(
-          'تمريضك',
+          'Tamredak',
           style: Styles.textStyleBold
               .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
@@ -24,22 +25,15 @@ class DatabaseScreen extends StatelessWidget {
           highlightColor: Colors.transparent,
           icon: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.current.white,
-            ),
+            child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
-            Get.off(const BottomBarScreen());
+            Get.back();
           },
         ),
       ),
-      body: Container(
-        color: AppColors.current.primary,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: const DataBaseBody(),
-      ),
+      backgroundColor: AppColors.current.primary,
+      body: const Center(child: DataBaseBody())
     );
   }
 }

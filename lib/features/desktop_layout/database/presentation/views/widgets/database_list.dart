@@ -8,20 +8,22 @@ import 'package:tamredak/core/utils/custom_text_form_field.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/database/presentation/controllers/database_controller.dart';
 
-class DataBaseList extends StatelessWidget {
-  const DataBaseList({super.key});
+class DesktopDataBaseList extends StatelessWidget {
+  const DesktopDataBaseList({super.key});
 
   @override
   Widget build(BuildContext context) {
     final DatabaseController controller = Get.put(DatabaseController());
     final TextEditingController searchController = TextEditingController();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.fetchAllTasks();
+    });
     return Container(
-      width: MediaQuery.sizeOf(context).width * .78,
-      height: MediaQuery.sizeOf(context).height * 0.85,
+      width: MediaQuery.sizeOf(context).width * .65,
+      height: MediaQuery.sizeOf(context).height * 0.8,
       decoration: BoxDecoration(
         color: AppColors.current.lightPurpleBackground,
-        borderRadius: const BorderRadius.all(Radius.circular(20)).r,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Padding(
         padding: EdgeInsets.only(
@@ -32,7 +34,7 @@ class DataBaseList extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0).r,
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -40,7 +42,7 @@ class DataBaseList extends StatelessWidget {
                     flex: 1,
                     child: CustomTextFormField(
                       controller: searchController,
-                      label: 'البحث',
+                      label: 'Search',
                       maxLine: 1,
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10.r,
@@ -59,7 +61,7 @@ class DataBaseList extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0).r,
+                      padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,211 +124,193 @@ class DataBaseList extends StatelessWidget {
                     ),
                   );
                 }
-                return Column(
-                  children: [
-                    Container(
-                      height: 40.r,
-                      decoration: BoxDecoration(
-                        color: AppColors.current.white.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(10),
+                return Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        decoration: BoxDecoration(
+                          color: AppColors.current.white.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Number Of Transactions : ${controller.filteredTasks.length}',
+                              style: Styles.textStyleBold
+                                  .copyWith(fontSize: 16.spMin),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'عدد المعاملات الكلي : ${controller.filteredTasks.length}',
-                            style: Styles.textStyleBold
-                                .copyWith(fontSize: 16.spMin),
-                          ),
-                        ],
+                      15.verticalSpace,
+                      Divider(
+                        color: AppColors.current.white,
+                        height: 15,
                       ),
-                    ),
-                    15.verticalSpace,
-                    Divider(
-                      color: AppColors.current.white,
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                            width: 180.r,
-                            child: Text(
-                              'الاسم',
-                              style: TextStyle(
-                                color: AppColors.current.white,
-                                fontSize: 20.spMin,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
-                        SizedBox(
-                          width: 110.r,
-                          child: Text(
-                            'الهاتف',
-                            style: TextStyle(
+                      Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                            await controller.fetchAllTasks();
+                          },
+                          child: ListView.separated(
+                            itemCount: controller.filteredTasks.length,
+                            separatorBuilder: (context, index) => Divider(
                               color: AppColors.current.white,
-                              fontSize: 20.spMin,
-                              fontWeight: FontWeight.bold,
+                              height: 15,
                             ),
+                            itemBuilder: (context, index) {
+                              final task = controller.filteredTasks[index];
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Nurse Name',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['nurseName']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                            color: AppColors.current.white),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Patient Name',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['name']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,color: AppColors.current.white,),
+
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Patient Phone',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['phone']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                            color: AppColors.current.white),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Age',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['age']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                        color: AppColors.current.white
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Area',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['area']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                            color: AppColors.current.white
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Injury',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${task['injury']}',
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                            color: AppColors.current.white
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Date',
+                                        style: TextStyle(
+                                          color: AppColors.current.white,
+                                          fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        task['date'].toString().substring(0, 19),
+                                        style: Styles.textStyleBold
+                                            .copyWith(fontSize: MediaQuery.sizeOf(context).width * 0.01,
+                                            color: AppColors.current.white
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                         ),
-                        SizedBox(
-                          width: 60.r,
-                          child: Text(
-                            'العمر',
-                            style: TextStyle(
-                              color: AppColors.current.white,
-                              fontSize: 20.spMin,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 170.r,
-                          child: Text(
-                            'المنطقه',
-                            style: TextStyle(
-                              color: AppColors.current.white,
-                              fontSize: 20.spMin,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 150.r,
-                          child: Text(
-                            'الاصابه',
-                            style: TextStyle(
-                              color: AppColors.current.white,
-                              fontSize: 20.spMin,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 150.r,
-                          child: Text(
-                            'التاريخ',
-                            style: TextStyle(
-                              color: AppColors.current.white,
-                              fontSize: 20.spMin,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: AppColors.current.white,
-                      height: 15,
-                    ),
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: controller.filteredTasks.length,
-                        separatorBuilder: (context, index) => Divider(
-                          color: AppColors.current.white,
-                          height: 15,
-                        ),
-                        itemBuilder: (context, index) {
-                          final task = controller.filteredTasks[index];
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 180.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${task['name']}',
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16.spMin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 110.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${task['phone']}',
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16.spMin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 60.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${task['age']}',
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16.spMin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 170.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${task['area']}',
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 150.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${task['injury']}',
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16.spMin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 150.r,
-                                color: AppColors.current.white,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      task['date'].toString().substring(0, 19),
-                                      style: Styles.textStyleBold
-                                          .copyWith(fontSize: 16.spMin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               }),
             ),

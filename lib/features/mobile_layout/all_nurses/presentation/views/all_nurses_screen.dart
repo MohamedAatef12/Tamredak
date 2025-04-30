@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/features/mobile_layout/all_nurses/presentation/views/widgets/all_nurses_body.dart';
-import 'package:tamredak/features/mobile_layout/bottom_bar/presentation/views/bottom_bar_screen.dart';
+import 'package:tamredak/features/mobile_layout/home/presentation/view/home_screen.dart';
 
 class AllNursesScreen extends StatelessWidget {
   const AllNursesScreen({super.key});
@@ -14,7 +14,7 @@ class AllNursesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.current.primary,
         title: Text(
-          'تمريضك',
+          'Tamredak',
           style: Styles.textStyleBold
               .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
@@ -28,7 +28,7 @@ class AllNursesScreen extends StatelessWidget {
             child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
-            Get.offAll(const BottomBarScreen());
+            Get.back();
           },
         ),
       ),

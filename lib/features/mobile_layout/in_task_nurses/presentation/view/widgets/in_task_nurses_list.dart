@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tamredak/core/consts/icons.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
@@ -31,7 +32,7 @@ class InTaskList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.7,
+                  width: MediaQuery.sizeOf(context).width * 0.8,
                   child: CustomTextFormField(
                     label: 'Search',
                     contentPadding:
@@ -41,28 +42,9 @@ class InTaskList extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(width: 15),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.10,
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.current.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: IconButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      icon: AppIcons.search,
-                      onPressed: () {
-                        // Optionally, you can trigger search here if needed
-                      },
-                    ),
-                  ),
-                ),
               ],
             ),
-            const SizedBox(height: 25),
+           10.verticalSpace,
             Obx(() {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());

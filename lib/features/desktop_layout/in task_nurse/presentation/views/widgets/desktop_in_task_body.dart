@@ -19,7 +19,7 @@ class DesktopInTaskBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DesktopInTaskNurseContainer(
-              text: 'رؤية الممرضين الذين هم في مهام',
+              text: 'In Task Nurses',
               color: AppColors.current.purpleText,
               image: Assets.card3home),
         ],

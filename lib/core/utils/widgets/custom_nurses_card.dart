@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 
 class CustomNursesCard extends StatelessWidget {
   const CustomNursesCard(
       {super.key,
-        this.image,
-        this.name,
-        this.gender,
-        this.area,
-        this.age,
-        this.phone,
-        this.available,
-        this.time,
-        this.color,
-        this.button1,
-        this.button2,
-        this.one,
-        this.color2});
+      this.image,
+      this.name,
+      this.gender,
+      this.area,
+      this.age,
+      this.phone,
+      this.available,
+      this.time,
+      this.color,
+      this.button1,
+      this.button2,
+      this.one,
+      this.color2});
   final Image? image;
   final String? name;
   final String? gender;
@@ -34,222 +35,144 @@ class CustomNursesCard extends StatelessWidget {
   final Color? color2;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: AppColors.current.white,
-          borderRadius: BorderRadius.circular(20)),
-      width: MediaQuery.of(context).size.width * 0.85.r,
-      height: 200.r,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.current.white,
+            borderRadius: BorderRadius.circular(20)),
+        height: MediaQuery.of(context).size.height * 0.32,
+        width: MediaQuery.of(context).size.width * 0.5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          'الأسم: ',
-                          style: Styles.textStyleMedium.copyWith(
+                    Text(
+                      'Name : $name',
+                      textDirection: TextDirection.ltr,
+                      style: Styles.textStyleMedium.copyWith(
+                          fontSize: responsiveFonts(context,
                               fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            name!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                                  MediaQuery.sizeOf(context).width * 0.025),
+                          color: Colors.black),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'وقت العمل: ',
-                          style: Styles.textStyleMedium.copyWith(
+                    Text(
+                      'Working Hours : $time ',
+                      textDirection: TextDirection.ltr,
+                      style: Styles.textStyleMedium.copyWith(
+                          fontSize: responsiveFonts(context,
                               fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            time!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                                  MediaQuery.sizeOf(context).width * 0.025),
+                          color: Colors.black),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'المنطقة: ',
-                          style: Styles.textStyleMedium.copyWith(
+                    Text(
+                      'Area : $area ',
+                      textDirection: TextDirection.ltr,
+                      style: Styles.textStyleMedium.copyWith(
+                          fontSize: responsiveFonts(context,
                               fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            area!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                                  MediaQuery.sizeOf(context).width * 0.025),
+                          color: Colors.black),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'العمر: ',
-                          style: Styles.textStyleMedium.copyWith(
-                              fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            age!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Text(
+                        textDirection: TextDirection.ltr,
+                        'Age : $age',
+                        style: Styles.textStyleMedium.copyWith(
+                            fontSize: responsiveFonts(context,
+                                fontSize:
+                                    MediaQuery.sizeOf(context).width * 0.025),
+                            color: Colors.black),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'النوع: ',
-                          style: Styles.textStyleMedium.copyWith(
+                    Text(
+                      'Gender : $gender',
+                      textDirection: TextDirection.ltr,
+                      style: Styles.textStyleMedium.copyWith(
+                          fontSize: responsiveFonts(context,
                               fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            gender!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                                  MediaQuery.sizeOf(context).width * 0.025),
+                          color: Colors.black),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     5.verticalSpace,
-                    Row(
-                      children: [
-                        Text(
-                          'رقم الهاتف: ',
-                          style: Styles.textStyleMedium.copyWith(
+                    Text(
+                      'Phone Number : $phone',
+                      textDirection: TextDirection.ltr,
+                      style: Styles.textStyleMedium.copyWith(
+                          fontSize: responsiveFonts(context,
                               fontSize:
-                              responsiveFonts(context, fontSize: 12.spMin),
-                              color: Colors.black),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: Text(
-                            phone!,
-                            style: Styles.textStyleMedium.copyWith(
-                                fontSize: responsiveFonts(context,
-                                    fontSize: 12.spMin),
-                                color: Colors.black),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
+                                  MediaQuery.sizeOf(context).width * 0.025),
+                          color: Colors.black),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
-                const Spacer(),
-              ],
+              ),
             ),
-          ),
-          10.verticalSpace,
-          if (one == true)
-            Container(
-                height: 30.r,
-                width: 150.r,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: button1),
-          if (one == false)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 30.r,
-                  width: 100.r,
-                  decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.circular(10),
+            10.verticalSpace,
+            if (one == true)
+              Center(
+                child: Container(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.35,
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: button1),
+              ),
+            if (one == false)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.045,
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    decoration: BoxDecoration(
+                      color: color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: button1,
                   ),
-                  child: button1,
-                ),
-                10.horizontalSpace,
-                Container(
-                  height: 30.r,
-                  width: 100.r,
-                  decoration: BoxDecoration(
-                    color: color2,
-                    borderRadius: BorderRadius.circular(10),
+                  10.horizontalSpace,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.045,
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    decoration: BoxDecoration(
+                      color: color2,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: button2,
                   ),
-                  child: button2,
-                ),
-              ],
-            )
-        ],
+                ],
+              )
+          ],
+        ),
+
       ),
     );
   }

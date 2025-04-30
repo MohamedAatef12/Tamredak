@@ -22,105 +22,100 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
   @override
   Widget build(BuildContext context) {
     final AvailableNursesDesktopController controller =
-        Get.put(AvailableNursesDesktopController());
+    Get.put(AvailableNursesDesktopController());
     controller.fetchAvailableNurses();
 
     return Container(
-      width: MediaQuery.sizeOf(context).width * .5,
-      height: MediaQuery.sizeOf(context).height * 0.75,
+      width: MediaQuery.sizeOf(context).width * .45,
+      height: MediaQuery.sizeOf(context).height * 0.8,
       decoration: BoxDecoration(
-          color: AppColors.current.darkGreenBackground,
-          borderRadius: BorderRadius.circular(20)),
+        color: AppColors.current.darkGreenBackground,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0).r,
-        child: Obx(
-          () {
-            if (controller.isLoading.value) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.current.blueText,
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+        child: Column(
+          children: [
+            // Search bar always visible
+            Form(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * .4,
+                height: MediaQuery.sizeOf(context).height * 0.07,
+                child: CustomTextFormField(
+                  controller: controller.searchController,
+                  label: 'Search',
+                  maxLine: 1,
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                  onChange: (value) {
+                    controller.searchNurses(value);
+                  },
                 ),
-              );
-            }
+              ),
+            ),
+            10.verticalSpace,
+            // Main content
+            Expanded(
+              child: Obx(() {
+                if (controller.isLoading.value) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.current.blueText,
+                    ),
+                  );
+                }
 
-            if (controller.filteredNursesList.isEmpty) {
-              return Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.15,
-                    ),
-                    const Image(
-                      image: AssetImage('assets/images/nodata.png'),
-                    ),
-                  ],
-                ),
-              );
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Form(
-                  child: SizedBox(
-                    width: MediaQuery.sizeOf(context).width * .4,
-                    height: MediaQuery.sizeOf(context).height * 0.07,
-                    child: CustomTextFormField(
-                      controller: controller.searchController,
-                      label: 'البحث',
-                      maxLine: 1,
-                      contentPadding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20)
-                          .r,
-                      onChange: (value) {
-                        log(value.toString());
-                        controller.searchNurses(value);
-                      },
-                    ),
-                  ),
-                ),
-                10.verticalSpace,
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * .5,
-                  height: MediaQuery.sizeOf(context).height * 0.6,
-                  child: GridView.builder(
-                    itemCount: controller.filteredNursesList.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // Number of columns
-                      crossAxisSpacing:
-                          20.0, // Horizontal spacing between grid items
-                      mainAxisSpacing:
-                          15.0, // Vertical spacing between grid items
-                    ),
-                    itemBuilder: (context, index) {
-                      final nurse = controller.filteredNursesList[index];
-                      final nurseId = nurse['id'];
-                      return CustomDesktopNursesCard(
-                        name: '${nurse['first name']} ${nurse["last name"]}',
-                        image: Assets.noPhoto,
-                        phone: nurse['phone number'],
-                        age: nurse['age'],
-                        area: nurse['area'],
-                        gender: nurse['gender'],
-                        time: nurse['time'],
-                        one: true,
-                        button1: CustomAppButton(
-                          onTap: () {
-                            buildBottomBarSheet(context, nurseId);
-                          },
-                          text: 'اختيار الممرض',
-                          textFont: 12,
-                          height: MediaQuery.sizeOf(context).height * 0.07,
-                          width: MediaQuery.sizeOf(context).width * 0.2,
+                if (controller.filteredNursesList.isEmpty) {
+                  return Center(
+                    child:  Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.15,
                         ),
-                        color: AppColors.current.orangeButtons,
-                      );
-                    },
+                        const Image(
+                          image: AssetImage('assets/images/nodata.png'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                return GridView.builder(
+                  itemCount: controller.filteredNursesList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Number of columns
+                    crossAxisSpacing: 20.0, // Horizontal spacing
+                    mainAxisSpacing: 15.0, // Vertical spacing
                   ),
-                ),
-              ],
-            );
-          },
+                  itemBuilder: (context, index) {
+                    final nurse = controller.filteredNursesList[index];
+                    final nurseId = nurse['id'];
+                    return CustomDesktopNursesCard(
+                      name: '${nurse['first name']} ${nurse["last name"]}',
+                      image: Assets.noPhoto,
+                      phone: nurse['phone number'],
+                      age: nurse['age'],
+                      area: nurse['area'],
+                      gender: nurse['gender'],
+                      time: nurse['time'],
+                      one: true,
+                      button1: CustomAppButton(
+                        onTap: () {
+                          buildBottomBarSheet(context, nurseId);
+                        },
+                        text: 'Select',
+                        textFont: 12,
+                        height: MediaQuery.sizeOf(context).height * 0.07,
+                        width: MediaQuery.sizeOf(context).width * 0.2,
+                      ),
+                      color: AppColors.current.orangeButtons,
+                    );
+                  },
+                );
+              }),
+            ),
+          ],
         ),
       ),
     );
@@ -156,7 +151,7 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'تعبئة بيانات المريض',
+                    'Fill the form',
                     style: TextStyle(
                       color: AppColors.current.orangeText,
                       fontSize: 20,
@@ -166,103 +161,115 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.09,
                   ),
-                  CustomTextFormField(
-                    controller: controller.nameController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال اسم المريض';
-                      }
-                      return null;
-                    },
-                    label: 'اسم المريض',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                  height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.nameController,
+                      label: 'Patient Name',
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the patient name';
+                        }
+                        return null;
+                      },
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  CustomTextFormField(
-                    controller: controller.phoneController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال رقم التواصل مع المريض';
-                      }
-                      return null;
-                    },
-                    label: 'رقم التواصل مع المريض',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.phoneController,
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the patient phone number';
+                        }
+                        return null;
+                      },
+                      label: 'Patient Phone Number',
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  CustomTextFormField(
-                    controller: controller.ageController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال عمر المريض';
-                      }
-                      return null;
-                    },
-                    label: 'عمر المريض',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.ageController,
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the patient age';
+                        }
+                        return null;
+                      },
+                      label: 'Patient Age',
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  CustomTextFormField(
-                    controller: controller.injuryController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال مما يعاني المريض';
-                      }
-                      return null;
-                    },
-                    label: 'مما يعاني المريض',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.injuryController,
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the patient injury';
+                        }
+                        return null;
+                      },
+                      label: 'Injury',
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  CustomTextFormField(
-                    controller: controller.areaController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال العنوان';
-                      }
-                      return null;
-                    },
-                    label: 'العنوان',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.areaController,
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter the Address';
+                        }
+                        return null;
+                      },
+                      label: 'Address',
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  CustomTextFormField(
-                    controller: controller.genderController,
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'الرجاء ادخال الجنس';
-                      }
-                      return null;
-                    },
-                    label: 'الجنس',
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height* 0.07,
+                    child: CustomTextFormField(
+                      controller: controller.genderController,
+                      validate: (value) {
+                        if (value.isEmpty) {
+                          return 'Please Enter The Gender';
+                        }
+                        return null;
+                      },
+                      label: 'Gender',
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -270,9 +277,37 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await controller.sendNurseAvailable(nurseId);
-                      await controller.setNurseUnavailable(nurseId);
-                      Get.back();
+                      if(controller.nameController.text.isEmpty ||
+                          controller.phoneController.text.isEmpty ||
+                          controller.ageController.text.isEmpty ||
+                          controller.injuryController.text.isEmpty ||
+                          controller.areaController.text.isEmpty ||
+                          controller.genderController.text.isEmpty) {
+                        Get.snackbar(
+                          'Error',
+                          'Please fill all fields',
+                          backgroundColor: AppColors.current.red,
+                          colorText: AppColors.current.white,
+                        );
+                        return;
+                      }
+                      else{
+                        await controller.sendNurseAvailable(nurseId);
+                        await controller.setNurseUnavailable(nurseId);
+                        Get.back();
+                        Get.snackbar(
+                          'Success',
+                          'Request sent successfully',
+                          colorText: AppColors.current.white,
+                        );
+                        controller.nameController.clear();
+                        controller.phoneController.clear();
+                        controller.ageController.clear();
+                        controller.injuryController.clear();
+                        controller.areaController.clear();
+                        controller.genderController.clear();
+
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.current.orangeButtons,
@@ -282,7 +317,7 @@ class _DesktopAvailableNurseListState extends State<DesktopAvailableNurseList> {
                       ),
                     ),
                     child: Text(
-                      'ارسال الطلب',
+                      'Send Request',
                       style: TextStyle(
                         color: AppColors.current.white,
                         fontSize: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/services/text_formatter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 
@@ -23,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       this.contentPadding,
       this.maxLine,
       this.color,
-      bool? obscureText});
+      bool? obscureText,  List<TextInputFormatter>? inputFormatters});
   final TextStyle? labelStyle;
   final String? label;
   final String? hint;
@@ -46,34 +47,37 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15).r,
-      child: Container(
-        decoration: BoxDecoration(
-          color: color ?? Colors.white,
-          borderRadius:
-              BorderRadius.circular(10), // Adjust the radius as needed
-        ),
-        child: TextFormField(
-          style: TextStyle(color: AppColors.current.text, fontSize: 40.spMin),
-          controller: controller,
-          keyboardType: type,
-          obscureText: isPassword,
-          maxLines: maxLine,
-          onChanged: (s) {
-            return onChange!(s);
-          },
-          validator: (s) {
-            return validate!(s);
-          },
-          decoration: InputDecoration(
-              contentPadding: contentPadding,
-              labelText: label,
-              labelStyle: const TextStyle(color: Colors.black),
-              hintText: hint,
-              prefixIcon: prefix,
-              suffixIcon: widgetSuffix ?? (suffix),
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none),
-          cursorColor: AppColors.current.text,
+      child: SizedBox(
+        width: double.infinity,
+        child: Container(
+          decoration: BoxDecoration(
+            color: color ?? Colors.white,
+            borderRadius:
+                BorderRadius.circular(10), // Adjust the radius as needed
+          ),
+          child: TextFormField(
+            style: TextStyle(color: AppColors.current.text,),
+            controller: controller,
+            keyboardType: type,
+            obscureText: isPassword,
+            maxLines: maxLine,
+            onChanged: (s) {
+              return onChange!(s);
+            },
+            validator: (s) {
+              return validate!(s);
+            },
+            decoration: InputDecoration(
+                contentPadding: contentPadding,
+                labelText: label,
+                labelStyle: const TextStyle(color: Colors.black),
+                hintText: hint,
+                prefixIcon: prefix,
+                suffixIcon: widgetSuffix ?? (suffix),
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none),
+            cursorColor: AppColors.current.text,
+          ),
         ),
       ),
     );

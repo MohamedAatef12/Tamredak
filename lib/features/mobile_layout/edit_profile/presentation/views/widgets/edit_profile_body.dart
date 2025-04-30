@@ -20,7 +20,7 @@ class EditProfileBody extends StatelessWidget {
                 Assets.editProfile,
               ),
             ),
-            text: 'تعديل الصفحة الشخصية للمرض',
+            text: 'Edit Profile',
             color: AppColors.current.veryDarkPurple,
           ),
           const SizedBox(height: 20,),

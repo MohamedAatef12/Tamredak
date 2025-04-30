@@ -14,17 +14,17 @@ class ViewAllNursesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.current.primary,
         title: Text(
-          'تمريضك',
+          'Tamredak',
           style: Styles.textStyleBold
               .copyWith(color: AppColors.current.white, fontSize: 24),
         ),
         centerTitle: true,
         leading: IconButton(
-          padding: const EdgeInsets.symmetric(horizontal: 15).r,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           icon: Padding(
-            padding: const EdgeInsets.all(8.0).r,
+            padding: const EdgeInsets.all(8.0),
             child: Icon(Icons.arrow_back_ios, color: AppColors.current.white),
           ),
           onPressed: () {
@@ -33,7 +33,7 @@ class ViewAllNursesScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: AppColors.current.primary,
-      body: const Center(child: ViewAllNursesScreenBody()),
+      body: const Center(child: ViewAvailableNursesScreenBody()),
     );
   }
 }

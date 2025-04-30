@@ -15,14 +15,14 @@ class DesktopDatabaseContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: MediaQuery.sizeOf(context).width * .8,
-        height: MediaQuery.sizeOf(context).height * 0.9,
+        width: MediaQuery.sizeOf(context).width * .7,
+        height: MediaQuery.sizeOf(context).height * 0.85,
         decoration: BoxDecoration(
             color: AppColors.current.white,
             borderRadius: BorderRadius.circular(20)),
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [DataBaseList()],
+          children: [DesktopDataBaseList()],
         ),
       ),
     );

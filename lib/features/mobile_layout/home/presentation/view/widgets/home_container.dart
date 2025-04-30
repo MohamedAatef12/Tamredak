@@ -20,7 +20,7 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50).r,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
             boxShadow: [
@@ -41,13 +41,14 @@ class HomeContainer extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
+                width: MediaQuery.sizeOf(context).width * 0.5,
                     child: Text(
                   text!,
                   style: Styles.textStyleMedium.copyWith(
-                      fontSize: responsiveFonts(context, fontSize: 25.spMin),
+                      fontSize: responsiveFonts(context, fontSize: Get.mediaQuery.size.width * 0.035),
                       color: color),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -58,31 +59,34 @@ class HomeContainer extends StatelessWidget {
                     Get.to(button);
                   },
                   child: Container(
-                    height: MediaQuery.sizeOf(context).height * 0.06.r,
-                    width: MediaQuery.sizeOf(context).width * 0.6.r,
+                    height: MediaQuery.sizeOf(context).height * 0.04,
+                    width: MediaQuery.sizeOf(context).width * 0.3,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: color,
                         boxShadow: [
                           BoxShadow(
                             color: backcolor!, // Shadow color
-                            spreadRadius: 0.5.r, // Spread radius// Blur radius
+                            spreadRadius: 0.5, // Spread radius// Blur radius
                             offset:
                                 const Offset(0, 2), // Offset from the Container
                           ),
                         ]),
                     child: Center(
                       child: Text(
-                        'اختر',
+                        'Click',
                         style: Styles.textStyleBold.copyWith(
-                            fontSize: 35.spMin, color: AppColors.current.white),
+                            fontSize: Get.mediaQuery.size.width*0.045, color: AppColors.current.white),
                       ),
                     ),
                   ),
                 )
               ],
             ),
-            image ?? const SizedBox(),
+            SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.22,
+                width: MediaQuery.sizeOf(context).width * 0.3,
+                child: image ?? const SizedBox()),
           ],
         ),
       ),

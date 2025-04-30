@@ -20,7 +20,7 @@ class AllNursesBody extends StatelessWidget {
                   Assets.card4home,
                 ),
               ),
-              text: 'رؤية الممرضين في النظام',
+              text: 'All Nurses',
               color: AppColors.current.blueBackground,
             ),
             const SizedBox(height: 20,),

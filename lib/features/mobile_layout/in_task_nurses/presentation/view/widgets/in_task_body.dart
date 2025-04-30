@@ -20,7 +20,7 @@ class InTaskBody extends StatelessWidget {
                   Assets.card3home,
                 ),
               ),
-              text: 'رؤية الممرضين الذين هم في مهمة الأن',
+              text: 'In Task Nurses',
               color: AppColors.current.purpleText,
             ),
             const SizedBox(height: 20,),

@@ -3,8 +3,8 @@ import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/features/desktop_layout/database/presentation/views/widgets/desktop_database_container.dart';
 
-class DataBaseBody extends StatelessWidget {
-  const DataBaseBody({super.key});
+class DesktopDataBaseBody extends StatelessWidget {
+  const DesktopDataBaseBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class DataBaseBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             DesktopDatabaseContainer(
-              text: 'مراجعة المعاملات السابقة',
+              text: 'Latest Transactions',
               color: AppColors.current.purpleText,
               image: Assets.database,
             ),

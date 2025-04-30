@@ -17,7 +17,7 @@ class EditProfileForm extends StatelessWidget {
     EditProfileController controller =Get.put(EditProfileController());
     controller.loadNurseData(nurse['id']);
     return Container(
-      height: MediaQuery.of(context).size.height * 0.85,
+      height: MediaQuery.of(context).size.height * 0.75,
       width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
           color: AppColors.current.purple,
@@ -25,43 +25,28 @@ class EditProfileForm extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-             Row(
-              children: [
-        Stack(
-        alignment: AlignmentDirectional.topEnd,
-          children: [
-            CircleAvatar(
-                radius: 65,
-                backgroundColor: AppColors.current.white,
-               child: const Image(
-                 image: AssetImage(
-                   Assets.noPhoto,
-                 ),
-               ),),
-          ],
-        ),
-                const SizedBox(width: 20,),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: Text(
-                   'تعديل الصورة الشخصية',
-                    style: Styles.textStyleMedium.copyWith(
-                        fontSize: responsiveFonts(context, fontSize: 11),
-                        color: AppColors.current.veryDarkPurple),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
+             Stack(
+             alignment: AlignmentDirectional.topEnd,
+               children: [
+                 CircleAvatar(
+                     radius: 65,
+                     backgroundColor: AppColors.current.white,
+                    child: const Image(
+                      image: AssetImage(
+                        Assets.noPhoto,
+                      ),
+                    ),),
+               ],
+             ),
             const SizedBox(height: 20,),
             Row(
               children: [
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
-                    label: 'الأسم الأول',
+                    label: 'First Name',
                     controller: controller.firstName,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
@@ -72,7 +57,7 @@ class EditProfileForm extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
-                    label: 'الأسم الأخير',
+                    label: 'Last Name',
                     controller: controller.lastName,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
@@ -85,7 +70,7 @@ class EditProfileForm extends StatelessWidget {
               height: 15,
             ),
             CustomTextFormField(
-              label: 'رقم الهاتف',
+              label: 'Phone Number',
               controller: controller.phoneNumber,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -95,7 +80,7 @@ class EditProfileForm extends StatelessWidget {
               height: 15,
             ),
             CustomTextFormField(
-              label: 'منطقة الخدمة',
+              label: 'Service Area',
               controller: controller.workArea,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -105,7 +90,7 @@ class EditProfileForm extends StatelessWidget {
               height: 15,
             ),
             CustomTextFormField(
-              label: 'وقت العمل',
+              label: 'Working Hours',
               suffix: AppIcons.calendar,
               controller: controller.workTime,
               contentPadding:
@@ -119,7 +104,7 @@ class EditProfileForm extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
-                    label: 'العمر',
+                    label: 'Age',
                     controller: controller.nurseAge,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
@@ -130,7 +115,7 @@ class EditProfileForm extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.38,
                   child: CustomTextFormField(
-                    label: 'النوع',
+                    label: 'Gender',
                     controller: controller.nurseGender,
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
@@ -143,22 +128,22 @@ class EditProfileForm extends StatelessWidget {
               height: 30,
             ),
             Container(
-              height: (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
-              width: (MediaQuery.of(context).size.width * 0.8).clamp(100, 800),
+              height: (MediaQuery.of(context).size.width * 0.12),
+              width: (MediaQuery.of(context).size.width * 0.8),
               decoration: BoxDecoration(
                 color: AppColors.current.veryDarkPurple,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: CustomAppButton(
-                  text: 'حفظ',
+                  text: 'Save',
                   onTap: (){
                     controller.editProfileData(nurse['id']);
                     Get.off(const AllNursesScreen());
                   },
                   height:
-                      (MediaQuery.of(context).size.width * 0.15).clamp(25, 100),
+                      (MediaQuery.of(context).size.height * 0.1),
                   width:
-                      (MediaQuery.of(context).size.width * 0.8).clamp(100, 800),
+                      (MediaQuery.of(context).size.width * 0.8),
                   textFont: 14),
             )
           ],

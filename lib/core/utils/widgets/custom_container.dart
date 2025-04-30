@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/styles.dart';
 
@@ -28,8 +29,8 @@ class CustomContainer extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.current.white,
           borderRadius: BorderRadius.circular(10)),
-      width: MediaQuery.of(context).size.width * 0.85.r,
-      height: MediaQuery.of(context).size.height * 0.15.r,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.15,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +40,7 @@ class CustomContainer extends StatelessWidget {
             child: Text(
               text!,
               style: Styles.textStyleMedium.copyWith(
-                  fontSize: responsiveFonts(context, fontSize: 15.spMin),
+                  fontSize: responsiveFonts(context, fontSize: Get.mediaQuery.size.width * 0.035),
                   color: color),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,

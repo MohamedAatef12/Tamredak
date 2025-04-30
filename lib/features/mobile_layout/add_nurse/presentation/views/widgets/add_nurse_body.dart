@@ -15,6 +15,8 @@ class AddNurseBody extends StatelessWidget {
     Get.put(AddNewNurseController());
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           10.verticalSpace,
           CustomContainer(
@@ -23,12 +25,14 @@ class AddNurseBody extends StatelessWidget {
                 Assets.card1home,
               ),
             ),
-            text: 'اضافة ممرض جديد للنظام',
+            text: 'Add New Nurse',
             color: AppColors.current.greenButtons,
           ),
           20.verticalSpace,
-          const AddNurseForm()
+          const AddNurseForm(),
+          15.verticalSpace,
         ],
+
       ),
     );
   }

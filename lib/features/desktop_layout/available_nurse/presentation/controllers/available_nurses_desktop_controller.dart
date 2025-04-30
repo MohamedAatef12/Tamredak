@@ -58,8 +58,10 @@ class AvailableNursesDesktopController extends GetxController {
   // Function to send nurse availability
   Future<void> sendNurseAvailable(String nurseId) async {
     try {
+      final nurse = availableNursesList.firstWhere((nurse) => nurse['id'] == nurseId);
       Map<String, dynamic> taskData = {
         'name': nameController.text,
+        'nurseName': '${nurse['first name']} ${nurse['last name']}', // Save nurse name
         'phone': phoneController.text,
         'age': ageController.text,
         'area': areaController.text,

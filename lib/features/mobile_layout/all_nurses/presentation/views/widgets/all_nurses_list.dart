@@ -20,7 +20,8 @@ class AllNursesList extends StatelessWidget {
     final AllNursesController controller = Get.put(AllNursesController());
 
     return Container(
-      width: MediaQuery.of(context).size.width * 0.8.r,
+      height: MediaQuery.of(context).size.height * 0.7,
+      width: Get.mediaQuery.size.width * 0.9,
       decoration: BoxDecoration(
         color: AppColors.current.blueBackground,
         borderRadius: BorderRadius.circular(20),
@@ -34,36 +35,15 @@ class AllNursesList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.7,
+                  width: MediaQuery.sizeOf(context).width * 0.8,
                   child: CustomTextFormField(
-                    label: 'البحث',
+                    label: 'Search',
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     onChange: (value) {
                       // Call the search function as user types
                       controller.searchNurses(value);
                     },
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 0.07.r,
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.current.white,
-                      borderRadius: BorderRadius.circular(10).r,
-                    ),
-                    child: IconButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      icon: AppIcons.search,
-                      onPressed: () {
-                        // Optional search button action (usually not needed with onChanged)
-                      },
-                    ),
                   ),
                 ),
               ],
@@ -81,7 +61,7 @@ class AllNursesList extends StatelessWidget {
                 if (controller.nursesList.isEmpty) {
                   // No data state
                   return SizedBox(
-                    height: Get.mediaQuery.size.height * 0.25.r,
+                    height: Get.mediaQuery.size.height * 0.25,
                     child: const Center(
                       child:
                           Image(image: AssetImage('assets/images/nodata.png')),
@@ -89,10 +69,9 @@ class AllNursesList extends StatelessWidget {
                   );
                 } else {
                   // Nurses ListView
-                  return SizedBox(
-                    height: Get.mediaQuery.size.height * 0.45.r,
-                    width: Get.mediaQuery.size.width * 0.85.r,
+                  return Expanded(
                     child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
                       itemCount: controller.nursesList.length,
                       separatorBuilder: (context, index) => const SizedBox(
                         height: 15,
@@ -110,8 +89,8 @@ class AllNursesList extends StatelessWidget {
                           time: nurse['time'],
                           one: false,
                           button1: CustomAppButton(
-                            text: 'تعديل بياناته',
-                            textFont: 12.spMin,
+                            text: 'Edit',
+                            textFont: MediaQuery.sizeOf(context).width * 0.027,
                             height: 10.r,
                             width: 20.r,
                             onTap: () {
@@ -119,8 +98,8 @@ class AllNursesList extends StatelessWidget {
                             },
                           ),
                           button2: CustomAppButton(
-                            text: 'مسح',
-                            textFont: 12.spMin,
+                            text: 'Delete',
+                            textFont: MediaQuery.sizeOf(context).width * 0.027,
                             height: 10.r,
                             width: 20.r,
                             onTap: () {
@@ -159,7 +138,7 @@ class AllNursesList extends StatelessWidget {
                   );
                 }
               }
-            })
+            }),
           ],
         ),
       ),

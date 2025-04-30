@@ -4,38 +4,39 @@ import 'package:get/get.dart';
 import 'package:tamredak/core/themes/app_colors.dart';
 import 'package:tamredak/core/utils/assets.dart';
 import 'package:tamredak/core/utils/custom_text_form_field.dart';
+import 'package:tamredak/core/utils/styles.dart';
 import 'package:tamredak/core/utils/widgets/custom_app_button.dart';
 import 'package:tamredak/core/utils/widgets/custom_nurses_card.dart';
 import 'package:tamredak/features/mobile_layout/availablel_nurses/presentation/controllers/available_nurses_controller.dart';
 
-class ViewAllNursesList extends StatefulWidget {
-  const ViewAllNursesList({super.key});
+class ViewAvailableNursesList extends StatefulWidget {
+  const ViewAvailableNursesList({super.key});
 
   @override
-  State<ViewAllNursesList> createState() => _ViewAllNursesListState();
+  State<ViewAvailableNursesList> createState() => _ViewAvailableNursesListState();
 }
 
-class _ViewAllNursesListState extends State<ViewAllNursesList> {
+class _ViewAvailableNursesListState extends State<ViewAvailableNursesList> {
   @override
   Widget build(BuildContext context) {
     final AvailableNursesController controller =
         Get.put(AvailableNursesController());
     controller.fetchAvailableNurses();
     return Container(
-      height: 550.r,
-      width: Get.mediaQuery.size.width * 0.85.r,
+      height: MediaQuery.of(context).size.height * 0.7,
+      width: Get.mediaQuery.size.width * 0.9,
       decoration: BoxDecoration(
           color: AppColors.current.darkGreenBackground,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0).r,
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.58.r,
+              width: MediaQuery.of(context).size.width * 0.8,
               child: CustomTextFormField(
-                label: 'البحث',
+                label: 'Search',
                 maxLine: 1,
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20).r,
@@ -57,42 +58,47 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                 return Center(
                     child: Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.15,
-                    ),
                     const Image(image: AssetImage('assets/images/nodata.png')),
+                    20.verticalSpace,
+                    Text(
+                      'No tasks found!',
+                      style:
+                      Styles.textStyleBold.copyWith(fontSize: 18.spMin),
+                    ),
                   ],
                 ));
               }
-              return ListView.separated(
-                itemCount: controller.filteredNursesList.length,
-                separatorBuilder: (context, index) =>
-                    10.verticalSpace, // Set the number of items
-                itemBuilder: (context, index) {
-                  final nurse = controller.filteredNursesList[index];
-                  final nurseId = nurse['id'];
-                  return CustomNursesCard(
-                    name: nurse['first name'] + nurse["last name"],
-                    image:  const Image(image: AssetImage(Assets.noPhoto),),
-                    phone: nurse['phone number'],
-                    age: nurse['age'],
-                    area: nurse['area'],
-                    gender: nurse['gender'],
-                    time: nurse['time'],
-                    one: true,
-                    button1: CustomAppButton(
-                      onTap: () {
-                        buildBottomBarSheet(context, nurseId);
-                        // controller.setNurseUnavailable(nurseId);
-                      },
-                      text: 'اختيار الممرض',
-                      textFont: 12,
-                      height: 30.r,
-                      width: 150.r,
-                    ),
-                    color: AppColors.current.orangeButtons,
-                  );
-                },
+              return Expanded(
+                child: ListView.separated(
+                  itemCount: controller.filteredNursesList.length,
+                  physics: const BouncingScrollPhysics(),
+                  separatorBuilder: (context, index) =>
+                      15.verticalSpace, // Set the number of items
+                  itemBuilder: (context, index) {
+                    final nurse = controller.filteredNursesList[index];
+                    final nurseId = nurse['id'];
+                    return CustomNursesCard(
+                      name: nurse['first name'] +' '+ nurse["last name"],
+                      image:  const Image(image: AssetImage(Assets.noPhoto),),
+                      phone: nurse['phone number'],
+                      age: nurse['age'],
+                      area: nurse['area'],
+                      gender: nurse['gender'],
+                      time: nurse['time'],
+                      one: true,
+                      button1: CustomAppButton(
+                        onTap: () {
+                          buildBottomBarSheet(context, nurseId);
+                        },
+                        text: 'Send Nurse',
+                        textFont: MediaQuery.sizeOf(context).width * 0.03,
+                        height: 30,
+                        width: 150,
+                      ),
+                      color: AppColors.current.orangeButtons,
+                    );
+                  },
+                ),
               );
             })
           ],
@@ -134,7 +140,7 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Text(
-                    'تعبئة بيانات المريض',
+                    'Patient Information',
                     style: TextStyle(
                       color: AppColors.current.orangeText,
                       fontSize: 20,
@@ -148,11 +154,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.nameController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال اسم المريض';
+                        return 'Please enter the patient name';
                       }
                       return null;
                     },
-                    label: 'اسم المريض',
+                    label: 'Patient Name',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -165,11 +171,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.phoneController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال رقم التواصل مع المريض';
+                        return 'Please enter the patient phone number';
                       }
                       return null;
                     },
-                    label: 'رقم التواصل مع المريض',
+                    label: 'Patient Phone Number',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -182,11 +188,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.ageController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال عمر المريض';
+                        return 'Please enter the patient age';
                       }
                       return null;
                     },
-                    label: 'عمر المريض',
+                    label: 'Patient Age',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -199,11 +205,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.injuryController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال مما يعاني المريض';
+                        return 'Please enter the patient injury';
                       }
                       return null;
                     },
-                    label: 'مما يعاني المريض',
+                    label: 'Patient Injury',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -216,11 +222,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.areaController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال العنوان';
+                        return 'Please enter the patient area';
                       }
                       return null;
                     },
-                    label: 'العنوان',
+                    label: 'Patient Area',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -233,11 +239,11 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                     controller: controller.genderController,
                     validate: (value) {
                       if (value.isEmpty) {
-                        return 'الرجاء ادخال الجنس';
+                        return 'Please enter the patient gender ';
                       }
                       return null;
                     },
-                    label: 'الجنس',
+                    label: 'Patient Gender',
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 20,
@@ -260,7 +266,7 @@ class _ViewAllNursesListState extends State<ViewAllNursesList> {
                       ),
                     ),
                     child: Text(
-                      'ارسال الطلب',
+                      'send',
                       style: TextStyle(
                         color: AppColors.current.white,
                         fontSize: 20,

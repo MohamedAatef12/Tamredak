@@ -13,7 +13,7 @@ class InTaskScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.current.primary,
         title: Text(
-          'تمريضك',
+          'Tamredak',
           style: Styles.textStyleBold
               .copyWith(color: AppColors.current.white, fontSize: 24),
         ),

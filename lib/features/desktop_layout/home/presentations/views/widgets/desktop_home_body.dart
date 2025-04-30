@@ -21,7 +21,7 @@ class DesktopHomeBody extends StatelessWidget {
           children: [
             const Spacer(),
             Text(
-              'مرحبا بك في تطبيق تمريضك ',
+              'Welcome to Tamredak application',
               style: Styles.textStyleBold.copyWith(
                 fontSize: responsiveFonts(context, fontSize: 20),
                 color: AppColors.current.white
@@ -36,14 +36,13 @@ class DesktopHomeBody extends StatelessWidget {
                   children: [
                     DesktopHomeContainer(
                       image: Image(
-                        width: 140.r,
-                        height: 140.r,
+                        height: MediaQuery.sizeOf(context).height*0.2,
                         fit: BoxFit.cover,
                         image: const AssetImage(
                           Assets.card1home,
                         ),
                       ),
-                      text: 'من خلال هذا التطبيق يمكنك اضافة ممرض جديد للنظام',
+                      text: 'Through this application you can add a new nurse to the system',
                       color: AppColors.current.greenButtons,
                       backcolor: AppColors.current.darkGreen.withOpacity(0.5),
                       test: true,
@@ -51,14 +50,13 @@ class DesktopHomeBody extends StatelessWidget {
                     15.verticalSpace,
                     DesktopHomeContainer(
                       image: Image(
-                        width: 140.r,
-                        height: 140.r,
+                    height: MediaQuery.sizeOf(context).height*0.2,
                         fit: BoxFit.cover,
                         image: const AssetImage(
                           Assets.card4home,
                         ),
                       ),
-                      text: 'ايضا يمكنك رؤية جميع الممرضين بالنظام',
+                      text: 'You can also see all nurses in the system',
                       color: AppColors.current.blueText,
                       backcolor: AppColors.current.darkBlue.withOpacity(0.5),
                       test: false,
@@ -71,14 +69,14 @@ class DesktopHomeBody extends StatelessWidget {
                   children: [
                     DesktopHomeContainer(
                       image: Image(
-                        width: 140.r,
-                        height: 140.r,
+                        height: MediaQuery.sizeOf(context).height*0.2,
+                        width: MediaQuery.sizeOf(context).width*0.13,
                         fit: BoxFit.cover,
                         image: const AssetImage(
                           Assets.card2home,
                         ),
                       ),
-                      text: 'ايضا يمكنك رؤية الممرضين المتاحين',
+                      text: 'You can also see available nurses',
                       color: AppColors.current.orangeButtons,
                       backcolor: AppColors.current.darkOrange.withOpacity(0.5),
                       test: false,
@@ -86,14 +84,13 @@ class DesktopHomeBody extends StatelessWidget {
                     15.verticalSpace,
                     DesktopHomeContainer(
                       image: Image(
-                        width: 140.r,
-                        height: 140.r,
+                        height: MediaQuery.sizeOf(context).height*0.2,
                         fit: BoxFit.cover,
                         image: const AssetImage(
                           Assets.card3home,
                         ),
                       ),
-                      text: 'ايضا يمكنك رؤية الممرضين الذين هم في مهمات',
+                      text: 'You can also see nurses who are on duty',
                       color: AppColors.current.purpleButtons,
                       backcolor: AppColors.current.darkPurple.withOpacity(0.5),
                       test: true,

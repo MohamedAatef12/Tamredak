@@ -19,7 +19,7 @@ class DesktopAvailableNursesBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DesktopAvailableNurseContainer(
-              text: 'رؤية الممرضين المتاحين',
+              text: 'Available Nurses',
               color: AppColors.current.orangeText,
               image: Assets.card2home),
         ],
